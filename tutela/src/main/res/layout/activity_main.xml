@@ -10,23 +10,28 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
 
         <net.jmreyes.tutela.aux.PagerSlidingTabStrip
                 android:id="@+id/tabs"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:pstsIndicatorColor="@android:color/white"
-                app:pstsDividerColor="@android:color/white"
+                app:pstsIndicatorColor="?attr/colorAccent"
+                app:pstsDividerColor="?attr/colorPrimary"
+                app:pstsUnderlineHeight="0dp"
                 app:pstsTabBackground="@drawable/background_tab"
-                android:background="?attr/colorPrimaryDark"/>
+                app:pstsTabPaddingLeftRight="15dp"
+                app:pstsIndicatorHeight="2dp"
+                android:background="?attr/colorPrimary"/>
 
         <android.support.v7.widget.Toolbar
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/colorPrimaryDark" />
+                android:background="?attr/colorPrimary"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     </LinearLayout>
 

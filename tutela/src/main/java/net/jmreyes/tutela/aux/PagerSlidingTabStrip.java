@@ -260,6 +260,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         ImageButton tab = new ImageButton(getContext());
         tab.setImageResource(resId);
 
+        tab.setColorFilter(Color.argb(255, 255, 255, 255));
+
         addTab(position, tab);
 
     }
@@ -456,8 +458,8 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             } else {
                 logStrFormat = "%d->\"%d\"";
             }
-            Log.i("DSofter", String.format(logStrFormat,
-                    fromPosition, toPosition));
+//            Log.i("DSofter", String.format(logStrFormat,
+//                    fromPosition, toPosition));
 
 
             boolean overscrolled = (toPosition == lastToPosition
@@ -468,10 +470,10 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             if (toPosition != -1 && !overscrolled) {
 
                 if (quickscrolled) {
-                    Log.i("DSofter", "quick scrolled: "
-                            + String.format("%d->%d %d->%d",
-                            lastFromPosition, lastToPosition,
-                            fromPosition, toPosition));
+//                    Log.i("DSofter", "quick scrolled: "
+//                            + String.format("%d->%d %d->%d",
+//                            lastFromPosition, lastToPosition,
+//                            fromPosition, toPosition));
                     setTabTransition(lastToPosition, 1);
                 } else {
 
@@ -490,7 +492,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
                             i += delta;
                         }
 
-                        Log.i("DSofter", "cont");
+//                        Log.i("DSofter", "cont");
                     }
                 }
 
@@ -513,7 +515,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
             ((TextView) v).setTextColor(getTransitColor(
                     tabTextColor, tabTextColorSec, progress));
 
-            Log.i("DSofter", position + ": " + progress);
+//            Log.i("DSofter", position + ": " + progress);
 
 
         } else if (v instanceof ImageButton) {
@@ -696,7 +698,7 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
         currentPosition = savedState.currentPosition;
         requestLayout();
 
-        Log.i("DSofter", "current pos: " + currentPosition);
+//        Log.i("DSofter", "current pos: " + currentPosition);
 
         updateTabStyles();
     }
