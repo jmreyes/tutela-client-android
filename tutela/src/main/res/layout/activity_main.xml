@@ -4,7 +4,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="net.jmreyes.tutela.MainActivity"
+              tools:context="net.jmreyes.tutela.ui.patient.main.MainActivity"
               tools:ignore="MergeRootFrame">
 
     <LinearLayout
@@ -12,7 +12,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-        <net.jmreyes.tutela.aux.PagerSlidingTabStrip
+        <net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip
                 android:id="@+id/tabs"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

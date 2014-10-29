@@ -1,4 +1,4 @@
-package net.jmreyes.tutela.aux;
+package net.jmreyes.tutela.ui.patient.main.aux;
 
 /*
  * Copyright (C) 2013 Andreas Stuetz <andreas.stuetz@gmail.com>
@@ -31,13 +31,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.view.WindowManager;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;

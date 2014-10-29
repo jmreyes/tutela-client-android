@@ -1,4 +1,4 @@
-package net.jmreyes.tutela;
+package net.jmreyes.tutela.ui.patient.main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -6,13 +6,23 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
-import net.jmreyes.tutela.aux.PagerSlidingTabStrip;
+import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.ui.common.BaseActivity;
+import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
+import net.jmreyes.tutela.ui.patient.main.presenter.MainPresenterImpl;
+import net.jmreyes.tutela.ui.patient.main.view.MainView;
+
+import javax.inject.Inject;
+import java.util.Arrays;
+import java.util.List;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends BaseActivity implements MainView, OnFragmentInteractionListener {
+
+    @Inject
+    MainPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +43,11 @@ public class MainActivity extends ActionBarActivity {
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(pager);
         tabs.setTextColor(Color.WHITE);
+    }
+
+    @Override
+    protected List<Object> getModules() {
+        return Arrays.<Object>asList(new MainModule(this));
     }
 
 
@@ -73,13 +88,13 @@ public class MainActivity extends ActionBarActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0: // Fragment # 0 - This will show FirstFragment
-                    return new PlaceholderFragment();
+                    return new CheckInFragment();
                 case 1: // Fragment # 0 - This will show FirstFragment different title
-                    return new PlaceholderFragment();
+                    return new MyMedicationFragment();
                 case 2: // Fragment # 1 - This will show SecondFragment
-                    return new PlaceholderFragment();
+                    return new MyDoctorsFragment();
                 case 3: // Fragment # 1 - This will show SecondFragment
-                    return new PlaceholderFragment();
+                    return new MyAlarmsFragment();
                 default:
                     return null;
             }
@@ -106,24 +121,6 @@ public class MainActivity extends ActionBarActivity {
                     return 0;
             }
         }
-
-
-        /**
-         * A placeholder fragment containing a simple view.
-         */
-        public static class PlaceholderFragment extends Fragment {
-
-            public PlaceholderFragment() {
-            }
-
-            @Override
-            public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                     Bundle savedInstanceState) {
-                View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-                return rootView;
-            }
-        }
-
     }
 
 
