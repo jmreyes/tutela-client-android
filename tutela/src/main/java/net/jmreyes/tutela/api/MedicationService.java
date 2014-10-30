@@ -1,6 +1,7 @@
 package net.jmreyes.tutela.api;
 
 import net.jmreyes.tutela.model.Medication;
+import retrofit.Callback;
 import retrofit.http.GET;
 import retrofit.http.Path;
 
@@ -12,5 +13,5 @@ import java.util.List;
 public interface MedicationService {
 
     @GET("/{user}/medication")
-    List<Medication> listMedication(@Path("user") String user);
+    void listMedication(@Path("user") String user, Callback<List<Medication>> callback);
 }

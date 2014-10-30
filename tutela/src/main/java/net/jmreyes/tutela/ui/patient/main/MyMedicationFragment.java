@@ -59,7 +59,7 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
         super.onResume();
         presenter.init(this);
 
-        //presenter.requestMedication();
+        presenter.requestMedication();
     }
 
     @Override

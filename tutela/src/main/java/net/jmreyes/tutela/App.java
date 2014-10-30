@@ -10,7 +10,7 @@ import java.util.List;
  * Created by juanma on 28/10/14.
  */
 public class App extends Application {
-    private static ObjectGraph objectGraph;
+    private ObjectGraph objectGraph;
 
     /**
      * Build object graph on creation so that objects are available
