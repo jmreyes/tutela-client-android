@@ -7,12 +7,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ListView;
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.model.Medication;
 import net.jmreyes.tutela.ui.common.BaseFragment;
+import net.jmreyes.tutela.ui.patient.main.adapter.MyMedicationListAdapter;
 import net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,6 +33,9 @@ import javax.inject.Inject;
 public class MyMedicationFragment extends BaseFragment implements MyMedicationView {
     @Inject
     MyMedicationPresenter presenter;
+
+    @InjectView(R.id.listView)
+    ListView listView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -48,6 +58,8 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     public void onResume() {
         super.onResume();
         presenter.init(this);
+
+        //presenter.requestMedication();
     }
 
     @Override
@@ -58,8 +70,17 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_my_medication, container, false);
+        ButterKnife.inject(this, view);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_medication, container, false);
+        List<Medication> medList = new ArrayList<Medication>(12);
+        for (int i = 0; i < 12.; i++) {
+            medList.add(new Medication());
+        }
+        MyMedicationListAdapter myMedicationListAdapter = new MyMedicationListAdapter(view.getContext(), medList);
+        listView.setAdapter(myMedicationListAdapter);
+
+        return view;
     }
 
     @Override

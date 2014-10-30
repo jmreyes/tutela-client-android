@@ -1,5 +1,6 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
+import net.jmreyes.tutela.api.MedicationService;
 import net.jmreyes.tutela.ui.patient.main.view.MyDoctorsView;
 
 import javax.inject.Inject;

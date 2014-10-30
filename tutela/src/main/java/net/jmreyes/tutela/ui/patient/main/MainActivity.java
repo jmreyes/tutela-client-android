@@ -29,6 +29,8 @@ public class MainActivity extends BaseActivity implements MainView, OnFragmentIn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        presenter.hashCode();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -43,6 +45,7 @@ public class MainActivity extends BaseActivity implements MainView, OnFragmentIn
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(pager);
         tabs.setTextColor(Color.WHITE);
+
     }
 
     @Override

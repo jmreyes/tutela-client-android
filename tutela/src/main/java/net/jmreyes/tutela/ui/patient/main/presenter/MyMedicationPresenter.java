@@ -7,5 +7,5 @@ import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
  * Created by juanma on 29/10/14.
  */
 public interface MyMedicationPresenter extends BaseFragmentPresenter<MyMedicationView> {
-
+    public void requestMedication();
 }

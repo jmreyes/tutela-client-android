@@ -10,7 +10,7 @@ import java.util.List;
  * Created by juanma on 28/10/14.
  */
 public class App extends Application {
-    private ObjectGraph objectGraph;
+    private static ObjectGraph objectGraph;
 
     /**
      * Build object graph on creation so that objects are available
@@ -21,7 +21,6 @@ public class App extends Application {
         objectGraph = ObjectGraph.create(getModules().toArray());
         objectGraph.inject(this);
     }
-
 
     private List<Object> getModules() {
         return Arrays.<Object>asList(new AppModule(this));
