@@ -1,22 +1,21 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
-import net.jmreyes.tutela.api.ApiManager;
 import net.jmreyes.tutela.api.MedicationService;
-import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractor;
+import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractorImpl;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.List;
+
+import static net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter.*;
 
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyMedicationPresenterImpl implements MyMedicationPresenter {
+public class MyMedicationPresenterImpl implements MyMedicationPresenter, OnFinishedListener {
     private MyMedicationView view;
+    private MyMedicationInteractor myMedicationInteractor;
 
     @Inject
     @Named("medicationService")
@@ -24,6 +23,7 @@ public class MyMedicationPresenterImpl implements MyMedicationPresenter {
 
     @Inject
     public MyMedicationPresenterImpl() {
+        myMedicationInteractor = new MyMedicationInteractorImpl();
     }
 
     @Override
@@ -32,19 +32,14 @@ public class MyMedicationPresenterImpl implements MyMedicationPresenter {
     }
 
     @Override
-    public void requestMedication() {
+    public void requestMyMedication() {
+        myMedicationInteractor.requestMyMedication(this);
+    }
 
+    // OnFinishedListener methods, callbacks from the interactor.
 
-        ApiManager.getMedicationService().listMedication("test", new Callback<List<Medication>>() {
-            @Override
-            public void success(List<Medication> postListResponse, Response response) {
-                System.out.println("OK");
-            }
+    @Override
+    public void requestMyMedicationFinished() {
 
-            @Override
-            public void failure(RetrofitError error) {
-                System.out.println("FAIL");
-            }
-        });
     }
 }

@@ -7,5 +7,6 @@ import net.jmreyes.tutela.ui.patient.main.view.MyAlarmsView;
  * Created by juanma on 29/10/14.
  */
 public interface MyAlarmsPresenter extends BaseFragmentPresenter<MyAlarmsView> {
-
+    public static interface OnFinishedListener {
+    }
 }
