@@ -8,12 +8,11 @@ import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import static net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter.*;
 
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyMedicationPresenterImpl implements MyMedicationPresenter, OnFinishedListener {
+public class MyMedicationPresenterImpl implements MyMedicationPresenter, MyMedicationPresenter.OnFinishedListener {
     private MyMedicationView view;
     private MyMedicationInteractor myMedicationInteractor;
 

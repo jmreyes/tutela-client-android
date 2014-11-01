@@ -7,7 +7,7 @@ import javax.inject.Inject;
 /**
  * Created by juanma on 29/10/14.
  */
-public class CheckInPresenterImpl implements CheckInPresenter {
+public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.OnFinishedListener {
     private CheckInView view;
 
     @Inject

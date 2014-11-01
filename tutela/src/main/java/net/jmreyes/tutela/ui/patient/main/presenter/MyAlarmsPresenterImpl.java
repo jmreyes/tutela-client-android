@@ -7,7 +7,7 @@ import javax.inject.Inject;
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyAlarmsPresenterImpl implements MyAlarmsPresenter {
+public class MyAlarmsPresenterImpl implements MyAlarmsPresenter, MyAlarmsPresenter.OnFinishedListener {
     private MyAlarmsView view;
 
     @Inject

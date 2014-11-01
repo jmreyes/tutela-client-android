@@ -8,7 +8,7 @@ import javax.inject.Inject;
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyDoctorsPresenterImpl implements MyDoctorsPresenter {
+public class MyDoctorsPresenterImpl implements MyDoctorsPresenter, MyDoctorsPresenter.OnFinishedListener {
     private MyDoctorsView view;
 
     @Inject

@@ -7,5 +7,6 @@ import net.jmreyes.tutela.ui.patient.main.view.CheckInView;
  * Created by juanma on 29/10/14.
  */
 public interface CheckInPresenter extends BaseFragmentPresenter<CheckInView> {
-
+    public static interface OnFinishedListener {
+    }
 }
