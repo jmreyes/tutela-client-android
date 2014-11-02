@@ -7,11 +7,11 @@ import javax.inject.Inject;
 /**
  * Created by juanma on 28/10/14.
  */
-public class MainPresenterImpl implements MainPresenter {
+public class PatientMainPresenterImpl implements PatientMainPresenter {
     private MainView view;
 
     @Inject
-    public MainPresenterImpl(MainView view) {
+    public PatientMainPresenterImpl(MainView view) {
         this.view = view;
     }
 }

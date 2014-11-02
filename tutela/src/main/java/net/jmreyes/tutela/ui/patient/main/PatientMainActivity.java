@@ -11,7 +11,7 @@ import android.view.*;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
-import net.jmreyes.tutela.ui.patient.main.presenter.MainPresenterImpl;
+import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenterImpl;
 import net.jmreyes.tutela.ui.patient.main.view.MainView;
 
 import javax.inject.Inject;
@@ -19,15 +19,15 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class MainActivity extends BaseActivity implements MainView, OnFragmentInteractionListener {
+public class PatientMainActivity extends BaseActivity implements MainView, OnFragmentInteractionListener {
 
     @Inject
-    MainPresenterImpl presenter;
+    PatientMainPresenterImpl presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_patient_main);
 
         presenter.hashCode();
 
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity implements MainView, OnFragmentIn
 
     @Override
     protected List<Object> getModules() {
-        return Arrays.<Object>asList(new MainModule(this));
+        return Arrays.<Object>asList(new PatientMainModule(this));
     }
 
 

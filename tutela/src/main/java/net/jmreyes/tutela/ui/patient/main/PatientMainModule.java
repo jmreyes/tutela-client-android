@@ -14,7 +14,7 @@ import javax.inject.Singleton;
 @Module(
         addsTo = AppModule.class,
         injects = {
-                MainActivity.class,
+                PatientMainActivity.class,
                 CheckInFragment.class,
                 MyAlarmsFragment.class,
                 MyDoctorsFragment.class,
@@ -23,10 +23,10 @@ import javax.inject.Singleton;
         complete = false,
         library = true
 )
-public class MainModule {
+public class PatientMainModule {
     private MainView view;
 
-    public MainModule(MainView view) {
+    public PatientMainModule(MainView view) {
         this.view = view;
     }
 
@@ -44,8 +44,8 @@ public class MainModule {
      */
     @Provides
     @Singleton
-    public MainPresenter provideMainPresenter(MainView view) {
-        return new MainPresenterImpl(view);
+    public PatientMainPresenter provideMainPresenter(MainView view) {
+        return new PatientMainPresenterImpl(view);
     }
 
     /**
