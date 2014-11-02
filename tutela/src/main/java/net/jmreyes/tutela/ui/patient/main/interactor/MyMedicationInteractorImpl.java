@@ -15,17 +15,18 @@ import java.util.List;
 public class MyMedicationInteractorImpl implements MyMedicationInteractor {
 
     @Override
-    public void requestMyMedication(final MyMedicationPresenter.OnFinishedListener listener) {
+    public void makeRequest(final MyMedicationPresenter.OnFinishedListener listener) {
         ApiManager.getMedicationService().listMedication("test", new Callback<List<Medication>>() {
             @Override
-            public void success(List<Medication> result, Response response) {
-                listener.requestMyMedicationFinished();
-                Medication med = result.get(0);
+            public void success(List<Medication> results, Response response) {
+                listener.onSuccess(results);
+                Medication med = results.get(0);
                 System.out.println("OK "+med.getName());
             }
 
             @Override
             public void failure(RetrofitError error) {
+                listener.onError();
                 System.out.println("FAIL");
             }
         });

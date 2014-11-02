@@ -6,5 +6,5 @@ import net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter;
  * Created by juanma on 1/11/14.
  */
 public interface MyMedicationInteractor {
-    public void requestMyMedication(final MyMedicationPresenter.OnFinishedListener callback);
+    public void makeRequest(final MyMedicationPresenter.OnFinishedListener callback);
 }

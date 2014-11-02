@@ -42,8 +42,8 @@ public class MyMedicationListAdapter extends ArrayAdapter<Medication> {
             convertView.setTag(holder);
         }
 
-        holder.title.setText("John Doe");
-        holder.subtitle.setText("John Doe");
+        holder.title.setText(values.get(position).getName());
+        holder.subtitle.setText(values.get(position).getName());
 
         return convertView;
     }

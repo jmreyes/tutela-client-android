@@ -1,12 +1,14 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
 import net.jmreyes.tutela.api.MedicationService;
+import net.jmreyes.tutela.model.Medication;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractor;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractorImpl;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
 
 
 /**
@@ -31,14 +33,22 @@ public class MyMedicationPresenterImpl implements MyMedicationPresenter, MyMedic
     }
 
     @Override
-    public void requestMyMedication() {
-        myMedicationInteractor.requestMyMedication(this);
+    public void makeRequest() {
+        myMedicationInteractor.makeRequest(this);
     }
 
-    // OnFinishedListener methods, callbacks from the interactor.
+    /**
+     * OnFinishedListener methods, callbacks from the interactor.
+     *
+     * @param result*/
 
     @Override
-    public void requestMyMedicationFinished() {
+    public void onSuccess(List<Medication> results) {
+        view.displayResults(results);
+    }
 
+    @Override
+    public void onError() {
+        view.displayError();
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 public interface MedicationService {
 
     @Headers({
-            "Authorization: Bearer 8c5efd95-624f-4601-85c9-77fb324f6b8a"
+            "Authorization: Bearer 0fb2d623-9697-4998-8f7b-a973b2cac8c2"
     })
     @GET("/me/{id}/medication")
     void listMedication(@Path("id") String user, Callback<List<Medication>> callback);
