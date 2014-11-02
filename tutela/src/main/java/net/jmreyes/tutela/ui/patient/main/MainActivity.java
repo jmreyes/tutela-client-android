@@ -126,6 +126,9 @@ public class MainActivity extends BaseActivity implements MainView, OnFragmentIn
         }
     }
 
-
+    @Override
+    protected boolean requireLogin() {
+        return false;
+    }
 
 }
