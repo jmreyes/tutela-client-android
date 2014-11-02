@@ -20,7 +20,8 @@ public class MyMedicationInteractorImpl implements MyMedicationInteractor {
             @Override
             public void success(List<Medication> result, Response response) {
                 listener.requestMyMedicationFinished();
-                System.out.println("OK");
+                Medication med = result.get(0);
+                System.out.println("OK "+med.getName());
             }
 
             @Override

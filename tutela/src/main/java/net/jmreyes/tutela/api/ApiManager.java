@@ -6,7 +6,7 @@ import retrofit.RestAdapter;
  * Created by juanma on 30/10/14.
  */
 public class ApiManager {
-    private static final String API_URL = "https://api.github.com";
+    private static final String API_URL = "http://192.168.178.59:8443";
 
     private static final RestAdapter REST_ADAPTER = new RestAdapter.Builder()
             .setEndpoint(API_URL)
