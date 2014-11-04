@@ -30,8 +30,6 @@ import java.util.List;
  * Activities that contain this fragment must implement the
  * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link MyMedicationFragment#newInstance} factory method to
- * create an instance of this fragment.
  *
  */
 public class MyMedicationFragment extends BaseFragment implements MyMedicationView {
@@ -97,8 +95,8 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     }
 
     @OnItemClick(R.id.listView)
-    void onItemSelected(int position) {
-        // TODO ...
+    void onItemSelected(int position, View v) {
+        mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, null, v);
     }
 
     @Override

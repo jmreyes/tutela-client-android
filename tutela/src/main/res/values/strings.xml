@@ -9,7 +9,10 @@
     <string name="my_medication">My Medication</string>
     <string name="my_doctors">My Doctors</string>
     <string name="my_alarms">My Alarms</string>
+    <string name="medication_details">Medication Details</string>
     <string name="loading_layout_network_error">Network error</string>
     <string name="loading_layout_retry">Retry?</string>
+
+    <string name="transition_medication_details">transition_medication_details</string>
 
 </resources>

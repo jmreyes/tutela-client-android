@@ -2,9 +2,12 @@ package net.jmreyes.tutela.ui.patient.main;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v13.app.FragmentPagerAdapter;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.*;
@@ -13,6 +16,7 @@ import net.jmreyes.tutela.ui.common.BaseActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
 import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenterImpl;
 import net.jmreyes.tutela.ui.patient.main.view.MainView;
+import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -21,6 +25,7 @@ import java.util.List;
 
 public class PatientMainActivity extends BaseActivity implements MainView, OnFragmentInteractionListener {
 
+
     @Inject
     PatientMainPresenterImpl presenter;
 
@@ -28,8 +33,6 @@ public class PatientMainActivity extends BaseActivity implements MainView, OnFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_main);
-
-        presenter.hashCode();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
@@ -129,6 +132,26 @@ public class PatientMainActivity extends BaseActivity implements MainView, OnFra
     @Override
     protected boolean requireLogin() {
         return false;
+    }
+
+    @Override
+    public void loadActivity(Subsections subsection, Bundle args, View transitionView) {
+
+
+        switch (subsection) {
+            case MEDICATION_DETAILS:
+                break;
+            case DOCTOR_DETAILS:
+                break;
+            default:
+                break;
+        }
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this, transitionView, getString(R.string.transition_medication_details));
+
+        ActivityCompat.startActivity(this, new Intent(this, MedicationDetailsActivity.class),
+                options.toBundle());
     }
 
 }

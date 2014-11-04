@@ -1,5 +1,8 @@
 package net.jmreyes.tutela.ui.patient.main;
 
+import android.os.Bundle;
+import android.view.View;
+
 /**
  * This interface must be implemented by activities that contain this
  * fragment to allow an interaction in this fragment to be communicated
@@ -11,4 +14,10 @@ package net.jmreyes.tutela.ui.patient.main;
  * >Communicating with Other Fragments</a> for more information.
  */
 public interface OnFragmentInteractionListener {
+    public enum Subsections {
+        MEDICATION_DETAILS,
+        DOCTOR_DETAILS
+    }
+
+    void loadActivity(Subsections subsection, Bundle args, View transitionView);
 }

@@ -48,6 +48,10 @@ public class MyMedicationListAdapter extends ArrayAdapter<Medication> {
         return convertView;
     }
 
+    public String getId(int position) {
+        return values.get(position).getId();
+    }
+
     static class ViewHolder {
         @InjectView(R.id.title) TextView title;
         @InjectView(R.id.subtitle) TextView subtitle;
