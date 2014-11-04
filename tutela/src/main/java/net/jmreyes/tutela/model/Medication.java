@@ -6,12 +6,23 @@ package net.jmreyes.tutela.model;
 public class Medication {
     private String id;
     private String name;
+    private String doctorName;
+    private String frequency;
+    private String notes;
 
     public String getId() {
         return this.id;
     }
-
     public String getName() {
         return this.name;
+    }
+    public String getDoctorName() {
+        return this.doctorName;
+    }
+    public String getFrequency() {
+        return this.frequency;
+    }
+    public String getNotes() {
+        return this.notes;
     }
 }

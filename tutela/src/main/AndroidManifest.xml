@@ -12,7 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ui.patient.main.PatientMainActivity"
+            android:name=".ui.patient.main.PatientPatientMainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" >
             <intent-filter>
@@ -24,7 +24,7 @@
 
         <activity
                 android:name=".ui.patient.medicationdetails.MedicationDetailsActivity"
-                android:parentActivityName=".ui.patient.main.PatientMainActivity">
+                android:parentActivityName=".ui.patient.main.PatientPatientMainActivity">
         </activity>
 
         <service

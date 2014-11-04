@@ -5,4 +5,7 @@
     <color name="colorAccent">#e51c23</color>
 
     <color name="background_tab_pressed">@color/highlighted_text_material_dark</color>
+
+    <color name="text_main">#212121</color>
+    <color name="light_gray">#e0e0e0</color>
 </resources>

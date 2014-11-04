@@ -4,7 +4,7 @@ import dagger.Module;
 import dagger.Provides;
 import net.jmreyes.tutela.AppModule;
 import net.jmreyes.tutela.ui.patient.main.presenter.*;
-import net.jmreyes.tutela.ui.patient.main.view.MainView;
+import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
 
 import javax.inject.Singleton;
 
@@ -14,7 +14,7 @@ import javax.inject.Singleton;
 @Module(
         addsTo = AppModule.class,
         injects = {
-                PatientMainActivity.class,
+                PatientPatientMainActivity.class,
                 CheckInFragment.class,
                 MyAlarmsFragment.class,
                 MyDoctorsFragment.class,
@@ -24,27 +24,27 @@ import javax.inject.Singleton;
         library = true
 )
 public class PatientMainModule {
-    private MainView view;
+    private PatientMainView view;
 
-    public PatientMainModule(MainView view) {
+    public PatientMainModule(PatientMainView view) {
         this.view = view;
     }
 
     /**
-     * Provide MainView
+     * Provide PatientMainView
      */
     @Provides
     @Singleton
-    public MainView provideMainView() {
+    public PatientMainView providePatientMainView() {
         return view;
     }
 
     /**
-     * Provide MainPresenter
+     * Provide PatientMainPresenter
      */
     @Provides
     @Singleton
-    public PatientMainPresenter provideMainPresenter(MainView view) {
+    public PatientMainPresenter providePatientMainPresenter(PatientMainView view) {
         return new PatientMainPresenterImpl(view);
     }
 

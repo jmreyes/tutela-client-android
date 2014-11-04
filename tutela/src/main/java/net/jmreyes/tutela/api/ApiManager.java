@@ -1,5 +1,7 @@
 package net.jmreyes.tutela.api;
 
+import net.jmreyes.tutela.api.services.DoctorService;
+import net.jmreyes.tutela.api.services.MedicationService;
 import retrofit.RestAdapter;
 
 /**
@@ -19,8 +21,12 @@ public class ApiManager {
             .build();
 
     private static final MedicationService MEDICATION_SERVICE = REST_ADAPTER.create(MedicationService.class);
+    private static final DoctorService DOCTOR_SERVICE = REST_ADAPTER.create(DoctorService.class);
 
     public static MedicationService getMedicationService() {
         return MEDICATION_SERVICE;
+    }
+    public static DoctorService getDoctorService() {
+        return DOCTOR_SERVICE;
     }
 }

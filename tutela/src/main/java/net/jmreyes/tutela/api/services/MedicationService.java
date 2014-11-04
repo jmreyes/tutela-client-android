@@ -1,4 +1,4 @@
-package net.jmreyes.tutela.api;
+package net.jmreyes.tutela.api.services;
 
 import net.jmreyes.tutela.model.Medication;
 import retrofit.Callback;
@@ -14,8 +14,14 @@ import java.util.List;
 public interface MedicationService {
 
     @Headers({
-            "Authorization: Bearer 1e1fafc9-3fd6-4ffe-9566-f9c2e7b57bca"
+            "Authorization: Bearer 44d31797-8749-43aa-850b-9feb74459df9"
     })
     @GET("/me/{id}/medication")
     void listMedication(@Path("id") String user, Callback<List<Medication>> callback);
+
+    @Headers({
+            "Authorization: Bearer 44d31797-8749-43aa-850b-9feb74459df9"
+    })
+    @GET("/medication/{id}")
+    void findOneById(@Path("id") String user, Callback<Medication> callback);
 }

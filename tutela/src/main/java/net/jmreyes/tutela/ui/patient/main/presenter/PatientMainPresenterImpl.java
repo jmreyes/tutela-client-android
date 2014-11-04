@@ -1,6 +1,6 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
-import net.jmreyes.tutela.ui.patient.main.view.MainView;
+import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
 
 import javax.inject.Inject;
 
@@ -8,10 +8,10 @@ import javax.inject.Inject;
  * Created by juanma on 28/10/14.
  */
 public class PatientMainPresenterImpl implements PatientMainPresenter {
-    private MainView view;
+    private PatientMainView view;
 
     @Inject
-    public PatientMainPresenterImpl(MainView view) {
+    public PatientMainPresenterImpl(PatientMainView view) {
         this.view = view;
     }
 }

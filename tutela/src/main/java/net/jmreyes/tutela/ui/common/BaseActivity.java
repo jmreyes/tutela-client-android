@@ -6,8 +6,15 @@ import android.accounts.OnAccountsUpdateListener;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import butterknife.InjectView;
+import butterknife.Optional;
 import dagger.ObjectGraph;
+import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import net.jmreyes.tutela.App;
+import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.api.ApiManager;
 import net.jmreyes.tutela.ui.login.LoginActivity;
 
@@ -18,6 +25,11 @@ import java.util.List;
  * Created by juanma on 28/10/14.
  */
 public abstract class BaseActivity extends ActionBarActivity implements OnAccountsUpdateListener {
+    @Optional @InjectView(R.id.loadingLayout) ViewGroup loadingLayout;
+    @Optional @InjectView(R.id.progressBar) CircularProgressBar progressBar;
+    @Optional @InjectView(R.id.loadingLayoutErrorText) TextView loadingLayoutErrorText;
+    @Optional @InjectView(R.id.loadingLayoutRetryButton) TextView loadingLayoutRetryButton;
+
     @Inject
     AccountManager accountManager;
 
@@ -62,5 +74,24 @@ public abstract class BaseActivity extends ActionBarActivity implements OnAccoun
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    protected void showLoadingBar() {
+        loadingLayout.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideLoadingBar() {
+        loadingLayout.setVisibility(View.GONE);
+    }
+
+    protected void showErrorInLoadingBar(String error) {
+        progressBar.setVisibility(View.GONE);
+
+        if (error != null) {
+            loadingLayoutErrorText.setText(error);
+        }
+
+        loadingLayoutErrorText.setVisibility(View.VISIBLE);
+        loadingLayoutRetryButton.setVisibility(View.VISIBLE);
     }
 }

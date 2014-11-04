@@ -14,8 +14,9 @@ import android.view.*;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
+import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenter;
 import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenterImpl;
-import net.jmreyes.tutela.ui.patient.main.view.MainView;
+import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
 import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
 
 import javax.inject.Inject;
@@ -23,11 +24,10 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class PatientMainActivity extends BaseActivity implements MainView, OnFragmentInteractionListener {
-
+public class PatientPatientMainActivity extends BaseActivity implements PatientMainView, OnFragmentInteractionListener {
 
     @Inject
-    PatientMainPresenterImpl presenter;
+    PatientMainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,21 +136,26 @@ public class PatientMainActivity extends BaseActivity implements MainView, OnFra
 
     @Override
     public void loadActivity(Subsections subsection, Bundle args, View transitionView) {
-
+        Intent intent;
 
         switch (subsection) {
             case MEDICATION_DETAILS:
+                intent = new Intent(this, MedicationDetailsActivity.class);
                 break;
             case DOCTOR_DETAILS:
+                intent = new Intent(this, MedicationDetailsActivity.class);
                 break;
             default:
-                break;
+                return;
         }
+
+        if (args != null)
+            intent.putExtras(args);
 
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
                 this, transitionView, getString(R.string.transition_medication_details));
 
-        ActivityCompat.startActivity(this, new Intent(this, MedicationDetailsActivity.class),
+        ActivityCompat.startActivity(this, intent,
                 options.toBundle());
     }
 

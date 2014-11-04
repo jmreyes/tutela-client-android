@@ -1,7 +1,10 @@
 package net.jmreyes.tutela.ui.patient.medicationdetails;
 
 import dagger.Module;
+import dagger.Provides;
 import net.jmreyes.tutela.AppModule;
+
+import javax.inject.Singleton;
 
 /**
  * Created by juanma on 3/11/14.
@@ -19,5 +22,23 @@ public class MedicationDetailsModule {
 
     public MedicationDetailsModule(MedicationDetailsView view) {
         this.view = view;
+    }
+
+    /**
+     * Provide MedicationDetailsView
+     */
+    @Provides
+    @Singleton
+    public MedicationDetailsView provideMedicationDetailsView() {
+        return view;
+    }
+
+    /**
+     * Provide MedicationDetailsPresenter
+     */
+    @Provides
+    @Singleton
+    public MedicationDetailsPresenter provideMedicationDetailsPresenter(MedicationDetailsView view) {
+        return new MedicationDetailsPresenterImpl(view);
     }
 }

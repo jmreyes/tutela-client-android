@@ -20,6 +20,7 @@ import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.main.adapter.MyMedicationListAdapter;
 import net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
+import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -38,6 +39,8 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     @InjectView(R.id.listView) ListView listView;
 
     private OnFragmentInteractionListener mListener;
+
+    MyMedicationListAdapter myMedicationListAdapter;
 
     public MyMedicationFragment() {
         // Required empty public constructor
@@ -90,13 +93,16 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     @Override
     public void displayResults(List<Medication> results) {
         hideLoadingBar();
-        MyMedicationListAdapter myMedicationListAdapter = new MyMedicationListAdapter(listView.getContext(), results);
+        myMedicationListAdapter = new MyMedicationListAdapter(listView.getContext(), results);
         listView.setAdapter(myMedicationListAdapter);
     }
 
     @OnItemClick(R.id.listView)
     void onItemSelected(int position, View v) {
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, null, v);
+        String id = myMedicationListAdapter.getId(position);
+        Bundle bundle = new Bundle();
+        bundle.putString(MedicationDetailsActivity.ARG_MEDICATION_ID, id);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, bundle, v);
     }
 
     @Override

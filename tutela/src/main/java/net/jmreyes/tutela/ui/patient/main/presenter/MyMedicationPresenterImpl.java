@@ -1,6 +1,6 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
-import net.jmreyes.tutela.api.MedicationService;
+import net.jmreyes.tutela.api.services.MedicationService;
 import net.jmreyes.tutela.model.Medication;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractor;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractorImpl;
@@ -17,10 +17,6 @@ import java.util.List;
 public class MyMedicationPresenterImpl implements MyMedicationPresenter, MyMedicationPresenter.OnFinishedListener {
     private MyMedicationView view;
     private MyMedicationInteractor myMedicationInteractor;
-
-    @Inject
-    @Named("medicationService")
-    MedicationService medicationService;
 
     @Inject
     public MyMedicationPresenterImpl() {
@@ -40,7 +36,7 @@ public class MyMedicationPresenterImpl implements MyMedicationPresenter, MyMedic
     /**
      * OnFinishedListener methods, callbacks from the interactor.
      *
-     * @param result*/
+     **/
 
     @Override
     public void onSuccess(List<Medication> results) {
