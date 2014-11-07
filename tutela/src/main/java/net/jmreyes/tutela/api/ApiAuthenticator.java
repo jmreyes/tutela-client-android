@@ -32,7 +32,8 @@ public class ApiAuthenticator implements Authenticator {
 
         for (Challenge challenge : response.challenges()) {
             if (challenge.getScheme().equals("Bearer")) {
-                Account[] accounts = accountManager.getAccountsByType(ApiManager.ACCOUNT_TYPE); if (accounts.length != 0) {
+                Account[] accounts = accountManager.getAccountsByType(ApiManager.ACCOUNT_TYPE);
+                if (accounts.length != 0) {
                     String oldToken = accountManager.peekAuthToken(accounts[0],
                             ApiManager.AUTHTOKEN_TYPE);
                     if (oldToken != null) {

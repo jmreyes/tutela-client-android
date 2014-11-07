@@ -1,9 +1,13 @@
 package net.jmreyes.tutela.api;
 
+import android.accounts.AccountManager;
+import android.app.Application;
+import com.squareup.okhttp.OkHttpClient;
 import net.jmreyes.tutela.api.services.AuthService;
 import net.jmreyes.tutela.api.services.DoctorService;
 import net.jmreyes.tutela.api.services.MedicationService;
 import retrofit.RestAdapter;
+import retrofit.client.OkClient;
 
 import javax.inject.Inject;
 
@@ -11,8 +15,6 @@ import javax.inject.Inject;
  * Created by juanma on 30/10/14.
  */
 public class ApiManager {
-    @Inject
-    ApiHeaders apiHeaders;
 
     private static final String API_URL = "http://192.168.178.59:8443";
 
@@ -21,23 +23,34 @@ public class ApiManager {
     public static final String AUTHTOKEN_TYPE = "net.jmreyes.tutela";
     public static final String ACCOUNT_TYPE = AUTHTOKEN_TYPE;
 
+    private static AuthService authService;
+    private static MedicationService medicationService;
+    private static DoctorService doctorService;
 
-    private static final RestAdapter REST_ADAPTER = new RestAdapter.Builder()
-            .setEndpoint(API_URL)
-            .setLogLevel(RestAdapter.LogLevel.FULL)
-            .build();
+    public static void initRestAdapter(Application app) {
+        OkHttpClient okHttpClient = new OkHttpClient();
+        okHttpClient.setAuthenticator(new ApiAuthenticator(app, AccountManager.get(app)));
 
-    private static final AuthService AUTH_SERVICE = REST_ADAPTER.create(AuthService.class);
-    private static final MedicationService MEDICATION_SERVICE = REST_ADAPTER.create(MedicationService.class);
-    private static final DoctorService DOCTOR_SERVICE = REST_ADAPTER.create(DoctorService.class);
+        RestAdapter restAdapter = new RestAdapter.Builder()
+                .setEndpoint(API_URL)
+                .setClient(new OkClient(okHttpClient))
+                .setRequestInterceptor(new ApiHeaders(app))
+                .setLogLevel(RestAdapter.LogLevel.FULL)
+                .build();
+
+        authService = restAdapter.create(AuthService.class);
+        medicationService = restAdapter.create(MedicationService.class);
+        doctorService = restAdapter.create(DoctorService.class);
+    }
+
 
     public static AuthService getAuthService() {
-        return AUTH_SERVICE;
+        return authService;
     }
     public static MedicationService getMedicationService() {
-        return MEDICATION_SERVICE;
+        return medicationService;
     }
     public static DoctorService getDoctorService() {
-        return DOCTOR_SERVICE;
+        return doctorService;
     }
 }

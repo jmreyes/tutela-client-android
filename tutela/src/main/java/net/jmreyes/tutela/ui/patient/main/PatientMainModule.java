@@ -14,7 +14,7 @@ import javax.inject.Singleton;
 @Module(
         addsTo = AppModule.class,
         injects = {
-                PatientPatientMainActivity.class,
+                PatientMainActivity.class,
                 CheckInFragment.class,
                 MyAlarmsFragment.class,
                 MyDoctorsFragment.class,

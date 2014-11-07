@@ -61,10 +61,6 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
         return Arrays.<Object>asList(new MedicationDetailsModule(this));
     }
 
-    protected boolean requireLogin() {
-        return false;
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

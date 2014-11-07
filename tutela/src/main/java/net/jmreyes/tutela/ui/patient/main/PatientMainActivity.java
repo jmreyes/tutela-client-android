@@ -24,7 +24,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class PatientPatientMainActivity extends BaseActivity implements PatientMainView, OnFragmentInteractionListener {
+public class PatientMainActivity extends BaseActivity implements PatientMainView, OnFragmentInteractionListener {
 
     @Inject
     PatientMainPresenter presenter;
@@ -127,11 +127,6 @@ public class PatientPatientMainActivity extends BaseActivity implements PatientM
                     return 0;
             }
         }
-    }
-
-    @Override
-    protected boolean requireLogin() {
-        return false;
     }
 
     @Override

@@ -48,6 +48,11 @@ public abstract class BaseActivity extends ActionBarActivity implements OnAccoun
         if(requireLogin()) accountManager.addOnAccountsUpdatedListener(this, null, true);
     }
 
+    @Override protected void onPause() {
+        if(requireLogin()) accountManager.removeOnAccountsUpdatedListener(this);
+        super.onPause();
+    }
+
     @Override protected void onDestroy() {
         super.onDestroy();
         activityGraph = null;

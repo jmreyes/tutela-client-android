@@ -5,13 +5,15 @@ import android.accounts.AccountManager;
 import android.app.Application;
 import dagger.Module;
 import dagger.Provides;
+import net.jmreyes.tutela.api.ApiManager;
 
 /**
  * Created by juanma on 28/10/14.
  */
 @Module(
         injects = {
-                App.class
+                App.class,
+                ApiManager.class
         },
         library = true
 )

@@ -2,6 +2,8 @@ package net.jmreyes.tutela;
 
 import android.app.Application;
 import dagger.ObjectGraph;
+import net.jmreyes.tutela.api.ApiManager;
+import retrofit.RestAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,6 +22,8 @@ public class App extends Application {
         super.onCreate();
         objectGraph = ObjectGraph.create(getModules().toArray());
         objectGraph.inject(this);
+
+        ApiManager.initRestAdapter(this);
     }
 
     private List<Object> getModules() {
