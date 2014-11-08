@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by juanma on 6/11/14.
@@ -25,14 +26,25 @@ public class LoginPresenterImpl implements LoginPresenter, LoginPresenter.OnFini
         loginInteractor.doLogin(email, password, this);
     }
 
+    @Override
+    public void getRole() {
+        loginInteractor.getRole(this);
+    }
+
+
     /**
      * OnFinishedListener methods, callbacks from the interactor.
      *
      **/
 
     @Override
-    public void onSuccess(String accessToken, String email) {
+    public void onLoginSuccess(String accessToken, String email) {
         view.loginSuccess(accessToken, email);
+    }
+
+    @Override
+    public void onGetRoleSuccess(String role) {
+        view.getRoleSuccess(role);
     }
 
     @Override

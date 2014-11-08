@@ -12,8 +12,7 @@ import net.jmreyes.tutela.api.ApiManager;
  */
 @Module(
         injects = {
-                App.class,
-                ApiManager.class
+                App.class
         },
         library = true
 )

@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface DoctorService {
 
-//    @Headers({
-//            "Authorization: Bearer 77ccd3d6-f5dc-4c4c-bf56-67b663ced297"
-//    })
-    @GET("/doctors/{id}")
-    void getDoctor(@Path("id") String id, Callback<Doctor> callback);
+    @GET("/me/doctors")
+    void getMyDoctors(Callback<List<Doctor>> callback);
+
+    @GET("/doctor/{id}")
+    void findOneById(@Path("id") String id, Callback<Doctor> callback);
 }

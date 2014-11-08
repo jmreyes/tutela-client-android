@@ -10,10 +10,7 @@ import android.view.ViewGroup;
 
 import android.widget.AdapterView;
 import android.widget.ListView;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
-import butterknife.OnItemClick;
-import butterknife.OnItemSelected;
+import butterknife.*;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.Medication;
 import net.jmreyes.tutela.ui.common.BaseFragment;
@@ -108,5 +105,11 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     @Override
     public void displayError() {
         showErrorInLoadingBar(null);
+    }
+
+    @OnClick(R.id.loadingLayoutRetryButton)
+    public void onRetryClick() {
+        hideErrorInLoadingBar();
+        presenter.makeRequest();
     }
 }

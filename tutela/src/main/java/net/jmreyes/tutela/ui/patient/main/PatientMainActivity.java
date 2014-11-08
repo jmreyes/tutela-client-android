@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.*;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.common.BaseActivity;
+import net.jmreyes.tutela.ui.patient.doctordetails.DoctorDetailsActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
 import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenter;
 import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenterImpl;
@@ -138,7 +139,7 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
                 intent = new Intent(this, MedicationDetailsActivity.class);
                 break;
             case DOCTOR_DETAILS:
-                intent = new Intent(this, MedicationDetailsActivity.class);
+                intent = new Intent(this, DoctorDetailsActivity.class);
                 break;
             default:
                 return;

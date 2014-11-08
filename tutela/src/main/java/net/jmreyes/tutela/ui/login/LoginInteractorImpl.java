@@ -1,18 +1,14 @@
 package net.jmreyes.tutela.ui.login;
 
-import android.accounts.Account;
-import android.accounts.AccountManager;
-import android.content.Intent;
-import android.os.Bundle;
 import android.util.Base64;
-import android.util.Log;
 import net.jmreyes.tutela.api.ApiManager;
 import net.jmreyes.tutela.model.LoginResponse;
+import net.jmreyes.tutela.model.User;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by juanma on 6/11/14.
@@ -32,7 +28,7 @@ public class LoginInteractorImpl implements LoginInteractor {
                     public void success(LoginResponse loginResponse, Response response) {
 
                         String accessToken = loginResponse.getAccessToken();
-                        listener.onSuccess(accessToken, email);
+                        listener.onLoginSuccess(accessToken, email);
 
                     }
 
@@ -44,6 +40,24 @@ public class LoginInteractorImpl implements LoginInteractor {
                 });
 
 
+    }
+
+    @Override
+    public void getRole(final LoginPresenter.OnFinishedListener listener) {
+        ApiManager.getUserService().getRole(
+                new Callback<String>() {
+                    @Override
+                    public void success(String role, Response response) {
+
+                        listener.onGetRoleSuccess(role);
+                    }
+
+                    @Override
+                    public void failure(RetrofitError error) {
+                        listener.onError();
+                    }
+                }
+        );
     }
 
 

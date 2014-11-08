@@ -31,7 +31,7 @@ public abstract class BaseActivity extends ActionBarActivity implements OnAccoun
     @Optional @InjectView(R.id.loadingLayoutRetryButton) TextView loadingLayoutRetryButton;
 
     @Inject
-    AccountManager accountManager;
+    protected AccountManager accountManager;
 
     private ObjectGraph activityGraph;
 
@@ -98,5 +98,13 @@ public abstract class BaseActivity extends ActionBarActivity implements OnAccoun
 
         loadingLayoutErrorText.setVisibility(View.VISIBLE);
         loadingLayoutRetryButton.setVisibility(View.VISIBLE);
+    }
+
+    protected void hideErrorInLoadingBar() {
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        loadingLayoutErrorText.setVisibility(View.GONE);
+        loadingLayoutRetryButton.setVisibility(View.GONE);
     }
 }

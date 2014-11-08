@@ -5,13 +5,21 @@ package net.jmreyes.tutela.model;
  */
 public class Doctor {
     private String id;
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phoneNumber;
 
     public String getId() {
         return this.id;
     }
-
     public String getName() {
-        return this.name;
+        return firstName + " " + lastName;
+    }
+    public String getEmail() {
+        return this.email;
+    }
+    public String getPhoneNumber() {
+        return this.phoneNumber;
     }
 }

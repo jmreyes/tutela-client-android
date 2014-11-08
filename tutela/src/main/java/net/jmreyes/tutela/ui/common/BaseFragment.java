@@ -47,4 +47,12 @@ public class BaseFragment extends Fragment {
         loadingLayoutErrorText.setVisibility(View.VISIBLE);
         loadingLayoutRetryButton.setVisibility(View.VISIBLE);
     }
+
+    protected void hideErrorInLoadingBar() {
+        progressBar.setVisibility(View.VISIBLE);
+
+
+        loadingLayoutErrorText.setVisibility(View.GONE);
+        loadingLayoutRetryButton.setVisibility(View.GONE);
+    }
 }

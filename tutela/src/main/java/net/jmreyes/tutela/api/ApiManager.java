@@ -6,6 +6,7 @@ import com.squareup.okhttp.OkHttpClient;
 import net.jmreyes.tutela.api.services.AuthService;
 import net.jmreyes.tutela.api.services.DoctorService;
 import net.jmreyes.tutela.api.services.MedicationService;
+import net.jmreyes.tutela.api.services.UserService;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
@@ -23,9 +24,14 @@ public class ApiManager {
     public static final String AUTHTOKEN_TYPE = "net.jmreyes.tutela";
     public static final String ACCOUNT_TYPE = AUTHTOKEN_TYPE;
 
+    public static final String ACCOUNT_ROLE = "role";
+    public static final String ROLE_PATIENT = "ROLE_PATIENT";
+    public static final String ROLE_DOCTOR = "ROLE_DOCTOR";
+
     private static AuthService authService;
     private static MedicationService medicationService;
     private static DoctorService doctorService;
+    private static UserService userService;
 
     public static void initRestAdapter(Application app) {
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -41,6 +47,7 @@ public class ApiManager {
         authService = restAdapter.create(AuthService.class);
         medicationService = restAdapter.create(MedicationService.class);
         doctorService = restAdapter.create(DoctorService.class);
+        userService = restAdapter.create(UserService.class);
     }
 
 
@@ -52,5 +59,8 @@ public class ApiManager {
     }
     public static DoctorService getDoctorService() {
         return doctorService;
+    }
+    public static UserService getUserService() {
+        return userService;
     }
 }

@@ -17,7 +17,14 @@
     <string name="notes_from_doctor">Notes from Doctor</string>
     <string name="doctor">Doctor</string>
 
+    <!-- Doctor Details -->
+    <string name="doctor_details">Doctor Details</string>
+    <string name="name">Name</string>
+    <string name="email">E-mail</string>
+    <string name="phone_number">Phone Number</string>
+
     <string name="transition_medication_details">transition_medication_details</string>
+    <string name="transition_doctor_details">transition_doctor_details</string>
 
     <!-- Errors -->
     <string name="loading_layout_network_error">Network error</string>

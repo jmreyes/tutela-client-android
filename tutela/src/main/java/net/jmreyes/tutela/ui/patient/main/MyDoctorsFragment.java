@@ -7,12 +7,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.ListView;
+import butterknife.*;
 import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.model.Doctor;
 import net.jmreyes.tutela.ui.common.BaseFragment;
+import net.jmreyes.tutela.ui.patient.doctordetails.DoctorDetailsActivity;
+import net.jmreyes.tutela.ui.patient.main.adapter.MyDoctorsListAdapter;
 import net.jmreyes.tutela.ui.patient.main.presenter.MyDoctorsPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.MyDoctorsView;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,18 +33,12 @@ public class MyDoctorsFragment extends BaseFragment implements MyDoctorsView {
     @Inject
     MyDoctorsPresenter presenter;
 
+    @InjectView(R.id.listView) ListView listView;
+
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment.
-     *
-     * @return A new instance of fragment MyDoctorsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyDoctorsFragment newInstance(String param1, String param2) {
-        return new MyDoctorsFragment();
-    }
+    MyDoctorsListAdapter myDoctorsListAdapter;
+
     public MyDoctorsFragment() {
         // Required empty public constructor
     }
@@ -47,6 +47,9 @@ public class MyDoctorsFragment extends BaseFragment implements MyDoctorsView {
     public void onResume() {
         super.onResume();
         presenter.init(this);
+
+        showLoadingBar();
+        presenter.makeRequest();
     }
 
     @Override
@@ -58,7 +61,11 @@ public class MyDoctorsFragment extends BaseFragment implements MyDoctorsView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_doctors, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_doctors, container, false);
+
+        ButterKnife.inject(this, view);
+
+        return view;
     }
 
     @Override
@@ -76,6 +83,32 @@ public class MyDoctorsFragment extends BaseFragment implements MyDoctorsView {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void displayResults(List<Doctor> results) {
+        hideLoadingBar();
+        myDoctorsListAdapter = new MyDoctorsListAdapter(listView.getContext(), results);
+        listView.setAdapter(myDoctorsListAdapter);
+    }
+
+    @OnItemClick(R.id.listView)
+    void onItemSelected(int position, View v) {
+        String id = myDoctorsListAdapter.getId(position);
+        Bundle bundle = new Bundle();
+        bundle.putString(DoctorDetailsActivity.ARG_DOCTOR_ID, id);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsections.DOCTOR_DETAILS, bundle, v);
+    }
+
+    @Override
+    public void displayError() {
+        showErrorInLoadingBar(null);
+    }
+
+    @OnClick(R.id.loadingLayoutRetryButton)
+    public void onRetryClick() {
+        hideErrorInLoadingBar();
+        presenter.makeRequest();
     }
 
 }

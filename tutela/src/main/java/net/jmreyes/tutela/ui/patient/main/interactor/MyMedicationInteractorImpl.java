@@ -20,14 +20,11 @@ public class MyMedicationInteractorImpl implements MyMedicationInteractor {
             @Override
             public void success(List<Medication> results, Response response) {
                 listener.onSuccess(results);
-                Medication med = results.get(0);
-                System.out.println("OK "+med.getName());
             }
 
             @Override
             public void failure(RetrofitError error) {
                 listener.onError();
-                System.out.println("FAIL");
             }
         });
     }

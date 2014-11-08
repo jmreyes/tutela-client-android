@@ -66,6 +66,19 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        for (Account account : accountManager.getAccounts()) {
+            if (ApiManager.ACCOUNT_TYPE.equals(account.type)) {
+                String role = accountManager.getUserData(account, ApiManager.ACCOUNT_ROLE);
+                loadActivityFromRole(role);
+                return;
+            }
+        }
+    }
+
+    @Override
     protected List<Object> getModules() {
         return Arrays.<Object>asList(new LoginModule(this));
     }
@@ -213,14 +226,10 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
 
     @Override
     public void loginSuccess(String accessToken, String email) {
-        showProgress(false);
-
         AccountManager accountManager = AccountManager.get(this);
 
         Account account = addOrFindAccount(email, accountManager);
         accountManager.setAuthToken(account, ApiManager.AUTHTOKEN_TYPE, accessToken);
-
-        Log.d("RESULT", "SUCCESSSSSSSSSSSSSSSSSSSSSSS2");
 
         final Intent intent = new Intent();
         intent.putExtra(AccountManager.KEY_ACCOUNT_NAME, email);
@@ -230,10 +239,8 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
 
         resultBundle = intent.getExtras();
         setResult(Activity.RESULT_OK, intent);
-        finish();
 
-        // Go back to the main activity
-        startActivity(new Intent(this, PatientMainActivity.class));
+        presenter.getRole();
     }
 
     private Account addOrFindAccount(String email, AccountManager accountManager) {
@@ -256,7 +263,28 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
 
         passwordText.setError(getString(R.string.error_incorrect_password));
         passwordText.requestFocus();
+    }
 
+    @Override
+    public void getRoleSuccess(String role) {
+        showProgress(false);
+
+        Account[] accounts = accountManager.getAccountsByType(ApiManager.ACCOUNT_TYPE);
+        Account account = accounts[0];
+
+        accountManager.setUserData(account, ApiManager.ACCOUNT_ROLE, role);
+
+        loadActivityFromRole(role);
+    }
+
+    public void loadActivityFromRole(String role) {
+        finish();
+
+        if (role.equals(ApiManager.ROLE_PATIENT)) {
+            startActivity(new Intent(this, PatientMainActivity.class));
+        } else if (role.equals(ApiManager.ROLE_DOCTOR)) {
+            startActivity(new Intent(this, PatientMainActivity.class));
+        }
     }
 
     private interface ProfileQuery {
@@ -282,7 +310,6 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
     protected boolean requireLogin() {
         return false;
     }
-
 
 }
 

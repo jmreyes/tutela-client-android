@@ -6,4 +6,5 @@ package net.jmreyes.tutela.ui.login;
 public interface LoginInteractor {
 
     public void doLogin(String email, String password, final LoginPresenter.OnFinishedListener listener);
+    public void getRole(final LoginPresenter.OnFinishedListener listener);
 }

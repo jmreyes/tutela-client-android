@@ -29,7 +29,7 @@ public class LoginModule {
      */
     @Provides
     @Singleton
-    public LoginView provideMedicationDetailsView() {
+    public LoginView provideLoginView() {
         return view;
     }
 
@@ -38,7 +38,7 @@ public class LoginModule {
      */
     @Provides
     @Singleton
-    public LoginPresenter provideMedicationDetailsPresenter(LoginView view) {
+    public LoginPresenter provideLoginPresenter(LoginView view) {
         return new LoginPresenterImpl(view);
     }
 

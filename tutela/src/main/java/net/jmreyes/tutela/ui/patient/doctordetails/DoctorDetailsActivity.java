@@ -1,4 +1,4 @@
-package net.jmreyes.tutela.ui.patient.medicationdetails;
+package net.jmreyes.tutela.ui.patient.doctordetails;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
-import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.Doctor;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 
 import javax.inject.Inject;
@@ -17,29 +17,28 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Created by juanma on 3/11/14.
+ * Created by juanma on 8/11/14.
  */
-public class MedicationDetailsActivity extends BaseActivity implements MedicationDetailsView {
-    public static final String ARG_MEDICATION_ID = "medicationId";
+public class DoctorDetailsActivity extends BaseActivity implements DoctorDetailsView {
+    public static final String ARG_DOCTOR_ID = "doctorId";
 
     @Inject
-    MedicationDetailsPresenter presenter;
+    DoctorDetailsPresenter presenter;
 
-    @InjectView(R.id.frequency_content) TextView frequency;
-    @InjectView(R.id.notes_from_doctor_content) TextView notesFromDoctor;
-    @InjectView(R.id.doctor_content) TextView doctorName;
+    @InjectView(R.id.email_content) TextView email;
+    @InjectView(R.id.phone_number_content) TextView phoneNumber;
 
-    private String medicationId;
+    private String doctorId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medication_details);
+        setContentView(R.layout.activity_doctor_details);
         ButterKnife.inject(this);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            medicationId = bundle.getString(ARG_MEDICATION_ID);
+            doctorId = bundle.getString(ARG_DOCTOR_ID);
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -53,12 +52,12 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     protected void onResume() {
         super.onResume();
         showLoadingBar();
-        presenter.makeRequest(medicationId);
+        presenter.makeRequest(doctorId);
     }
 
     @Override
     protected List<Object> getModules() {
-        return Arrays.<Object>asList(new MedicationDetailsModule(this));
+        return Arrays.<Object>asList(new DoctorDetailsModule(this));
     }
 
     @Override
@@ -81,13 +80,12 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     }
 
     @Override
-    public void displayResults(Medication medication) {
+    public void displayResults(Doctor doctor) {
         hideLoadingBar();
 
-        frequency.setText(medication.getFrequency());
-        notesFromDoctor.setText(medication.getNotes());
-        doctorName.setText(medication.getDoctorName());
-        getSupportActionBar().setTitle(medication.getName());
+        email.setText(doctor.getEmail());
+        phoneNumber.setText(doctor.getPhoneNumber());
+        getSupportActionBar().setTitle(doctor.getName());
     }
 
     @Override
@@ -98,6 +96,6 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     @OnClick(R.id.loadingLayoutRetryButton)
     public void onRetryClick() {
         hideErrorInLoadingBar();
-        presenter.makeRequest(medicationId);
+        presenter.makeRequest(doctorId);
     }
 }

@@ -9,4 +9,6 @@ import android.os.Bundle;
 public interface LoginView {
     public void loginSuccess(String accessToken, String email);
     public void loginError();
+
+    public void getRoleSuccess(String role);
 }
