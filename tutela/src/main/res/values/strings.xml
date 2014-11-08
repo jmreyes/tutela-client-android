@@ -23,6 +23,9 @@
     <string name="email">E-mail</string>
     <string name="phone_number">Phone Number</string>
 
+    <!-- DoctorMainActivity -->
+    <string name="doctor_dashboard">Doctor Dashboard</string>
+
     <string name="transition_medication_details">transition_medication_details</string>
     <string name="transition_doctor_details">transition_doctor_details</string>
 

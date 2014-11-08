@@ -33,6 +33,7 @@ import butterknife.OnClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.api.ApiManager;
 import net.jmreyes.tutela.ui.common.BaseActivity;
+import net.jmreyes.tutela.ui.doctor.main.DoctorMainActivity;
 import net.jmreyes.tutela.ui.patient.main.PatientMainActivity;
 
 import javax.inject.Inject;
@@ -283,7 +284,7 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
         if (role.equals(ApiManager.ROLE_PATIENT)) {
             startActivity(new Intent(this, PatientMainActivity.class));
         } else if (role.equals(ApiManager.ROLE_DOCTOR)) {
-            startActivity(new Intent(this, PatientMainActivity.class));
+            startActivity(new Intent(this, DoctorMainActivity.class));
         }
     }
 
