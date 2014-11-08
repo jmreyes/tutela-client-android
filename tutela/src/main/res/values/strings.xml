@@ -33,4 +33,7 @@
     <string name="loading_layout_network_error">Network error</string>
     <string name="loading_layout_retry">Retry?</string>
 
+    <string name="navigation_drawer_open">Open drawer</string>
+    <string name="navigation_drawer_close">Close drawer</string>
+
 </resources>

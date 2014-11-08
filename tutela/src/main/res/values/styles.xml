@@ -62,4 +62,10 @@
         <item name="cpb_rotation_speed">@string/cpb_default_rotation_speed</item>
     </style>
 
+    <!--styling color for arrow-->
+    <style name="DrawerArrowStyle" parent="Widget.AppCompat.DrawerArrowToggle">
+        <item name="spinBars">true</item>
+        <item name="color">@android:color/white</item>
+    </style>
+
 </resources>
