@@ -23,8 +23,17 @@
     <string name="email">E-mail</string>
     <string name="phone_number">Phone Number</string>
 
-    <!-- DoctorMainActivity -->
+    <!-- Doctor Sections -->
     <string name="doctor_dashboard">Doctor Dashboard</string>
+    <string name="my_patients">My Patients</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="medication">Medication</string>
+    <string name="alerts">Alerts</string>
+
+
+    <string name="settings">Settings</string>
+    <string name="about">About</string>
+
 
     <string name="transition_medication_details">transition_medication_details</string>
     <string name="transition_doctor_details">transition_doctor_details</string>

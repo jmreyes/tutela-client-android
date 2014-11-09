@@ -30,17 +30,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-
-    <LinearLayout
-            android:layout_width="304dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="left|start"
-            android:fitsSystemWindows="true"
-            android:background="@android:color/holo_red_dark">
-
         <!-- Your drawer content -->
+        <include layout="@layout/navigation_drawer"
+                 android:layout_height="match_parent"
+                 android:layout_width="304dp"
+                 android:layout_gravity="left|start"/>
 
-    </LinearLayout>
+
+
 </android.support.v4.widget.DrawerLayout>
 
 

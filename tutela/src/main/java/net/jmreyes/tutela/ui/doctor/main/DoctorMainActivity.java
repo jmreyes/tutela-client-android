@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by juanma on 8/11/14.
  */
-public class DoctorMainActivity extends BaseActivity implements DoctorMainView {
+public class DoctorMainActivity extends AbstractDrawerActivity implements DoctorMainView {
 
     @Inject
     DoctorMainPresenter presenter;
@@ -28,35 +28,9 @@ public class DoctorMainActivity extends BaseActivity implements DoctorMainView {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-
-            DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.my_drawer_layout);
-
-            ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(
-                    this,  drawerLayout, toolbar,
-                    R.string.navigation_drawer_open, R.string.navigation_drawer_close
-            ){
-                public void onDrawerClosed(View view)
-                {
-                    super.onDrawerClosed(view);
-                    invalidateOptionsMenu();
-                    syncState();
-                }
-
-                public void onDrawerOpened(View drawerView)
-                {
-                    super.onDrawerOpened(drawerView);
-                    invalidateOptionsMenu();
-                    syncState();
-                }
-            };
-
-            drawerLayout.setDrawerListener(drawerToggle);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setHomeButtonEnabled(true);
-
-            drawerToggle.syncState();
         }
 
+        setUpNavigationDrawer(toolbar);
     }
 
 

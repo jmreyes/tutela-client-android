@@ -68,4 +68,38 @@
         <item name="color">@android:color/white</item>
     </style>
 
+    <style name="navigation_drawer_username">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="navigation_drawer_email">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="navigation_drawer_section_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/background_item_navigation_drawer</item>
+    </style>
+
+    <style name="navigation_drawer_section_icon">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:tint">@color/button_material_dark</item>
+        <item name="android:layout_marginLeft">@dimen/activity_horizontal_margin</item>
+    </style>
+
+    <style name="navigation_drawer_section_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginLeft">72dp</item>
+        <item name="android:textColor">@color/text_main</item>
+    </style>
+
 </resources>
