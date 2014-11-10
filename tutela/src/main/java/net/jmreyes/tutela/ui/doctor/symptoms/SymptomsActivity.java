@@ -1,4 +1,4 @@
-package net.jmreyes.tutela.ui.doctor.main;
+package net.jmreyes.tutela.ui.doctor.symptoms;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,15 +13,15 @@ import java.util.List;
 /**
  * Created by juanma on 8/11/14.
  */
-public class DoctorMainActivity extends AbstractDrawerActivity implements DoctorMainView {
+public class SymptomsActivity extends AbstractDrawerActivity implements SymptomsView {
 
     @Inject
-    DoctorMainPresenter presenter;
+    SymptomsPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_main);
+        setContentView(R.layout.activity_symptoms);
         ButterKnife.inject(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -35,6 +35,6 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
 
     @Override
     protected List<Object> getModules() {
-        return Arrays.<Object>asList(new DoctorMainModule(this));
+        return Arrays.<Object>asList(new SymptomsModule(this));
     }
 }

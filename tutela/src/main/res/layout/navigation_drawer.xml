@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:background="@color/background_material_light" >
+<LinearLayout
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
-        android:background="@color/background_material_light">
+              android:layout_height="wrap_content"
+              android:id="@+id/drawer_content">
 
     <LinearLayout
             android:layout_width="match_parent"
@@ -30,43 +33,101 @@
 
             </LinearLayout>
     <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
             style="@style/separator"
             android:layout_marginTop="0dp"
             android:layout_marginBottom="8dp"
             android:paddingBottom="8dp"/>
     
     <RelativeLayout
+            android:id="@+id/navigation_drawer_section_doctor_dashboard"
             style="@style/navigation_drawer_section_layout">
         <ImageView
                 android:src="@drawable/ic_home_black_36dp"
                 style="@style/navigation_drawer_section_icon"/>
-
         <TextView
                 style="@style/navigation_drawer_section_text"
                 android:text="@string/doctor_dashboard"/>
+    </RelativeLayout>
 
+
+    <RelativeLayout
+            android:id="@+id/navigation_drawer_section_my_patients"
+            style="@style/navigation_drawer_section_layout">
+        <ImageView
+                android:src="@drawable/ic_people_black_36dp"
+                style="@style/navigation_drawer_section_icon"/>
+        <TextView
+                style="@style/navigation_drawer_section_text"
+                android:text="@string/my_patients"/>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+            android:id="@+id/navigation_drawer_section_symptoms"
+            style="@style/navigation_drawer_section_layout">
+        <ImageView
+                android:src="@drawable/ic_s"
+                style="@style/navigation_drawer_section_icon"/>
+        <TextView
+                style="@style/navigation_drawer_section_text"
+                android:text="@string/symptoms"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/navigation_drawer_section_medication"
+            style="@style/navigation_drawer_section_layout">
+        <ImageView
+                android:src="@drawable/ic_local_pharmacy_black_36dp"
+                style="@style/navigation_drawer_section_icon"/>
+        <TextView
+                style="@style/navigation_drawer_section_text"
+                android:text="@string/medication"/>
     </RelativeLayout>
 
     <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
             style="@style/separator"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"/>
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
 
     <RelativeLayout
+            android:id="@+id/navigation_drawer_section_alerts"
             style="@style/navigation_drawer_section_layout">
         <ImageView
-                android:src="@drawable/ic_home_black_36dp"
+                android:src="@drawable/ic_error_black_36dp"
                 style="@style/navigation_drawer_section_icon"/>
-
         <TextView
                 style="@style/navigation_drawer_section_text"
-                android:text="@string/doctor_dashboard"/>
+                android:text="@string/alerts"/>
 
+        <TextView
+                style="@style/navigation_drawer_section_alerts_number"
+                android:text="0"/>
+    </RelativeLayout>
+
+    <View
+            style="@style/separator"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"/>
+
+    <RelativeLayout
+            android:id="@+id/navigation_drawer_section_settings"
+            style="@style/navigation_drawer_section_layout">
+        <TextView
+                style="@style/navigation_drawer_section_text"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/settings"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+            android:id="@+id/navigation_drawer_section_about"
+            style="@style/navigation_drawer_section_layout">
+        <TextView
+                style="@style/navigation_drawer_section_text"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:text="@string/about"/>
     </RelativeLayout>
 
 
 </LinearLayout>
+</ScrollView>

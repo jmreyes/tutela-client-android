@@ -11,7 +11,7 @@
     <string name="my_doctors">My Doctors</string>
     <string name="my_alarms">My Alarms</string>
 
-    <!-- Medication Details -->
+    <!-- My Medication Details -->
     <string name="medication_details">Medication Details</string>
     <string name="frequency">Frequency</string>
     <string name="notes_from_doctor">Notes from Doctor</string>
@@ -30,6 +30,19 @@
     <string name="medication">Medication</string>
     <string name="alerts">Alerts</string>
 
+    <!-- Symptom Details -->
+    <string name="symptom_details">Symptom Details</string>
+    <string name="edit_symptom_details">Edit Symptom Details</string>
+    <string name="question">Question</string>
+    <string name="answers">Answers (from best to worse)</string>
+    <string name="more_than">More than</string>
+    <string name="hours_of">hours of</string>
+
+    <!-- Medication Details -->
+    <string name="default_symptoms">Default Symptoms</string>
+    <string name="edit_medication_details">Edit Medication Details</string>
+
+    <string name="add_new">Add New</string>
 
     <string name="settings">Settings</string>
     <string name="about">About</string>

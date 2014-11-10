@@ -26,14 +26,14 @@
                 android:id="@+id/subtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="OxyContin"
+                android:text="Mouth Pain"
                 app:title="@string/my_doctors"
                 android:textSize="29sp"
                 android:textColor="@android:color/white"
                 android:textStyle="normal"/>
 
 
-            </android.support.v7.widget.Toolbar>
+    </android.support.v7.widget.Toolbar>
 
     <include layout="@layout/loading_layout"
              android:visibility="gone" />
@@ -50,23 +50,48 @@
                 android:paddingBottom="@dimen/activity_vertical_margin">
 
             <TextView
-                    android:id="@+id/default_symptoms_title"
+                    android:id="@+id/question_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/text_caption"
-                    android:text="@string/default_symptoms"/>
-        <LinearLayout
-                android:id="@+id/default_symptoms_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                    android:text="@string/question"/>
             <TextView
-                    android:id="@+id/default_symptoms_content"
+                    android:id="@+id/question_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text="How bad is your...?"/>
+
+            <View style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/answers_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/answers"/>
+            <TextView
+                    android:id="@+id/answers_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/text_body_list"
-                    android:text="Mouth pain"/>
-        </LinearLayout>
+                    android:text="Good"/>
+
+            <View  style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/alerts_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/alerts"/>
+            <TextView
+                    android:id="@+id/alerts_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body_list"
+                    android:text="More than 24 hours of Bad"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

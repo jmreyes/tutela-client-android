@@ -44,8 +44,6 @@
                     android:text="@string/email"/>
 
             <View
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
                     style="@style/separator"/>
 
             <TextView

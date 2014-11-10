@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent"
+              android:layout_height="wrap_content"
               style="@style/list_item_tile"
               android:gravity="center_vertical"
               android:transitionName="@string/transition_medication_details" >
@@ -13,14 +13,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/list_item_title"
-            android:text="Title"/>
+            android:textSize="15sp"
+            android:text="Some very looooooong text "/>
 
-    <TextView
-            android:id="@+id/subtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+    <Button
+            android:id="@+id/button"
+            style="@style/button_solid"
             android:layout_below="@id/title"
-            style="@style/list_item_subtitle"
-            android:text="Subtitle"/>
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="Some action"/>
+
 
 </RelativeLayout>

@@ -10,10 +10,24 @@
 
     <TextView
             android:id="@+id/title"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="@style/list_item_title"
             android:paddingBottom="0dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/button"
+            android:layout_toStartOf="@+id/button"
             android:text="Title"/>
+
+
+    <Button
+            android:id="@+id/button"
+            style="@style/button_solid"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:text="Some action"/>
 
 </RelativeLayout>

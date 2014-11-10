@@ -74,6 +74,7 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
             if (ApiManager.ACCOUNT_TYPE.equals(account.type)) {
                 String role = accountManager.getUserData(account, ApiManager.ACCOUNT_ROLE);
                 loadActivityFromRole(role);
+                overridePendingTransition(0, 0);
                 return;
             }
         }
@@ -280,6 +281,7 @@ public class LoginActivity extends BaseActivity implements LoginView, LoaderCall
 
     public void loadActivityFromRole(String role) {
         finish();
+        overridePendingTransition(0, 0);
 
         if (role.equals(ApiManager.ROLE_PATIENT)) {
             startActivity(new Intent(this, PatientMainActivity.class));

@@ -47,7 +47,16 @@
         <item name="android:layout_marginRight">@dimen/activity_horizontal_margin</item>
     </style>
 
+    <style name="text_body_list">
+        <item name="android:textSize">15sp</item>
+        <item name="android:textColor">@android:color/primary_text_light</item>
+        <item name="android:layout_marginLeft">32dp</item>
+        <item name="android:layout_marginRight">32dp</item>
+    </style>
+
     <style name="separator">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">1dp</item>
         <item name="android:layout_marginBottom">16dp</item>
         <item name="android:layout_marginTop">16dp</item>
         <item name="android:background">@color/light_gray</item>
@@ -82,7 +91,6 @@
     <style name="navigation_drawer_section_layout">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">48dp</item>
-        <item name="android:clickable">true</item>
         <item name="android:background">@drawable/background_item_navigation_drawer</item>
     </style>
 
@@ -100,6 +108,39 @@
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_marginLeft">72dp</item>
         <item name="android:textColor">@color/text_main</item>
+    </style>
+
+    <style name="navigation_drawer_section_alerts_number">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@color/button_material_dark</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="button_solid">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:minWidth">92dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="button_flat">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:minWidth">92dp</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:background">@drawable/button_flat</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textAllCaps">true</item>
     </style>
 
 </resources>

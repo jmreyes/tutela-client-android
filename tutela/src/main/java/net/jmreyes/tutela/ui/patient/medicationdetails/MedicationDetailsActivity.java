@@ -34,7 +34,7 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_medication_details);
+        setContentView(R.layout.activity_my_medication_details);
         ButterKnife.inject(this);
 
         Bundle bundle = getIntent().getExtras();
