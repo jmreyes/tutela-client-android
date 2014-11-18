@@ -6,6 +6,15 @@
     <string name="action_settings">Settings</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+
+    <!-- CheckInFragment -->
+    <string name="everything_in_order">Everything is in order!</string>
+    <string name="did_you_take">Did you take your %1$s?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="previous_question">&lt; Previous question</string>
+    <string name="questions_left">%1$i questions left</string>
+
     <!-- PatientMainActivity -->
     <string name="my_medication">My Medication</string>
     <string name="my_doctors">My Doctors</string>

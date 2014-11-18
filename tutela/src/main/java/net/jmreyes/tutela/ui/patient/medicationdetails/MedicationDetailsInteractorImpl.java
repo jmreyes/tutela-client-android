@@ -15,10 +15,9 @@ import retrofit.client.Response;
 public class MedicationDetailsInteractorImpl implements MedicationDetailsInteractor {
     @Override
     public void makeRequest(String treatmentId, final String medicationId, final MedicationDetailsPresenter.OnFinishedListener listener) {
-        ApiManager.getPatientService().getTreatment(treatmentId, new Callback<Treatment>() {
+        ApiManager.getPatientService().getOneMedication(treatmentId, medicationId, new Callback<MyMedication>() {
             @Override
-            public void success(Treatment treatment, Response response) {
-                MyMedication result = MyMedication.createFromTreatment(treatment, medicationId);
+            public void success(MyMedication result, Response response) {
                 listener.onSuccess(result);
             }
 
@@ -27,6 +26,5 @@ public class MedicationDetailsInteractorImpl implements MedicationDetailsInterac
                 listener.onError();
             }
         });
-
     }
 }

@@ -133,13 +133,16 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
     @Override
     public void loadActivity(Subsections subsection, Bundle args, View transitionView) {
         Intent intent;
+        String animationEndViewString = null;
 
         switch (subsection) {
             case MEDICATION_DETAILS:
                 intent = new Intent(this, MedicationDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_medication_details);
                 break;
             case DOCTOR_DETAILS:
                 intent = new Intent(this, DoctorDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_doctor_details);
                 break;
             default:
                 return;
@@ -149,7 +152,7 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
             intent.putExtras(args);
 
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this, transitionView, getString(R.string.transition_medication_details));
+                this, transitionView, animationEndViewString);
 
         ActivityCompat.startActivity(this, intent,
                 options.toBundle());
