@@ -11,6 +11,7 @@ import android.widget.ListView;
 import butterknife.*;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.Doctor;
+import net.jmreyes.tutela.model.extra.MyDoctor;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.doctordetails.DoctorDetailsActivity;
 import net.jmreyes.tutela.ui.patient.main.adapter.MyDoctorsListAdapter;
@@ -86,7 +87,7 @@ public class MyDoctorsFragment extends BaseFragment implements MyDoctorsView {
     }
 
     @Override
-    public void displayResults(List<Doctor> results) {
+    public void displayResults(List<MyDoctor> results) {
         hideLoadingBar();
         myDoctorsListAdapter = new MyDoctorsListAdapter(listView.getContext(), results);
         listView.setAdapter(myDoctorsListAdapter);

@@ -11,6 +11,4 @@ import retrofit.http.Path;
  */
 public interface PatientService {
 
-    @GET("/patient/{id}")
-    void getPatient(@Path("id") String id, Callback<Patient> callback);
 }

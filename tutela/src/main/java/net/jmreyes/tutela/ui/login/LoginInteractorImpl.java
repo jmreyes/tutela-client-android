@@ -2,13 +2,10 @@ package net.jmreyes.tutela.ui.login;
 
 import android.util.Base64;
 import net.jmreyes.tutela.api.ApiManager;
-import net.jmreyes.tutela.model.LoginResponse;
-import net.jmreyes.tutela.model.User;
+import net.jmreyes.tutela.model.extra.LoginResponse;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
-
-import java.util.List;
 
 /**
  * Created by juanma on 6/11/14.

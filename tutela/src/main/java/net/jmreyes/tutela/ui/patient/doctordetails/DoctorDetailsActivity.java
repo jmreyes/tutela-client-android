@@ -25,6 +25,8 @@ public class DoctorDetailsActivity extends BaseActivity implements DoctorDetails
     @Inject
     DoctorDetailsPresenter presenter;
 
+    @InjectView(R.id.firstname_content) TextView firstName;
+    @InjectView(R.id.lastname_content) TextView lastName;
     @InjectView(R.id.email_content) TextView email;
     @InjectView(R.id.phone_number_content) TextView phoneNumber;
 
@@ -83,6 +85,8 @@ public class DoctorDetailsActivity extends BaseActivity implements DoctorDetails
     public void displayResults(Doctor doctor) {
         hideLoadingBar();
 
+        firstName.setText(doctor.getFirstName());
+        lastName.setText(doctor.getLastName());
         email.setText(doctor.getEmail());
         phoneNumber.setText(doctor.getPhoneNumber());
         getSupportActionBar().setTitle(doctor.getName());

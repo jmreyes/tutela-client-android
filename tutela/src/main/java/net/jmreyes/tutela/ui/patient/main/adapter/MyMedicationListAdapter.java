@@ -1,28 +1,26 @@
 package net.jmreyes.tutela.ui.patient.main.adapter;
 
 import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import net.jmreyes.tutela.R;
-import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyMedication;
 
 import java.util.List;
 
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyMedicationListAdapter extends ArrayAdapter<Medication> {
+public class MyMedicationListAdapter extends ArrayAdapter<MyMedication> {
     private final Context context;
-    private final List<Medication> values;
+    private final List<MyMedication> values;
 
-    public MyMedicationListAdapter(Context context, List<Medication> values) {
+    public MyMedicationListAdapter(Context context, List<MyMedication> values) {
         super(context, R.layout.tile_list_two_items, values);
         this.context = context;
         this.values = values;
@@ -43,13 +41,17 @@ public class MyMedicationListAdapter extends ArrayAdapter<Medication> {
         }
 
         holder.title.setText(values.get(position).getName());
-        holder.subtitle.setText(values.get(position).getName());
+        holder.subtitle.setText(context.getString(R.string.doctor) + ": " + values.get(position).getFullName());
 
         return convertView;
     }
 
     public String getId(int position) {
         return values.get(position).getId();
+    }
+
+    public String getTreatmentId(int position) {
+        return values.get(position).getTreatmentId();
     }
 
     static class ViewHolder {

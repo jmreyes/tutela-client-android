@@ -1,8 +1,6 @@
 package net.jmreyes.tutela.api.services;
 
-import com.google.common.io.BaseEncoding;
-import net.jmreyes.tutela.api.ApiManager;
-import net.jmreyes.tutela.model.LoginResponse;
+import net.jmreyes.tutela.model.extra.LoginResponse;
 import retrofit.Callback;
 import retrofit.http.*;
 

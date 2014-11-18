@@ -11,17 +11,18 @@ import butterknife.InjectView;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.Doctor;
 import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyDoctor;
 
 import java.util.List;
 
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyDoctorsListAdapter extends ArrayAdapter<Doctor> {
+public class MyDoctorsListAdapter extends ArrayAdapter<MyDoctor> {
     private final Context context;
-    private final List<Doctor> values;
+    private final List<MyDoctor> values;
 
-    public MyDoctorsListAdapter(Context context, List<Doctor> values) {
+    public MyDoctorsListAdapter(Context context, List<MyDoctor> values) {
         super(context, R.layout.tile_list_one_item, values);
         this.context = context;
         this.values = values;

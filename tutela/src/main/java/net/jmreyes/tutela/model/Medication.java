@@ -5,24 +5,41 @@ package net.jmreyes.tutela.model;
  */
 public class Medication {
     private String id;
+
+    private String doctorId;
     private String name;
-    private String doctorName;
-    private String frequency;
-    private String notes;
+
+    public Medication(String id, String doctorId, String name) {
+        super();
+        this.id = id;
+        this.doctorId = doctorId;
+        this.name = name;
+    }
+
+    public Medication() {
+    }
 
     public String getId() {
-        return this.id;
+        return id;
     }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDoctorId() {
+        return doctorId;
+    }
+
+    public void setDoctorId(String doctorId) {
+        this.doctorId = doctorId;
+    }
+
     public String getName() {
-        return this.name;
+        return name;
     }
-    public String getDoctorName() {
-        return this.doctorName;
-    }
-    public String getFrequency() {
-        return this.frequency;
-    }
-    public String getNotes() {
-        return this.notes;
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

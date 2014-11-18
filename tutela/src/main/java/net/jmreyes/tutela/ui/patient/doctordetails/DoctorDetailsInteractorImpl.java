@@ -13,7 +13,7 @@ import retrofit.client.Response;
 public class DoctorDetailsInteractorImpl implements DoctorDetailsInteractor {
     @Override
     public void makeRequest(String doctorId, final DoctorDetailsPresenter.OnFinishedListener listener) {
-        ApiManager.getDoctorService().findOneById(doctorId, new Callback<Doctor>() {
+        ApiManager.getPatientService().getDoctor(doctorId, new Callback<Doctor>() {
             @Override
             public void success(Doctor doctor, Response response) {
                 listener.onSuccess(doctor);
@@ -24,6 +24,5 @@ public class DoctorDetailsInteractorImpl implements DoctorDetailsInteractor {
                 listener.onError();
             }
         });
-
     }
 }

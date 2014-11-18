@@ -20,6 +20,8 @@
     <!-- Doctor Details -->
     <string name="doctor_details">Doctor Details</string>
     <string name="name">Name</string>
+    <string name="firstname">First Name</string>
+    <string name="lastname">Last Name</string>
     <string name="email">E-mail</string>
     <string name="phone_number">Phone Number</string>
 

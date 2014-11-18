@@ -13,6 +13,7 @@ import android.widget.ListView;
 import butterknife.*;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyMedication;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.main.adapter.MyMedicationListAdapter;
 import net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter;
@@ -88,7 +89,7 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     }
 
     @Override
-    public void displayResults(List<Medication> results) {
+    public void displayResults(List<MyMedication> results) {
         hideLoadingBar();
         myMedicationListAdapter = new MyMedicationListAdapter(listView.getContext(), results);
         listView.setAdapter(myMedicationListAdapter);
@@ -97,7 +98,9 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     @OnItemClick(R.id.listView)
     void onItemSelected(int position, View v) {
         String id = myMedicationListAdapter.getId(position);
+        String treatmentId = myMedicationListAdapter.getTreatmentId(position);
         Bundle bundle = new Bundle();
+        bundle.putString(MedicationDetailsActivity.ARG_TREATMENT_ID, treatmentId);
         bundle.putString(MedicationDetailsActivity.ARG_MEDICATION_ID, id);
         mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, bundle, v);
     }

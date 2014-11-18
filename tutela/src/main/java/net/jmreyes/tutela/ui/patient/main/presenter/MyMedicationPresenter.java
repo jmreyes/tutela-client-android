@@ -1,8 +1,7 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
-import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyMedication;
 import net.jmreyes.tutela.ui.common.BaseFragmentPresenter;
-import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractor;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public interface MyMedicationPresenter extends BaseFragmentPresenter<MyMedicatio
     public void makeRequest();
 
     public static interface OnFinishedListener {
-        public void onSuccess(List<Medication> results);
+        public void onSuccess(List<MyMedication> results);
         public void onError();
     }
 }

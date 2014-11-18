@@ -9,7 +9,7 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
-import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyMedication;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 
 import javax.inject.Inject;
@@ -20,15 +20,16 @@ import java.util.List;
  * Created by juanma on 3/11/14.
  */
 public class MedicationDetailsActivity extends BaseActivity implements MedicationDetailsView {
+    public static final String ARG_TREATMENT_ID = "treatmentId";
     public static final String ARG_MEDICATION_ID = "medicationId";
 
     @Inject
     MedicationDetailsPresenter presenter;
 
-    @InjectView(R.id.frequency_content) TextView frequency;
     @InjectView(R.id.notes_from_doctor_content) TextView notesFromDoctor;
     @InjectView(R.id.doctor_content) TextView doctorName;
 
+    private String treatmentId;
     private String medicationId;
 
     @Override
@@ -39,6 +40,7 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
+            treatmentId = bundle.getString(ARG_TREATMENT_ID);
             medicationId = bundle.getString(ARG_MEDICATION_ID);
         }
 
@@ -53,7 +55,7 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     protected void onResume() {
         super.onResume();
         showLoadingBar();
-        presenter.makeRequest(medicationId);
+        presenter.makeRequest(treatmentId, medicationId);
     }
 
     @Override
@@ -81,13 +83,12 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     }
 
     @Override
-    public void displayResults(Medication medication) {
+    public void displayResults(MyMedication myMedication) {
         hideLoadingBar();
 
-        frequency.setText(medication.getFrequency());
-        notesFromDoctor.setText(medication.getNotes());
-        doctorName.setText(medication.getDoctorName());
-        getSupportActionBar().setTitle(medication.getName());
+        notesFromDoctor.setText(myMedication.getNotes());
+        doctorName.setText(myMedication.getFullName());
+        getSupportActionBar().setTitle(myMedication.getName());
     }
 
     @Override
@@ -98,6 +99,6 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
     @OnClick(R.id.loadingLayoutRetryButton)
     public void onRetryClick() {
         hideErrorInLoadingBar();
-        presenter.makeRequest(medicationId);
+        presenter.makeRequest(treatmentId, medicationId);
     }
 }

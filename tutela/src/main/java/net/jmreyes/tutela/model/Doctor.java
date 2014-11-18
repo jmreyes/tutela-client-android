@@ -16,6 +16,12 @@ public class Doctor {
     public String getName() {
         return firstName + " " + lastName;
     }
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
     public String getEmail() {
         return this.email;
     }

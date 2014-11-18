@@ -3,6 +3,8 @@ package net.jmreyes.tutela.ui.patient.medicationdetails;
 import net.jmreyes.tutela.api.ApiManager;
 import net.jmreyes.tutela.model.Doctor;
 import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.Treatment;
+import net.jmreyes.tutela.model.extra.MyMedication;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -12,11 +14,12 @@ import retrofit.client.Response;
  */
 public class MedicationDetailsInteractorImpl implements MedicationDetailsInteractor {
     @Override
-    public void makeRequest(String medicationId, final MedicationDetailsPresenter.OnFinishedListener listener) {
-        ApiManager.getMedicationService().findOneById(medicationId, new Callback<Medication>() {
+    public void makeRequest(String treatmentId, final String medicationId, final MedicationDetailsPresenter.OnFinishedListener listener) {
+        ApiManager.getPatientService().getTreatment(treatmentId, new Callback<Treatment>() {
             @Override
-            public void success(Medication medication, Response response) {
-                listener.onSuccess(medication);
+            public void success(Treatment treatment, Response response) {
+                MyMedication result = MyMedication.createFromTreatment(treatment, medicationId);
+                listener.onSuccess(result);
             }
 
             @Override

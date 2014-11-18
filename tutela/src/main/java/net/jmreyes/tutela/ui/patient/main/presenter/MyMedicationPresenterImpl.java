@@ -2,6 +2,7 @@ package net.jmreyes.tutela.ui.patient.main.presenter;
 
 import net.jmreyes.tutela.api.services.MedicationService;
 import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyMedication;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractor;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyMedicationInteractorImpl;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
@@ -39,7 +40,7 @@ public class MyMedicationPresenterImpl implements MyMedicationPresenter, MyMedic
      **/
 
     @Override
-    public void onSuccess(List<Medication> results) {
+    public void onSuccess(List<MyMedication> results) {
         view.displayResults(results);
     }
 

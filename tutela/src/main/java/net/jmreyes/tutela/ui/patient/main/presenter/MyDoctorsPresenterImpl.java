@@ -1,6 +1,6 @@
 package net.jmreyes.tutela.ui.patient.main.presenter;
 
-import net.jmreyes.tutela.model.Doctor;
+import net.jmreyes.tutela.model.extra.MyDoctor;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyDoctorsInteractor;
 import net.jmreyes.tutela.ui.patient.main.interactor.MyDoctorsInteractorImpl;
 import net.jmreyes.tutela.ui.patient.main.view.MyDoctorsView;
@@ -31,7 +31,7 @@ public class MyDoctorsPresenterImpl implements MyDoctorsPresenter, MyDoctorsPres
     }
 
     @Override
-    public void onSuccess(List<Doctor> results) {
+    public void onSuccess(List<MyDoctor> results) {
         view.displayResults(results);
     }
 

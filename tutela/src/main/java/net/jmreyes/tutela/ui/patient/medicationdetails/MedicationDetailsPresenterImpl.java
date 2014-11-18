@@ -2,6 +2,7 @@ package net.jmreyes.tutela.ui.patient.medicationdetails;
 
 import net.jmreyes.tutela.model.Doctor;
 import net.jmreyes.tutela.model.Medication;
+import net.jmreyes.tutela.model.extra.MyMedication;
 
 import javax.inject.Inject;
 
@@ -19,8 +20,8 @@ public class MedicationDetailsPresenterImpl implements MedicationDetailsPresente
     }
 
     @Override
-    public void makeRequest(String medicationId) {
-        medicationDetailsInteractor.makeRequest(medicationId, this);
+    public void makeRequest(String treatmentId, String medicationId) {
+        medicationDetailsInteractor.makeRequest(treatmentId, medicationId, this);
     }
 
     /**
@@ -29,8 +30,8 @@ public class MedicationDetailsPresenterImpl implements MedicationDetailsPresente
      **/
 
     @Override
-    public void onSuccess(Medication medication) {
-        view.displayResults(medication);
+    public void onSuccess(MyMedication myMedication) {
+        view.displayResults(myMedication);
     }
 
     @Override

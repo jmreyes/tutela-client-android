@@ -3,10 +3,7 @@ package net.jmreyes.tutela.api;
 import android.accounts.AccountManager;
 import android.app.Application;
 import com.squareup.okhttp.OkHttpClient;
-import net.jmreyes.tutela.api.services.AuthService;
-import net.jmreyes.tutela.api.services.DoctorService;
-import net.jmreyes.tutela.api.services.MedicationService;
-import net.jmreyes.tutela.api.services.UserService;
+import net.jmreyes.tutela.api.services.*;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
 
@@ -30,8 +27,9 @@ public class ApiManager {
 
     private static AuthService authService;
     private static MedicationService medicationService;
-    private static DoctorService doctorService;
     private static UserService userService;
+    private static PatientSvcApi patientService;
+    private static DoctorSvcApi doctorService;
 
     public static void initRestAdapter(Application app) {
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -46,8 +44,9 @@ public class ApiManager {
 
         authService = restAdapter.create(AuthService.class);
         medicationService = restAdapter.create(MedicationService.class);
-        doctorService = restAdapter.create(DoctorService.class);
         userService = restAdapter.create(UserService.class);
+        patientService = restAdapter.create(PatientSvcApi.class);
+        doctorService = restAdapter.create(DoctorSvcApi.class);
     }
 
 
@@ -57,10 +56,13 @@ public class ApiManager {
     public static MedicationService getMedicationService() {
         return medicationService;
     }
-    public static DoctorService getDoctorService() {
-        return doctorService;
-    }
     public static UserService getUserService() {
         return userService;
+    }
+    public static PatientSvcApi getPatientService() {
+        return patientService;
+    }
+    public static DoctorSvcApi getDocService() {
+        return doctorService;
     }
 }
