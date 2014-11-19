@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
+import butterknife.OnClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.extra.Answer;
 import net.jmreyes.tutela.ui.common.BaseFragment;
@@ -24,8 +27,6 @@ import java.util.Collection;
  * Activities that contain this fragment must implement the
  * {@link OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link CheckInFragment#newInstance} factory method to
- * create an instance of this fragment.
  *
  */
 public class CheckInFragment extends BaseFragment implements CheckInView {
@@ -36,6 +37,17 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
     @InjectView(R.id.layout_checkin_medication) LinearLayout medicationLayout;
     @InjectView(R.id.layout_checkin_symptom) LinearLayout symptomLayout;
 
+    @InjectView(R.id.layout_checkin_footer) LinearLayout footerLayout;
+    @InjectView(R.id.questions_left_text) TextView questionsLeftText;
+    @InjectView(R.id.previous_question_button) Button previousQuestionButton;
+
+    @InjectView(R.id.medication_name_text) TextView medicationNameText;
+    @InjectView(R.id.question_text) TextView questionText;
+
+    @InjectView(R.id.symptom_button1) Button symptomButton1;
+    @InjectView(R.id.symptom_button2) Button symptomButton2;
+    @InjectView(R.id.symptom_button3) Button symptomButton3;
+
     private OnFragmentInteractionListener mListener;
 
     public CheckInFragment() {
@@ -45,6 +57,9 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
     public void onResume() {
         super.onResume();
         presenter.init(this);
+
+        showLoadingBar();
+
         presenter.makeRequest();
     }
 
@@ -83,25 +98,104 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
 
     @Override
     public void displayMedication(String medicationName) {
+        hideLoadingBar();
         medicationLayout.setVisibility(View.VISIBLE);
         symptomLayout.setVisibility(View.GONE);
         okLayout.setVisibility(View.GONE);
+
+        footerLayout.setVisibility(View.VISIBLE);
+
+        medicationNameText.setText(getString(R.string.did_you_take_2, medicationName));
     }
 
     @Override
     public void displaySymptom(String question, Collection<Answer> answers) {
+        hideLoadingBar();
+        medicationLayout.setVisibility(View.GONE);
+        symptomLayout.setVisibility(View.VISIBLE);
+        okLayout.setVisibility(View.GONE);
 
+        footerLayout.setVisibility(View.VISIBLE);
+
+        symptomButton1.setVisibility(View.GONE);
+        symptomButton2.setVisibility(View.GONE);
+        symptomButton3.setVisibility(View.GONE);
+
+        questionText.setText(question);
+
+        for (Answer a : answers) {
+            switch (a.getAnsIndex()) {
+                case 1:
+                    symptomButton1.setVisibility(View.VISIBLE);
+                    symptomButton1.setText(a.getAnsText());
+                    symptomButton1.setTag(a);
+                    break;
+                case 2:
+                    symptomButton2.setVisibility(View.VISIBLE);
+                    symptomButton2.setText(a.getAnsText());
+                    symptomButton2.setTag(a);
+                    break;
+                case 3:
+                    symptomButton3.setVisibility(View.VISIBLE);
+                    symptomButton3.setText(a.getAnsText());
+                    symptomButton3.setTag(a);
+                    break;
+            }
+        }
     }
 
     @Override
     public void displayOkay() {
+        hideLoadingBar();
         medicationLayout.setVisibility(View.GONE);
         symptomLayout.setVisibility(View.GONE);
         okLayout.setVisibility(View.VISIBLE);
+
+        footerLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void updateFooter(int questionsLeft, boolean showPreviousButton) {
+        questionsLeftText.setText(getString(R.string.questions_left, questionsLeft));
+        previousQuestionButton.setVisibility(showPreviousButton ? View.VISIBLE : View.INVISIBLE);
+    }
+
+
+    @OnClick({ R.id.medication_button_no, R.id.medication_button_yes })
+    public void answerMedication(View view) {
+        switch (view.getId()) {
+            case R.id.medication_button_no:
+                presenter.registerMedication(false);
+                break;
+            case R.id.medication_button_yes:
+                presenter.registerMedication(true);
+                break;
+        }
+    }
+
+    @OnClick({ R.id.symptom_button1, R.id.symptom_button2, R.id.symptom_button3 })
+    public void answerSymptom(View view) {
+        presenter.registerSymptom((Answer) view.getTag());
+    }
+
+    @OnClick(R.id.previous_question_button)
+    public void previousQuestion() {
+        presenter.previousQuestion();
     }
 
     @Override
     public void displayError() {
+        showErrorInLoadingBar(null);
+    }
 
+    @Override
+    public void displayLoadingBar() {
+        showLoadingBar();
+    }
+
+    @OnClick(R.id.loadingLayoutRetryButton)
+    public void onRetryClick() {
+        hideErrorInLoadingBar();
+        presenter.makeRequest();
     }
 }

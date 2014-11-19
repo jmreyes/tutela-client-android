@@ -8,13 +8,13 @@
 
 
     <!-- CheckInFragment -->
-    <string name="everything_in_order">Everything is in order!</string>
+    <string name="no_checkins_needed">No check-ins needed yet!</string>
     <string name="did_you_take_1">Did you take your</string>
     <string name="did_you_take_2">%1$s?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="previous_question">&lt; Previous question</string>
-    <string name="questions_left">%1$i questions left</string>
+    <string name="questions_left">%1$s questions left</string>
 
     <!-- PatientMainActivity -->
     <string name="my_medication">My Medication</string>

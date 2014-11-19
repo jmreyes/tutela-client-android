@@ -50,26 +50,47 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
         String medicationId = emp.getMedicationId();
         String medicationName = emp.getMedicationName();
 
-        CheckIn.EmbeddedMedication em = new CheckIn.EmbeddedMedication(medicationId, medicationName, taken);
+        CheckIn.EmbeddedMedication newEM = new CheckIn.EmbeddedMedication(medicationId, medicationName, taken);
 
-        mapTreatmentCheckIn.get(medications.get(count).getTreatmentId()).getMedication().add(em);
+        // Check if already there, in case the user went back with "Previous question"
+        Collection<CheckIn.EmbeddedMedication> ems = mapTreatmentCheckIn.get(medications.get(count).getTreatmentId()).getMedication();
+        for (CheckIn.EmbeddedMedication em : ems ) {
+            if (em.getMedicationId().equals(newEM.getMedicationId())) ems.remove(em);
+        }
+
+        ems.add(newEM);
 
         count++;
         nextStep();
     }
 
     @Override
-    public void registerSymptom(int ansIndex, String ansText) {
-        CheckInProposal.EmbeddedSymptomProposal esp = symptoms.get(count).getSymptom();
+    public void registerSymptom(Answer answer) {
+        CheckInProposal.EmbeddedSymptomProposal esp = symptoms.get(total-count-1).getSymptom();
         String symptomId = esp.getSymptomId();
         String symptomName = esp.getSymptomName();
 
-        CheckIn.EmbeddedSymptom es = new CheckIn.EmbeddedSymptom(symptomId, symptomName, ansText, ansIndex);
+        CheckIn.EmbeddedSymptom newEs = new CheckIn.EmbeddedSymptom(symptomId, symptomName,
+                answer.getAnsText(), answer.getAnsIndex());
 
-        mapTreatmentCheckIn.get(symptoms.get(total - count).getTreatmentId()).getSymptoms().add(es);
+        // Check if already there, in case the user went back with "Previous question"
+        Collection<CheckIn.EmbeddedSymptom> ess = mapTreatmentCheckIn.get(symptoms.get(total-count-1).getTreatmentId()).getSymptoms();
+        for (CheckIn.EmbeddedSymptom es : ess ) {
+            if (es.getSymptomId().equals(newEs.getSymptomId())) ess.remove(es);
+        }
+
+        ess.add(newEs);
 
         count++;
         nextStep();
+    }
+
+    @Override
+    public void previousQuestion() {
+        if (count > 0) {
+            count--;
+            nextStep();
+        }
     }
 
     /**
@@ -87,15 +108,13 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
         total = medications.size() + symptoms.size();
         count = 0;
 
-        Log.d("HOLA", "ITEMS IN CHECKIN" + total);
-
         if (total > 0)
             nextStep();
     }
 
     @Override
     public void onError() {
-        //view.displayError();
+        view.displayError();
     }
 
     @Override
@@ -104,15 +123,20 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
     }
 
     private void nextStep() {
+        view.updateFooter(total - count - 1, count > 0);
+
         if (count < medications.size()) {
             view.displayMedication(medications.get(count).getMedication().getMedicationName());
         } else if (count < total) {
-            CheckInProposal.EmbeddedSymptomProposal esp = symptoms.get(total-count).getSymptom();
+            CheckInProposal.EmbeddedSymptomProposal esp = symptoms.get(total-count-1).getSymptom();
             view.displaySymptom(esp.getQuestion(), esp.getAnswers());
         } else {
+            view.displayLoadingBar();
             checkInInteractor.sendCheckIn(new ArrayList<CheckIn>(mapTreatmentCheckIn.values()), this);
         }
     }
+
+
 
     private HashMap<String, CheckIn> createMapTreatmentCheckInFromProposal(ArrayList<CheckInProposal> checkInProposals) {
         HashMap<String, CheckIn> result = new HashMap<String, CheckIn>();

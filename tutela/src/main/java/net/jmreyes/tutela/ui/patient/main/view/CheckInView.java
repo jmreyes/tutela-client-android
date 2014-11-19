@@ -11,5 +11,9 @@ public interface CheckInView {
     public void displayMedication(String medicationName);
     public void displaySymptom(String question, Collection<Answer> answers);
     public void displayOkay();
+
+    public void updateFooter(int questionsLeft, boolean showPreviousButton);
+
     public void displayError();
+    public void displayLoadingBar();
 }

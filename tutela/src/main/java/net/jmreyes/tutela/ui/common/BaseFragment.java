@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.InjectViews;
 import butterknife.Optional;
@@ -54,5 +55,10 @@ public class BaseFragment extends Fragment {
 
         loadingLayoutErrorText.setVisibility(View.GONE);
         loadingLayoutRetryButton.setVisibility(View.GONE);
+    }
+
+    @Override public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
     }
 }
