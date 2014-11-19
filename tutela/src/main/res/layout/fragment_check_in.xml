@@ -10,6 +10,7 @@
     tools:context="net.jmreyes.tutela.ui.patient.main.CheckInFragment">
 
     <LinearLayout
+            android:visibility="gone"
             android:id="@+id/layout_checkin_symptom"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -43,7 +44,6 @@
     </LinearLayout>
 
     <LinearLayout
-            android:visibility="gone"
             android:id="@+id/layout_checkin_medication"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,7 +63,15 @@
                 android:gravity="center"
                 android:textColor="@color/text_main"
                 android:textSize="20sp"
-                android:text="@string/did_you_take"/>
+                android:text="@string/did_you_take_1"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:textColor="@color/text_main"
+                android:textSize="30sp"
+                android:text="@string/did_you_take_2"/>
 
         <LinearLayout
                 android:layout_width="match_parent"
@@ -107,6 +115,7 @@
     </LinearLayout>
 
     <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">

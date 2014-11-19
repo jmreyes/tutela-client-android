@@ -34,15 +34,15 @@ public class CheckInProposal {
 
     public static class EmbeddedSymptomProposal {
         private String symptomId;
-        private String sypmtomName;
+        private String symptomName;
         private String question;
         private Collection<Answer> answers;
 
         public String getSymptomId() {
             return symptomId;
         }
-        public String getSypmtomName() {
-            return sypmtomName;
+        public String getSymptomName() {
+            return symptomName;
         }
         public String getQuestion() {
             return question;
@@ -50,5 +50,13 @@ public class CheckInProposal {
         public Collection<Answer> getAnswers() {
             return answers;
         }
+    }
+
+    public Collection<EmbeddedMedicationProposal> getMedication() {
+        return medication;
+    }
+
+    public Collection<EmbeddedSymptomProposal> getSymptoms() {
+        return symptoms;
     }
 }

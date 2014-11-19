@@ -9,7 +9,8 @@
 
     <!-- CheckInFragment -->
     <string name="everything_in_order">Everything is in order!</string>
-    <string name="did_you_take">Did you take your %1$s?</string>
+    <string name="did_you_take_1">Did you take your</string>
+    <string name="did_you_take_2">%1$s?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="previous_question">&lt; Previous question</string>

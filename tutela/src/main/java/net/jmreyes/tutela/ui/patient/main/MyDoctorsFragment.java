@@ -50,6 +50,8 @@ public class MyDoctorsFragment extends BaseFragment implements MyDoctorsView {
         presenter.init(this);
 
         showLoadingBar();
+
+        // This will be conditional on the alarms!
         presenter.makeRequest();
     }
 

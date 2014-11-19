@@ -29,15 +29,6 @@ public class MyAlarmsFragment extends BaseFragment implements MyAlarmsView {
 
     private OnFragmentInteractionListener mListener;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment.
-     *
-     * @return A new instance of fragment MyAlarmsFragment.
-     */
-    public static MyAlarmsFragment newInstance() {
-        return new MyAlarmsFragment();
-    }
     public MyAlarmsFragment() {
         // Required empty public constructor
     }

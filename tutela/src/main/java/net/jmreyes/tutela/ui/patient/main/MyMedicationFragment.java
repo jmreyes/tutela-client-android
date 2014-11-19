@@ -41,7 +41,6 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
     MyMedicationListAdapter myMedicationListAdapter;
 
     public MyMedicationFragment() {
-        // Required empty public constructor
     }
 
     @Override
