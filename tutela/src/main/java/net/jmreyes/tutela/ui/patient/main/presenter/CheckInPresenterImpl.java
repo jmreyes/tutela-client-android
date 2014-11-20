@@ -9,10 +9,7 @@ import net.jmreyes.tutela.ui.patient.main.interactor.CheckInInteractorImpl;
 import net.jmreyes.tutela.ui.patient.main.view.CheckInView;
 
 import javax.inject.Inject;
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by juanma on 29/10/14.
@@ -45,12 +42,12 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
     }
 
     @Override
-    public void registerMedication(boolean taken) {
+    public void registerMedication(boolean taken, Date date) {
         CheckInProposal.EmbeddedMedicationProposal emp = medications.get(count).getMedication();
         String medicationId = emp.getMedicationId();
         String medicationName = emp.getMedicationName();
 
-        CheckIn.EmbeddedMedication newEM = new CheckIn.EmbeddedMedication(medicationId, medicationName, taken);
+        CheckIn.EmbeddedMedication newEM = new CheckIn.EmbeddedMedication(medicationId, medicationName, taken, date);
 
         // Check if already there, in case the user went back with "Previous question"
         Collection<CheckIn.EmbeddedMedication> ems = mapTreatmentCheckIn.get(medications.get(count).getTreatmentId()).getMedication();

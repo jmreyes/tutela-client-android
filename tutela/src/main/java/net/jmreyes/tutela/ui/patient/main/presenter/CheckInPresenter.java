@@ -6,6 +6,7 @@ import net.jmreyes.tutela.ui.common.BaseFragmentPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.CheckInView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by juanma on 29/10/14.
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public interface CheckInPresenter extends BaseFragmentPresenter<CheckInView> {
     public void makeRequest();
 
-    public void registerMedication(boolean taken);
+    public void registerMedication(boolean taken, Date date);
     public void registerSymptom(Answer answer);
 
     public void previousQuestion();

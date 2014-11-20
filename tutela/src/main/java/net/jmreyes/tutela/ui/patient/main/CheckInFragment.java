@@ -1,26 +1,29 @@
 package net.jmreyes.tutela.ui.patient.main;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.extra.Answer;
 import net.jmreyes.tutela.ui.common.BaseFragment;
+import net.jmreyes.tutela.ui.patient.main.aux.TimePickerFragment;
+import net.jmreyes.tutela.ui.patient.main.presenter.CheckInPresenter;
 import net.jmreyes.tutela.ui.patient.main.presenter.CheckInPresenterImpl;
 import net.jmreyes.tutela.ui.patient.main.view.CheckInView;
 
 import javax.inject.Inject;
-import java.util.Collection;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,7 +34,7 @@ import java.util.Collection;
  */
 public class CheckInFragment extends BaseFragment implements CheckInView {
     @Inject
-    CheckInPresenterImpl presenter;
+    CheckInPresenter presenter;
 
     @InjectView(R.id.layout_checkin_ok) LinearLayout okLayout;
     @InjectView(R.id.layout_checkin_medication) LinearLayout medicationLayout;
@@ -165,10 +168,10 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
     public void answerMedication(View view) {
         switch (view.getId()) {
             case R.id.medication_button_no:
-                presenter.registerMedication(false);
+                presenter.registerMedication(false, new Date());
                 break;
             case R.id.medication_button_yes:
-                presenter.registerMedication(true);
+                showDatePicker();
                 break;
         }
     }
@@ -198,4 +201,29 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
         hideErrorInLoadingBar();
         presenter.makeRequest();
     }
+
+    private void showDatePicker() {
+        TimePickerFragment date = new TimePickerFragment();
+
+        Calendar calendar =  Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("hourOfDay", calendar.get(Calendar.HOUR_OF_DAY));
+        args.putInt("minute", calendar.get(Calendar.MINUTE));
+        date.setArguments(args);
+
+        date.setCallBack(onTimeSetListener);
+        date.show(getFragmentManager(), "DatePicker");
+    }
+
+    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+
+            presenter.registerMedication(true, calendar.getTime());
+        }
+    };
+
 }

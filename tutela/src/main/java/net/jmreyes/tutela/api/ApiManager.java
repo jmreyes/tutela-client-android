@@ -2,10 +2,13 @@ package net.jmreyes.tutela.api;
 
 import android.accounts.AccountManager;
 import android.app.Application;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import net.jmreyes.tutela.api.services.*;
 import retrofit.RestAdapter;
 import retrofit.client.OkClient;
+import retrofit.converter.GsonConverter;
 
 import javax.inject.Inject;
 
@@ -35,10 +38,15 @@ public class ApiManager {
         OkHttpClient okHttpClient = new OkHttpClient();
         okHttpClient.setAuthenticator(new ApiAuthenticator(app, AccountManager.get(app)));
 
+        Gson gson = new GsonBuilder()
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                .create();
+
         RestAdapter restAdapter = new RestAdapter.Builder()
                 .setEndpoint(API_URL)
                 .setClient(new OkClient(okHttpClient))
                 .setRequestInterceptor(new ApiHeaders(app))
+                .setConverter(new GsonConverter(gson))
                 .setLogLevel(RestAdapter.LogLevel.FULL)
                 .build();
 
