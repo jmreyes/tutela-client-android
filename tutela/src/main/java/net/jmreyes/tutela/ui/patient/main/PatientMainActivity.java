@@ -16,7 +16,6 @@ import net.jmreyes.tutela.ui.common.BaseActivity;
 import net.jmreyes.tutela.ui.patient.doctordetails.DoctorDetailsActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
 import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenter;
-import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenterImpl;
 import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
 import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
 
@@ -101,7 +100,7 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
                 case 2: // Fragment # 1 - This will show SecondFragment
                     return new MyDoctorsFragment();
                 case 3: // Fragment # 1 - This will show SecondFragment
-                    return new MyAlarmsFragment();
+                    return new MyRemindersFragment();
                 default:
                     return null;
             }

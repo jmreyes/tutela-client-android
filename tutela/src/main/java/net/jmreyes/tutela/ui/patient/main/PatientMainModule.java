@@ -16,7 +16,7 @@ import javax.inject.Singleton;
         injects = {
                 PatientMainActivity.class,
                 CheckInFragment.class,
-                MyAlarmsFragment.class,
+                MyRemindersFragment.class,
                 MyDoctorsFragment.class,
                 MyMedicationFragment.class
         },
@@ -58,12 +58,12 @@ public class PatientMainModule {
     }
 
     /**
-     * Provide MyAlarmsPresenter
+     * Provide MyRemindersPresenter
      */
     @Provides
     @Singleton
-    public MyAlarmsPresenter provideMyAlarmsPresenter() {
-        return new MyAlarmsPresenterImpl();
+    public MyRemindersPresenter provideMyRemindersPresenter() {
+        return new MyRemindersPresenterImpl();
     }
 
     /**

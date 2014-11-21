@@ -16,10 +16,14 @@
     <string name="previous_question">&lt; Previous question</string>
     <string name="questions_left">%1$s questions left</string>
 
+
+    <!-- MyAlarmsFragment -->
+    <string name="edit">Edit</string>
+
     <!-- PatientMainActivity -->
     <string name="my_medication">My Medication</string>
     <string name="my_doctors">My Doctors</string>
-    <string name="my_alarms">My Alarms</string>
+    <string name="my_reminders">My Reminders</string>
 
     <!-- My Medication Details -->
     <string name="medication_details">Medication Details</string>

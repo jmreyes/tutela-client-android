@@ -5,6 +5,6 @@ import net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter;
 /**
  * Created by juanma on 1/11/14.
  */
-public interface MyAlarmsInteractor {
+public interface MyRemindersInteractor {
 
 }
