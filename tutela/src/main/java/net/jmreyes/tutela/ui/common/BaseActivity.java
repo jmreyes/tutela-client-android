@@ -16,6 +16,7 @@ import fr.castorflex.android.circularprogressbar.CircularProgressBar;
 import net.jmreyes.tutela.App;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.api.ApiManager;
+import net.jmreyes.tutela.aux.SharedPreferencesHelper;
 import net.jmreyes.tutela.ui.login.LoginActivity;
 
 import javax.inject.Inject;
@@ -79,6 +80,15 @@ public abstract class BaseActivity extends ActionBarActivity implements OnAccoun
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    protected void userLogout() {
+        Account[] accounts = accountManager.getAccountsByType(ApiManager.ACCOUNT_TYPE);
+        if (accounts.length != 0) {
+            accountManager.removeAccount(accounts[0], null, null);
+        }
+
+        SharedPreferencesHelper.removeAll(this);
     }
 
     protected void showLoadingBar() {

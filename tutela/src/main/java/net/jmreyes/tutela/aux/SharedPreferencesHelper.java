@@ -119,4 +119,10 @@ public class SharedPreferencesHelper {
         editor.putString(REMINDERS_PREF_KEY, currentAlarmsJSONString);
         editor.apply();
     }
+
+    public static void removeAll(Context context) {
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        editor.clear();
+        editor.commit();
+    }
 }

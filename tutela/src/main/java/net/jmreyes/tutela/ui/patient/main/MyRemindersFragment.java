@@ -21,10 +21,8 @@ import net.jmreyes.tutela.model.extra.Reminder;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.main.adapter.MyRemindersListAdapter;
 import net.jmreyes.tutela.ui.patient.main.aux.TimePickerFragment;
-import net.jmreyes.tutela.ui.patient.main.presenter.MyRemindersPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.MyRemindersView;
 
-import javax.inject.Inject;
 import java.util.Calendar;
 import java.util.List;
 
@@ -36,8 +34,6 @@ import java.util.List;
  *
  */
 public class MyRemindersFragment extends BaseFragment implements MyRemindersView {
-    @Inject
-    MyRemindersPresenter presenter;
 
     @InjectView(R.id.listView) ListView listView;
 
@@ -52,9 +48,6 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
     @Override
     public void onResume() {
         super.onResume();
-        presenter.init(this);
-
-        //showLoadingBar();
 
         List<Reminder> reminders = SharedPreferencesHelper.getReminders(getActivity());
         myRemindersListAdapter = new MyRemindersListAdapter(getActivity(), reminders, this);
