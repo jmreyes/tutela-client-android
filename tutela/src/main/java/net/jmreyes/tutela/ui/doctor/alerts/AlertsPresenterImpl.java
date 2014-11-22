@@ -10,8 +10,12 @@ public class AlertsPresenterImpl implements AlertsPresenter, AlertsPresenter.OnF
     private AlertsInteractor alertsInteractor;
 
     @Inject
-    public AlertsPresenterImpl(AlertsView view) {
-        this.view = view;
+    public AlertsPresenterImpl() {
         alertsInteractor = new AlertsInteractorImpl();
+    }
+
+    @Override
+    public void init(AlertsView view) {
+        this.view = view;
     }
 }

@@ -25,35 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <LinearLayout
+        <FrameLayout
                 android:id="@+id/content_frame"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent" />
 
-            <include layout="@layout/loading_layout"
-                     android:visibility="gone" />
 
-            <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/activity_horizontal_margin"
-                    android:background="@color/colorAccent">
-
-                <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="You have 3 unread alerts"
-                        android:textColor="@android:color/white"/>
-            </LinearLayout>
-
-            <ListView
-                    android:id="@+id/listView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    style="@style/list"/>
-        </LinearLayout>
 
         <!-- Your drawer content -->
         <include layout="@layout/navigation_drawer"

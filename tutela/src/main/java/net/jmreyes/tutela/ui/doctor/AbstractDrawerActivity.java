@@ -1,26 +1,30 @@
 package net.jmreyes.tutela.ui.doctor;
 
-import android.content.Intent;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
+import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.common.BaseActivity;
-import net.jmreyes.tutela.ui.doctor.alerts.AlertsActivity;
-import net.jmreyes.tutela.ui.doctor.main.DoctorMainActivity;
-import net.jmreyes.tutela.ui.doctor.medication.MedicationActivity;
-import net.jmreyes.tutela.ui.doctor.mypatients.MyPatientsActivity;
-import net.jmreyes.tutela.ui.doctor.symptoms.SymptomsActivity;
+import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
+import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
+import net.jmreyes.tutela.ui.doctor.main.medication.MedicationFragment;
+import net.jmreyes.tutela.ui.doctor.main.mypatients.MyPatientsFragment;
+import net.jmreyes.tutela.ui.doctor.main.symptoms.SymptomsFragment;
 
 /**
  * Created by juanma on 9/11/14.
  */
 public abstract class AbstractDrawerActivity extends BaseActivity {
+    @InjectView(R.id.content_frame) FrameLayout contentFrame;
+    @InjectView(R.id.my_drawer_layout) DrawerLayout drawerLayout;
 
     protected void setUpNavigationDrawer(Toolbar toolbar) {
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.my_drawer_layout);
 
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(
                 this,  drawerLayout, toolbar,
@@ -57,45 +61,37 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
             R.id.navigation_drawer_section_about
     })
     public void loadSubSection(View v) {
-        Intent intent;
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
 
         switch (v.getId()) {
             case R.id.navigation_drawer_section_doctor_dashboard:
-                intent = new Intent(this, DoctorMainActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                ft.replace(R.id.content_frame, new DashboardFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.doctor_dashboard));
                 break;
             case R.id.navigation_drawer_section_my_patients:
-                intent = new Intent(this, MyPatientsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                ft.replace(R.id.content_frame, new MyPatientsFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.my_patients));
                 break;
             case R.id.navigation_drawer_section_symptoms:
-                intent = new Intent(this, SymptomsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                ft.replace(R.id.content_frame, new SymptomsFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.symptoms));
                 break;
             case R.id.navigation_drawer_section_medication:
-                intent = new Intent(this, MedicationActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                ft.replace(R.id.content_frame, new MedicationFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.medication));
                 break;
             case R.id.navigation_drawer_section_alerts:
-                intent = new Intent(this, AlertsActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                        | Intent.FLAG_ACTIVITY_CLEAR_TASK );
+                ft.replace(R.id.content_frame, new AlertsFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.alerts));
                 break;
             case R.id.navigation_drawer_section_settings:
                 return;
             case R.id.navigation_drawer_section_about:
                 return;
-            default:
-                return;
         }
 
-        startActivity(intent);
-
-        overridePendingTransition(0, 0);
+        drawerLayout.closeDrawers();
     }
 
 }

@@ -43,6 +43,8 @@ public class AlarmHelper {
         am.cancel(pIntent);
         Log.d("AlarmHelper", "Removed all alarms");
 
+        if (reminderList == null) return;
+
         long msNow = Calendar.getInstance().getTimeInMillis();
 
         for (Reminder r : reminderList) {

@@ -1,4 +1,4 @@
-package net.jmreyes.tutela.ui.doctor.mypatients;
+package net.jmreyes.tutela.ui.doctor.main.mypatients;
 
 import javax.inject.Inject;
 
@@ -10,8 +10,12 @@ public class MyPatientsPresenterImpl implements MyPatientsPresenter, MyPatientsP
     private MyPatientsInteractor myPatientsInteractor;
 
     @Inject
-    public MyPatientsPresenterImpl(MyPatientsView view) {
-        this.view = view;
+    public MyPatientsPresenterImpl() {
         myPatientsInteractor = new MyPatientsInteractorImpl();
+    }
+
+    @Override
+    public void init(MyPatientsView view) {
+        this.view = view;
     }
 }

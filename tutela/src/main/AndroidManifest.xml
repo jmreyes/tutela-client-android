@@ -48,22 +48,6 @@
             android:label="@string/app_name"
             android:launchMode="singleTop" >
         </activity>
-        <activity
-                android:name=".ui.doctor.mypatients.MyPatientsActivity"
-                android:launchMode="singleTop" >
-        </activity>
-        <activity
-                android:name=".ui.doctor.symptoms.SymptomsActivity"
-                android:launchMode="singleTop" >
-        </activity>
-        <activity
-                android:name=".ui.doctor.medication.MedicationActivity"
-                android:launchMode="singleTop" >
-        </activity>
-        <activity
-                android:name=".ui.doctor.alerts.AlertsActivity"
-                android:launchMode="singleTop" >
-        </activity>
 
         <service
             android:name=".auth.AccountAuthenticatorService"
