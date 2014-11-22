@@ -2,6 +2,7 @@ package net.jmreyes.tutela.api.services;
 
 import net.jmreyes.tutela.model.*;
 import net.jmreyes.tutela.model.extra.CheckInProposal;
+import net.jmreyes.tutela.model.extra.MyDoctor;
 import net.jmreyes.tutela.model.extra.MyMedication;
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -29,8 +30,8 @@ public interface PatientSvcApi {
     public void getOneMedication(@Path("treatmentId") String treatmentId,
                                  @Path("medicationId") String medicationId, Callback<MyMedication> callback);
 
-    @GET(PATIENT_PATIENTDETAILS)
-    public void getPatientDetails(Callback<Collection<PatientDetails>> callback);
+    @GET(PATIENT_DOCTORS)
+    public void getDoctors(Callback<Collection<MyDoctor>> callback);
 
     @GET(PATIENT_DOCTORS + "/{id}")
     public void getDoctor(@Path("id") String id, Callback<Doctor> callback);

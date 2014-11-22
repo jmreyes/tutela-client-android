@@ -19,11 +19,10 @@ import java.util.List;
 public class MyDoctorsInteractorImpl implements MyDoctorsInteractor {
     @Override
     public void makeRequest(final MyDoctorsPresenter.OnFinishedListener listener) {
-        ApiManager.getPatientService().getPatientDetails(new Callback<Collection<PatientDetails>>() {
+        ApiManager.getPatientService().getDoctors(new Callback<Collection<MyDoctor>>() {
             @Override
-            public void success(Collection<PatientDetails> patientDetails, Response response) {
-                ArrayList<MyDoctor> results = MyDoctor.createListFromPatientDetails(patientDetails);
-                listener.onSuccess(results);
+            public void success(Collection<MyDoctor> results, Response response) {
+                listener.onSuccess(new ArrayList<MyDoctor>(results));
             }
 
             @Override

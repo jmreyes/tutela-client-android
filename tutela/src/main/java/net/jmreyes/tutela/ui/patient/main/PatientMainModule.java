@@ -17,7 +17,8 @@ import javax.inject.Singleton;
                 PatientMainActivity.class,
                 CheckInFragment.class,
                 MyDoctorsFragment.class,
-                MyMedicationFragment.class
+                MyMedicationFragment.class,
+                MyRemindersFragment.class
         },
         complete = false,
         library = true
