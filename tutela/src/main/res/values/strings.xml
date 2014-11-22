@@ -16,9 +16,13 @@
     <string name="previous_question">&lt; Previous question</string>
     <string name="questions_left">%1$s questions left</string>
 
+    <string name="checkin_notification_title">Time for scheduled check-in!</string>
+    <string name="checkin_notification_text">Please answer some questions.</string>
 
-    <!-- MyAlarmsFragment -->
+
+    <!-- MyRemindersFragment -->
     <string name="edit">Edit</string>
+    <string name="error_minimum_reminders">Sorry, you need at least four reminders!</string>
 
     <!-- PatientMainActivity -->
     <string name="my_medication">My Medication</string>

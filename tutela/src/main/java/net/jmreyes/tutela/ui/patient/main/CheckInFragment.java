@@ -1,7 +1,6 @@
 package net.jmreyes.tutela.ui.patient.main;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -14,16 +13,16 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.aux.SharedPreferencesHelper;
 import net.jmreyes.tutela.model.extra.Answer;
+import net.jmreyes.tutela.model.extra.Reminder;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.main.aux.TimePickerFragment;
 import net.jmreyes.tutela.ui.patient.main.presenter.CheckInPresenter;
-import net.jmreyes.tutela.ui.patient.main.presenter.CheckInPresenterImpl;
 import net.jmreyes.tutela.ui.patient.main.view.CheckInView;
 
 import javax.inject.Inject;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +62,17 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
 
         showLoadingBar();
 
-        presenter.makeRequest();
+        Calendar now = Calendar.getInstance();
+
+        List<Reminder> reminders = SharedPreferencesHelper.getReminders(getActivity());
+        for (Reminder r : reminders) {
+            if (r.getCalendar().getTimeInMillis() < now.getTimeInMillis()) {
+                presenter.makeRequest();
+                break;
+            }
+        }
+
+        displayOkay(false);
     }
 
     @Override
@@ -148,8 +157,11 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
     }
 
     @Override
-    public void displayOkay() {
+    public void displayOkay(boolean justCheckedIn) {
         hideLoadingBar();
+
+        if (justCheckedIn) SharedPreferencesHelper.resetReminders(getActivity());
+
         medicationLayout.setVisibility(View.GONE);
         symptomLayout.setVisibility(View.GONE);
         okLayout.setVisibility(View.VISIBLE);

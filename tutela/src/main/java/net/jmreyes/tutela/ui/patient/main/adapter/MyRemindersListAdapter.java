@@ -6,10 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import net.jmreyes.tutela.R;
-import net.jmreyes.tutela.model.extra.Alarm;
+import net.jmreyes.tutela.model.extra.Reminder;
 import net.jmreyes.tutela.ui.patient.main.view.MyRemindersView;
 
 import java.util.Calendar;
@@ -18,13 +19,13 @@ import java.util.List;
 /**
  * Created by juanma on 29/10/14.
  */
-public class MyRemindersListAdapter extends ArrayAdapter<Alarm> {
+public class MyRemindersListAdapter extends ArrayAdapter<Reminder> {
     private final Context context;
-    private final List<Alarm> values;
+    private final List<Reminder> values;
 
     private MyRemindersView myRemindersView;
 
-    public MyRemindersListAdapter(Context context, List<Alarm> values, MyRemindersView myRemindersView) {
+    public MyRemindersListAdapter(Context context, List<Reminder> values, MyRemindersView myRemindersView) {
         super(context, R.layout.tile_list_alarm, values);
         this.context = context;
         this.values = values;
@@ -60,7 +61,11 @@ public class MyRemindersListAdapter extends ArrayAdapter<Alarm> {
         ButterKnife.findById(convertView, R.id.delete_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                myRemindersView.removeAlarm(values.get(position));
+                if (values.size() > 4) {
+                    myRemindersView.removeAlarm(values.get(position));
+                } else {
+                    Toast.makeText(context, context.getResources().getString(R.string.error_minimum_reminders), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

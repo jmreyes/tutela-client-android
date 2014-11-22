@@ -116,7 +116,7 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
 
     @Override
     public void onCheckInSuccess() {
-        view.displayOkay();
+        view.displayOkay(true);
     }
 
     private void nextStep() {

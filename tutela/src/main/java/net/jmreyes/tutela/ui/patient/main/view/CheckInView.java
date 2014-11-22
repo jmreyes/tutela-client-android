@@ -10,7 +10,7 @@ import java.util.Collection;
 public interface CheckInView {
     public void displayMedication(String medicationName);
     public void displaySymptom(String question, Collection<Answer> answers);
-    public void displayOkay();
+    public void displayOkay(boolean justCheckedIn);
 
     public void updateFooter(int questionsLeft, boolean showPreviousButton);
 

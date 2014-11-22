@@ -2,6 +2,7 @@ package net.jmreyes.tutela.ui.patient.main;
 
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.aux.AlarmHelper;
 import net.jmreyes.tutela.aux.SharedPreferencesHelper;
-import net.jmreyes.tutela.model.extra.Alarm;
+import net.jmreyes.tutela.model.extra.Reminder;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.main.adapter.MyRemindersListAdapter;
 import net.jmreyes.tutela.ui.patient.main.aux.TimePickerFragment;
@@ -54,8 +56,8 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
 
         //showLoadingBar();
 
-        List<Alarm> alarms = SharedPreferencesHelper.getAlarmsFromSharedPreferences(getActivity());
-        myRemindersListAdapter = new MyRemindersListAdapter(getActivity(), alarms, this);
+        List<Reminder> reminders = SharedPreferencesHelper.getReminders(getActivity());
+        myRemindersListAdapter = new MyRemindersListAdapter(getActivity(), reminders, this);
         listView.setAdapter(myRemindersListAdapter);
     }
 
@@ -93,7 +95,7 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
     }
 
     @Override
-    public void displayResults(List<Alarm> results) {
+    public void displayResults(List<Reminder> results) {
         hideLoadingBar();
     }
 
@@ -103,14 +105,16 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
     }
 
     @Override
-    public void removeAlarm(Alarm alarm) {
-        myRemindersListAdapter.remove(alarm);
+    public void removeAlarm(Reminder reminder) {
+        myRemindersListAdapter.remove(reminder);
         myRemindersListAdapter.notifyDataSetChanged();
-        SharedPreferencesHelper.removeAlarmFromSharedPreferences(getActivity(), alarm);
+        Context c = getActivity();
+        SharedPreferencesHelper.removeReminder(c, reminder);
+        AlarmHelper.resetAlarms(c, SharedPreferencesHelper.getReminders(c));
     }
 
     @Override
-    public void editAlarm(Alarm alarm) {
+    public void editAlarm(Reminder reminder) {
 
     }
 
@@ -125,7 +129,7 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
         Calendar calendar =  Calendar.getInstance();
         Bundle args = new Bundle();
         args.putInt("hourOfDay", calendar.get(Calendar.HOUR_OF_DAY));
-        args.putInt("minute", calendar.get(Calendar.MINUTE));
+        args.putInt("minute", 0);
         date.setArguments(args);
 
         date.setCallBack(onTimeSetListener);
@@ -139,16 +143,14 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
             calendar.set(Calendar.MINUTE, minute);
 
-            Alarm alarm = new Alarm(calendar);
+            Reminder reminder = new Reminder(calendar);
 
-            SharedPreferencesHelper.addAlarmToSharedPreferences(getActivity(), alarm);
-            setAlarm(alarm);
-
-            myRemindersListAdapter.add(alarm);
-            myRemindersListAdapter.notifyDataSetChanged();
+            boolean added = SharedPreferencesHelper.addReminder(getActivity(), reminder);
+            if (added) {
+                AlarmHelper.setAlarm(getActivity(), reminder);
+                myRemindersListAdapter.add(reminder);
+                myRemindersListAdapter.notifyDataSetChanged();
+            }
         }
     };
-
-
-    private void setAlarm(Alarm alarm) {};
 }
