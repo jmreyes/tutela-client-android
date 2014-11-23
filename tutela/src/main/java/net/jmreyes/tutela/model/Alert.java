@@ -12,6 +12,7 @@ public class Alert {
     private String patientName;
     private String treatmentId;
     private boolean seen;
+    private String symptomName;
     private int hours;
     private String ansText;
     private Date date;
@@ -38,6 +39,10 @@ public class Alert {
 
     public boolean isSeen() {
         return seen;
+    }
+
+    public String getSymptomName() {
+        return symptomName;
     }
 
     public int getHours() {

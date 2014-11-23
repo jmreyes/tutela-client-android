@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import butterknife.ButterKnife;
@@ -51,14 +52,14 @@ public class MyRemindersListAdapter extends ArrayAdapter<Reminder> {
         String minute = String.format("%02d", c.get(Calendar.MINUTE));
         holder.title.setText(hoursOfDay+":"+minute);
 
-        ButterKnife.findById(convertView, R.id.button).setOnClickListener(new View.OnClickListener() {
+        holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myRemindersView.editAlarm(values.get(position));
             }
         });
 
-        ButterKnife.findById(convertView, R.id.delete_button).setOnClickListener(new View.OnClickListener() {
+        holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (values.size() > 4) {
@@ -78,6 +79,8 @@ public class MyRemindersListAdapter extends ArrayAdapter<Reminder> {
 
     static class ViewHolder {
         @InjectView(R.id.title) TextView title;
+        @InjectView(R.id.button) Button button;
+        @InjectView(R.id.delete_button) Button deleteButton;
 
         public ViewHolder(View view) {
             ButterKnife.inject(this, view);

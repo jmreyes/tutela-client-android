@@ -133,8 +133,6 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
         }
     }
 
-
-
     private HashMap<String, CheckIn> createMapTreatmentCheckInFromProposal(ArrayList<CheckInProposal> checkInProposals) {
         HashMap<String, CheckIn> result = new HashMap<String, CheckIn>();
 

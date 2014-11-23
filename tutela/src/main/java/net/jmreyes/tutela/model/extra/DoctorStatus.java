@@ -10,5 +10,17 @@ import java.util.Collection;
 public class DoctorStatus {
     private String username;
     private String name;
-    private Collection<Alert> alerts;
+    private int unseenAlerts;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getUnseenAlerts() {
+        return unseenAlerts;
+    }
 }

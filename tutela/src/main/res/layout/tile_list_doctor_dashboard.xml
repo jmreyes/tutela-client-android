@@ -19,6 +19,9 @@
     <Button
             android:id="@+id/button"
             style="@style/button_solid"
+            android:layout_height="35dp"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
             android:layout_below="@id/title"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

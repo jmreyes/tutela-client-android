@@ -9,12 +9,15 @@
                  android:visibility="gone" />
 
         <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/top_bar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/activity_horizontal_margin"
                 android:background="@color/colorAccent">
 
             <TextView
+                    android:id="@+id/top_bar_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="You have 3 unread alerts"

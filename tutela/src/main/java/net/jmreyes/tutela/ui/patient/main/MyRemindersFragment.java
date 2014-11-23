@@ -108,7 +108,7 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
 
     @Override
     public void editAlarm(Reminder reminder) {
-
+        // TODO
     }
 
     @OnClick(R.id.add_alarm_button)

@@ -51,6 +51,11 @@
     <string name="medication">Medication</string>
     <string name="alerts">Alerts</string>
 
+    <!-- Dashboard -->
+    <string name="dashboard_alert_text">%1$s has spent more than %2$s hours with %3$s at %4$s</string>
+    <string name="dashboard_alert_button">VIEW TREATMENT</string>
+    <string name="dashboard_top_bar_text">You have %1$s unread alerts</string>
+
     <!-- Symptom Details -->
     <string name="symptom_details">Symptom Details</string>
     <string name="edit_symptom_details">Edit Symptom Details</string>
