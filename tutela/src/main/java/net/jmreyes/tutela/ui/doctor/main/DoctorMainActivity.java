@@ -13,6 +13,7 @@ import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.doctor.AbstractDrawerActivity;
 import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
+import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -40,10 +41,7 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
 
         setUpNavigationDrawer(toolbar);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.content_frame, new DashboardFragment()).commit();
-        getSupportActionBar().setTitle(getString(R.string.doctor_dashboard));
+        loadFragment(Sections.DASHBOARD);
     }
 
 
@@ -55,30 +53,26 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
 
     @Override
     public void loadActivity(Subsections subsection, Bundle args, View transitionView) {
-//        Intent intent;
-//        String animationEndViewString = null;
-//
-//        switch (subsection) {
-//            case MEDICATION_DETAILS:
-//                intent = new Intent(this, MedicationDetailsActivity.class);
-//                animationEndViewString = getString(R.string.transition_medication_details);
-//                break;
-//            case DOCTOR_DETAILS:
-//                intent = new Intent(this, DoctorDetailsActivity.class);
-//                animationEndViewString = getString(R.string.transition_doctor_details);
-//                break;
-//            default:
-//                return;
-//        }
-//
-//        if (args != null)
-//            intent.putExtras(args);
-//
-//        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-//                this, transitionView, animationEndViewString);
-//
-//        ActivityCompat.startActivity(this, intent,
-//                options.toBundle());
+        Intent intent;
+        String animationEndViewString = null;
+
+        switch (subsection) {
+            case SYMPTOM_DETAILS:
+                intent = new Intent(this, SymptomDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            default:
+                return;
+        }
+
+        if (args != null)
+            intent.putExtras(args);
+
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                this, transitionView, animationEndViewString);
+
+        ActivityCompat.startActivity(this, intent,
+                options.toBundle());
     }
 
     @Override
@@ -87,10 +81,15 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
         switch (section) {
+            case DASHBOARD:
+                ft.replace(R.id.content_frame, new DashboardFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.doctor_dashboard));
+                break;
             case ALERTS:
                 ft.replace(R.id.content_frame, new AlertsFragment()).commit();
                 getSupportActionBar().setTitle(getString(R.string.alerts));
                 break;
         }
     }
+
 }

@@ -109,7 +109,7 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
             topBar.setVisibility(View.VISIBLE);
             topBarText.setText(getString(R.string.dashboard_top_bar_text, unseenAlerts));
         }
-        // TODO update nav drawer
+        mListener.updateNavigationDrawer(doctorStatus);
     }
 
     @Override

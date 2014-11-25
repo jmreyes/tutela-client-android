@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:minHeight="56dp"
             android:background="?attr/colorPrimary"
-            android:transitionName="@string/transition_medication_details"
+            android:transitionName="@string/transition_action_bar"
             app:title="@string/edit_medication_details"
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>

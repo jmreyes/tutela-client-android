@@ -17,7 +17,7 @@ import net.jmreyes.tutela.ui.patient.doctordetails.DoctorDetailsActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
 import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
-import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
+import net.jmreyes.tutela.ui.patient.medicationdetails.MyMedicationDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -139,12 +139,12 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
 
         switch (subsection) {
             case MEDICATION_DETAILS:
-                intent = new Intent(this, MedicationDetailsActivity.class);
-                animationEndViewString = getString(R.string.transition_medication_details);
+                intent = new Intent(this, MyMedicationDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
                 break;
             case DOCTOR_DETAILS:
                 intent = new Intent(this, DoctorDetailsActivity.class);
-                animationEndViewString = getString(R.string.transition_doctor_details);
+                animationEndViewString = getString(R.string.transition_action_bar);
                 break;
             default:
                 return;

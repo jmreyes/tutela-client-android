@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               style="@style/list_item_tile"
               android:gravity="center_vertical"
-              android:transitionName="@string/transition_medication_details" >
+              android:transitionName="@string/transition_action_bar" >
 
     <TextView
             android:id="@+id/title"
@@ -23,6 +23,7 @@
 
 
     <Button
+            android:visibility="gone"
             android:id="@+id/button"
             style="@style/button_solid"
             android:layout_centerInParent="true"

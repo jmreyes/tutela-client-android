@@ -7,9 +7,11 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.model.extra.DoctorStatus;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
@@ -23,6 +25,9 @@ import net.jmreyes.tutela.ui.doctor.main.symptoms.SymptomsFragment;
 public abstract class AbstractDrawerActivity extends BaseActivity {
     @InjectView(R.id.content_frame) FrameLayout contentFrame;
     @InjectView(R.id.my_drawer_layout) DrawerLayout drawerLayout;
+    @InjectView(R.id.drawer_unseen_alerts_text) TextView unseenAlertsText;
+    @InjectView(R.id.drawer_doctor_name_text) TextView doctorNameText;
+    @InjectView(R.id.drawer_doctor_username_text) TextView doctorUsernameText;
 
     protected void setUpNavigationDrawer(Toolbar toolbar) {
 
@@ -50,7 +55,18 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
         drawerToggle.syncState();
     }
 
+    public void updateNavigationDrawer(DoctorStatus doctorStatus) {
+        int unseenAlerts = doctorStatus.getUnseenAlerts();
+        unseenAlertsText.setText(Integer.toString(unseenAlerts));
+        if (unseenAlerts > 0) {
+            unseenAlertsText.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        } else {
+            unseenAlertsText.setBackgroundColor(getResources().getColor(R.color.button_material_dark));
+        }
 
+        doctorNameText.setText(doctorStatus.getName());
+        doctorUsernameText.setText(doctorStatus.getUsername());
+    }
 
     @OnClick({R.id.navigation_drawer_section_doctor_dashboard,
             R.id.navigation_drawer_section_my_patients,
@@ -58,7 +74,8 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
             R.id.navigation_drawer_section_medication,
             R.id.navigation_drawer_section_alerts,
             R.id.navigation_drawer_section_settings,
-            R.id.navigation_drawer_section_about
+            R.id.navigation_drawer_section_about,
+            R.id.navigation_drawer_section_logout
     })
     public void loadSubSection(View v) {
         FragmentManager fragmentManager = getFragmentManager();
@@ -89,9 +106,11 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
                 return;
             case R.id.navigation_drawer_section_about:
                 return;
+            case R.id.navigation_drawer_section_logout:
+                userLogout();
+                return;
         }
 
         drawerLayout.closeDrawers();
     }
-
 }

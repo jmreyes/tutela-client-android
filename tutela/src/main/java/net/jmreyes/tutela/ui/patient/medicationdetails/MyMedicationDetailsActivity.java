@@ -19,12 +19,12 @@ import java.util.List;
 /**
  * Created by juanma on 3/11/14.
  */
-public class MedicationDetailsActivity extends BaseActivity implements MedicationDetailsView {
+public class MyMedicationDetailsActivity extends BaseActivity implements MyMedicationDetailsView {
     public static final String ARG_TREATMENT_ID = "treatmentId";
     public static final String ARG_MEDICATION_ID = "medicationId";
 
     @Inject
-    MedicationDetailsPresenter presenter;
+    MyMedicationDetailsPresenter presenter;
 
     @InjectView(R.id.notes_from_doctor_content) TextView notesFromDoctor;
     @InjectView(R.id.doctor_content) TextView doctorName;
@@ -60,7 +60,7 @@ public class MedicationDetailsActivity extends BaseActivity implements Medicatio
 
     @Override
     protected List<Object> getModules() {
-        return Arrays.<Object>asList(new MedicationDetailsModule(this));
+        return Arrays.<Object>asList(new MyMedicationDetailsModule(this));
     }
 
     @Override

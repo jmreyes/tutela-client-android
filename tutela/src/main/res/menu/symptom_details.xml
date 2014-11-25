@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.jmreyes.tutela.ui.patient.main.PatientMainActivity" >
+    <item android:id="@+id/action_edit_details"
+        android:title="@string/action_edit_details"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_mode_edit_white_24dp"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_remove"
+          android:title="@string/action_remove"
+          android:orderInCategory="100"
+          app:showAsAction="never" />
+</menu>

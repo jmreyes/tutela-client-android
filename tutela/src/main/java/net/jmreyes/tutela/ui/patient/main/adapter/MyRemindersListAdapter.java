@@ -4,10 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import net.jmreyes.tutela.R;
@@ -80,7 +77,7 @@ public class MyRemindersListAdapter extends ArrayAdapter<Reminder> {
     static class ViewHolder {
         @InjectView(R.id.title) TextView title;
         @InjectView(R.id.button) Button button;
-        @InjectView(R.id.delete_button) Button deleteButton;
+        @InjectView(R.id.delete_button) ImageButton deleteButton;
 
         public ViewHolder(View view) {
             ButterKnife.inject(this, view);

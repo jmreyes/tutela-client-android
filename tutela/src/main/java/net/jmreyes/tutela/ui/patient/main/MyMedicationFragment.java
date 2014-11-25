@@ -3,25 +3,21 @@ package net.jmreyes.tutela.ui.patient.main;
 import android.app.Activity;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.AdapterView;
 import android.widget.ListView;
 import butterknife.*;
 import net.jmreyes.tutela.R;
-import net.jmreyes.tutela.model.Medication;
 import net.jmreyes.tutela.model.extra.MyMedication;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.patient.main.adapter.MyMedicationListAdapter;
 import net.jmreyes.tutela.ui.patient.main.presenter.MyMedicationPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.MyMedicationView;
-import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
+import net.jmreyes.tutela.ui.patient.medicationdetails.MyMedicationDetailsActivity;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -99,8 +95,8 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
         String id = myMedicationListAdapter.getId(position);
         String treatmentId = myMedicationListAdapter.getTreatmentId(position);
         Bundle bundle = new Bundle();
-        bundle.putString(MedicationDetailsActivity.ARG_TREATMENT_ID, treatmentId);
-        bundle.putString(MedicationDetailsActivity.ARG_MEDICATION_ID, id);
+        bundle.putString(MyMedicationDetailsActivity.ARG_TREATMENT_ID, treatmentId);
+        bundle.putString(MyMedicationDetailsActivity.ARG_MEDICATION_ID, id);
         mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, bundle, v);
     }
 

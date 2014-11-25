@@ -7,7 +7,7 @@ import net.jmreyes.tutela.model.extra.MyMedication;
 /**
  * Created by juanma on 3/11/14.
  */
-public interface MedicationDetailsView {
+public interface MyMedicationDetailsView {
 
     public void displayResults(MyMedication myMedication);
     public void displayError();

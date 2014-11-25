@@ -35,7 +35,7 @@
             android:launchMode="singleTop" >
         </activity>
         <activity
-            android:name=".ui.patient.medicationdetails.MedicationDetailsActivity"
+            android:name=".ui.patient.medicationdetails.MyMedicationDetailsActivity"
             android:parentActivityName=".ui.patient.main.PatientMainActivity" >
         </activity>
         <activity
@@ -47,6 +47,10 @@
             android:name=".ui.doctor.main.DoctorMainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop" >
+        </activity>
+        <activity
+                android:name=".ui.doctor.symptomdetails.SymptomDetailsActivity"
+                android:parentActivityName=".ui.doctor.main.DoctorMainActivity" >
         </activity>
 
         <service

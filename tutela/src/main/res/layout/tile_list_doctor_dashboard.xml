@@ -6,7 +6,7 @@
               android:layout_height="wrap_content"
               style="@style/list_item_tile"
               android:gravity="center_vertical"
-              android:transitionName="@string/transition_medication_details" >
+              android:transitionName="@string/transition_action_bar">
 
     <TextView
             android:id="@+id/title"

@@ -6,7 +6,7 @@
               android:layout_height="match_parent"
               style="@style/list_item_tile"
               android:gravity="center_vertical"
-              android:transitionName="@string/transition_medication_details" >
+              android:transitionName="@string/transition_action_bar">
 
 
 
@@ -14,7 +14,7 @@
             android:id="@+id/delete_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@android:drawable/ic_delete"
+            android:src="@drawable/ic_delete_grey600_24dp"
             android:layout_centerInParent="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"

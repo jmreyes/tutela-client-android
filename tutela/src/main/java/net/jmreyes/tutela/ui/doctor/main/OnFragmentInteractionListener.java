@@ -2,6 +2,7 @@ package net.jmreyes.tutela.ui.doctor.main;
 
 import android.os.Bundle;
 import android.view.View;
+import net.jmreyes.tutela.model.extra.DoctorStatus;
 
 /**
  * This interface must be implemented by activities that contain this
@@ -15,14 +16,17 @@ import android.view.View;
  */
 public interface OnFragmentInteractionListener {
     public enum Subsections {
+        SYMPTOM_DETAILS
     }
 
     public enum Sections {
+        DASHBOARD,
         ALERTS
     }
-
 
     void loadActivity(Subsections subsection, Bundle args, View transitionView);
 
     void loadFragment(Sections section);
+
+    void updateNavigationDrawer(DoctorStatus doctorStatus);
 }

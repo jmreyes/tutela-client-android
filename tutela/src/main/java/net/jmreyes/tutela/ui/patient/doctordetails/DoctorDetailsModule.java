@@ -3,7 +3,6 @@ package net.jmreyes.tutela.ui.patient.doctordetails;
 import dagger.Module;
 import dagger.Provides;
 import net.jmreyes.tutela.AppModule;
-import net.jmreyes.tutela.ui.patient.medicationdetails.MedicationDetailsActivity;
 
 import javax.inject.Singleton;
 

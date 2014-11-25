@@ -5,6 +5,10 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_logout">Log out</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_edit_details">Edit details</string>
+    <string name="action_edit_details_cancel">Cancel edit details</string>
+    <string name="action_edit_details_done">Save details</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
@@ -63,6 +67,10 @@
     <string name="answers">Answers (from best to worse)</string>
     <string name="more_than">More than</string>
     <string name="hours_of">hours of</string>
+    <string name="choose_answer">Choose an answer</string>
+    <string name="choose_hours">Choose hours before alert</string>
+    <string name="select">Select</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Medication Details -->
     <string name="default_symptoms">Default Symptoms</string>
@@ -74,8 +82,7 @@
     <string name="about">About</string>
 
 
-    <string name="transition_medication_details">transition_medication_details</string>
-    <string name="transition_doctor_details">transition_doctor_details</string>
+    <string name="transition_action_bar">transition_action_bar</string>
 
     <!-- Errors -->
     <string name="loading_layout_network_error">Network error</string>
@@ -83,5 +90,9 @@
 
     <string name="navigation_drawer_open">Open drawer</string>
     <string name="navigation_drawer_close">Close drawer</string>
+
+    <!-- View tags -->
+    <string name="tag_alert_hours">hours</string>
+    <string name="tag_alert_ansindex">ansindex</string>
 
 </resources>
