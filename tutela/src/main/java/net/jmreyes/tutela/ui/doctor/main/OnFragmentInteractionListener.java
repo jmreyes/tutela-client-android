@@ -16,7 +16,9 @@ import net.jmreyes.tutela.model.extra.DoctorStatus;
  */
 public interface OnFragmentInteractionListener {
     public enum Subsections {
-        SYMPTOM_DETAILS
+        SYMPTOM_DETAILS,
+        MEDICATION_DETAILS,
+        PATIENT_DETAILS
     }
 
     public enum Sections {

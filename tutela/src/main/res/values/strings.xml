@@ -9,6 +9,8 @@
     <string name="action_edit_details">Edit details</string>
     <string name="action_edit_details_cancel">Cancel edit details</string>
     <string name="action_edit_details_done">Save details</string>
+    <string name="action_add">Add new</string>
+    <string name="action_search">Search</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
@@ -71,10 +73,30 @@
     <string name="choose_hours">Choose hours before alert</string>
     <string name="select">Select</string>
     <string name="cancel">Cancel</string>
+    <string name="optional">Optional</string>
+    <string name="toast_new_symptom_success">New symptom added!</string>
 
     <!-- Medication Details -->
     <string name="default_symptoms">Default Symptoms</string>
     <string name="edit_medication_details">Edit Medication Details</string>
+    <string name="toast_new_medication_success">New medication added!</string>
+
+    <!-- MyPatients -->
+    <string name="view_treatment">View treatment</string>
+    <string name="set_treatment">Set treatment</string>
+
+    <!-- Patient Details -->
+    <string name="patient_details">Patient Details</string>
+    <string name="patientdetails_first_name">First Name</string>
+    <string name="patientdetails_last_name">Last Name</string>
+    <string name="patientdetails_date_of_birth">Date of birth</string>
+    <string name="patientdetails_mrn">Medical Record Number</string>
+    <string name="patientdetails_email">E-mail</string>
+    <string name="patientdetails_phone">Phone Number</string>
+
+
+    <string name="toast_save_details_failed">There was an error, please try again</string>
+    <string name="toast_save_details_fields_missing">There are fields missing</string>
 
     <string name="add_new">Add New</string>
 

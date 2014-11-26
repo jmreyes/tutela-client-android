@@ -52,6 +52,14 @@
                 android:name=".ui.doctor.symptomdetails.SymptomDetailsActivity"
                 android:parentActivityName=".ui.doctor.main.DoctorMainActivity" >
         </activity>
+        <activity
+                android:name=".ui.doctor.medicationdetails.MedicationDetailsActivity"
+                android:parentActivityName=".ui.doctor.main.DoctorMainActivity" >
+        </activity>
+        <activity
+                android:name=".ui.doctor.patientdetails.PatientDetailsActivity"
+                android:parentActivityName=".ui.doctor.main.DoctorMainActivity" >
+        </activity>
 
         <service
             android:name=".auth.AccountAuthenticatorService"

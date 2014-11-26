@@ -1,0 +1,190 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="56dp"
+            android:background="?attr/colorPrimary"
+            android:transitionName="@string/transition_action_bar"
+            app:title="@string/patient_details"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <android.support.v7.widget.Toolbar
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" >
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="29sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="normal"/>
+
+
+                </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/loading_layout"
+             android:visibility="gone" />
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:paddingBottom="@dimen/activity_vertical_margin">
+
+            <TextView
+                    android:id="@+id/firstname_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/patientdetails_first_name"/>
+            <TextView
+                    android:id="@+id/firstname_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""/>
+            <EditText
+                    android:id="@+id/firstname_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""
+                    android:visibility="gone"/>
+
+            <View style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/lastname_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/patientdetails_last_name"/>
+            <TextView
+                    android:id="@+id/lastname_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""/>
+            <EditText
+                    android:id="@+id/lastname_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""
+                    android:visibility="gone"/>
+
+            <View style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/dateofbirth_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/patientdetails_date_of_birth"/>
+            <TextView
+                    android:id="@+id/dateofbirth_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""/>
+            <EditText
+                    android:id="@+id/dateofbirth_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""
+                    android:visibility="gone"/>
+
+            <View style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/mrn_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/patientdetails_mrn"/>
+            <TextView
+                    android:id="@+id/mrn_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""/>
+            <EditText
+                    android:id="@+id/mrn_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""
+                    android:visibility="gone"/>
+
+            <View style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/email_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/patientdetails_email"/>
+            <TextView
+                    android:id="@+id/email_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""/>
+            <EditText
+                    android:id="@+id/email_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""
+                    android:visibility="gone"/>
+
+            <View style="@style/separator"/>
+
+            <TextView
+                    android:id="@+id/phone_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_caption"
+                    android:text="@string/patientdetails_phone"/>
+            <TextView
+                    android:id="@+id/phone_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""/>
+            <EditText
+                    android:id="@+id/phone_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/text_body"
+                    android:text=""
+                    android:visibility="gone"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

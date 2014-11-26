@@ -2,9 +2,7 @@ package net.jmreyes.tutela.ui.doctor.main.symptoms;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ListView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -56,6 +54,7 @@ public class SymptomsFragment extends BaseFragment implements SymptomsView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_symptoms, container, false);
+        setHasOptionsMenu(true);
 
         ButterKnife.inject(this, view);
 
@@ -97,5 +96,25 @@ public class SymptomsFragment extends BaseFragment implements SymptomsView {
         Bundle bundle = new Bundle();
         bundle.putString(SymptomDetailsActivity.ARG_SYMPTOM_ID, id);
         mListener.loadActivity(OnFragmentInteractionListener.Subsections.SYMPTOM_DETAILS, bundle, v);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.symptoms, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                mListener.loadActivity(OnFragmentInteractionListener.Subsections.SYMPTOM_DETAILS, null, item.getActionView());
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

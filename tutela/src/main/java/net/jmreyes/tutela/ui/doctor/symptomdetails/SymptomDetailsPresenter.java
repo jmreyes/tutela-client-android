@@ -8,9 +8,12 @@ import net.jmreyes.tutela.model.extra.MyMedication;
  */
 public interface SymptomDetailsPresenter {
     public void makeRequest(String symptomId);
+    public void postDetails(Symptom symptom);
 
     public static interface OnFinishedListener {
         public void onSuccess(Symptom symptom);
         public void onError();
+        public void onPostDetailsSuccess();
+        public void onPostDetailsError();
     }
 }

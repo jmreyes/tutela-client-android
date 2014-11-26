@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="net.jmreyes.tutela.ui.patient.main.PatientMainActivity" >
+    <item android:id="@+id/action_add"
+        android:title="@string/action_add"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_add_white_24dp"
+        app:showAsAction="ifRoom" />
+</menu>

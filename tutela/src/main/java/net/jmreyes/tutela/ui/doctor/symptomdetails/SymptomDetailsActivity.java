@@ -19,6 +19,7 @@ import net.jmreyes.tutela.model.extra.Answer;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 
 import javax.inject.Inject;
+import java.lang.ref.WeakReference;
 import java.util.*;
 
 /**
@@ -52,7 +53,9 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
     private String symptomId;
     private Symptom symptom;
 
-    private boolean editDetails;
+    private boolean isNewSymptom;
+
+    private boolean showingEditDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +66,8 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             symptomId = bundle.getString(ARG_SYMPTOM_ID);
+        } else {
+            isNewSymptom = true;
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -75,8 +80,16 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
     @Override
     protected void onResume() {
         super.onResume();
-        showLoadingBar();
-        presenter.makeRequest(symptomId);
+
+        if (symptomId != null && !isNewSymptom) {
+            showLoadingBar();
+            presenter.makeRequest(symptomId);
+        } else {
+            symptom = new Symptom();
+            populateEditDetails();
+            showingEditDetails = true;
+            invalidateOptionsMenu();
+        }
     }
 
     @Override
@@ -87,10 +100,12 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        if (!editDetails) {
-            getMenuInflater().inflate(R.menu.symptom_details, menu);
+        if (!showingEditDetails) {
+            getMenuInflater().inflate(R.menu.symptom_medication_details, menu);
+        } else if (isNewSymptom) {
+            getMenuInflater().inflate(R.menu.symptom_medication_details_edit_new, menu);
         } else {
-            getMenuInflater().inflate(R.menu.symptom_details_edit, menu);
+            getMenuInflater().inflate(R.menu.symptom_medication_details_edit, menu);
         }
         return true;
     }
@@ -103,21 +118,17 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         switch (item.getItemId()) {
             case R.id.action_edit_details:
                 populateEditDetails();
-                editDetails = true;
+                showingEditDetails = true;
                 invalidateOptionsMenu();
                 break;
             case R.id.action_edit_details_cancel:
                 populateViewDetails();
-                editDetails = false;
+                showingEditDetails = false;
                 invalidateOptionsMenu();
                 break;
             case R.id.action_edit_details_done:
+                saveDetails();
                 break;
-        }
-
-        int id = item.getItemId();
-        if (id == R.id.action_edit_details) {
-            return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -127,12 +138,31 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         hideLoadingBar();
         this.symptom = symptom;
         populateViewDetails();
-        editDetails = false;
+        showingEditDetails = false;
         invalidateOptionsMenu();
     }
 
     @Override
-    public void displayError() {
+    public void saveDetailsSuccess() {
+        if (!isNewSymptom) {
+            hideLoadingBar();
+            populateViewDetails();
+            showingEditDetails = false;
+            invalidateOptionsMenu();
+        } else {
+            Toast.makeText(this, R.string.toast_new_symptom_success, Toast.LENGTH_SHORT).show();
+            onBackPressed();
+        }
+    }
+
+    @Override
+    public void saveDetailsError() {
+        hideLoadingBar();
+        Toast.makeText(this, R.string.toast_save_details_failed, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayResultsError() {
         showErrorInLoadingBar(null);
     }
 
@@ -203,18 +233,27 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
     private void populateEditDetails() {
         symptomName.setVisibility(View.GONE);
         symptomNameEdit.setVisibility(View.VISIBLE);
-        symptomNameEdit.setText(symptom.getName());
 
         question.setVisibility(View.GONE);
         questionEdit.setVisibility(View.VISIBLE);
-        questionEdit.setText(symptom.getQuestion());
 
         answer1.setVisibility(View.GONE);
         answer2.setVisibility(View.GONE);
         answer3.setVisibility(View.GONE);
-        answerEdit1.setVisibility(View.GONE);
-        answerEdit2.setVisibility(View.GONE);
-        answerEdit3.setVisibility(View.GONE);
+        answerEdit1.setVisibility(View.VISIBLE);
+        answerEdit2.setVisibility(View.VISIBLE);
+        answerEdit3.setVisibility(View.VISIBLE);
+
+        alertsLayout.setVisibility(View.GONE);
+        alertsEditLayout.setVisibility(View.VISIBLE);
+        addNewAlertButton.setVisibility(View.VISIBLE);
+        alertsEditLayout.removeAllViews();
+
+        if (isNewSymptom) return;
+
+        symptomNameEdit.setText(symptom.getName());
+        questionEdit.setText(symptom.getQuestion());
+
         SparseArray<String> hashAnswerIndexString= new SparseArray<String>();
         for (Answer a : symptom.getAnswers()) {
             int index = a.getAnsIndex();
@@ -223,25 +262,17 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
             switch (index) {
                 case 1:
                     answerEdit1.setText(answerString);
-                    answerEdit1.setVisibility(View.VISIBLE);
                     break;
                 case 2:
                     answerEdit2.setText(answerString);
-                    answerEdit2.setVisibility(View.VISIBLE);
                     break;
                 case 3:
                     answerEdit3.setText(answerString);
-                    answerEdit3.setVisibility(View.VISIBLE);
                     break;
             }
         }
 
         ArrayList<Symptom.EmbeddedAlert> embeddedAlerts = new ArrayList<Symptom.EmbeddedAlert>(symptom.getAlerts());
-
-        alertsLayout.setVisibility(View.GONE);
-        alertsEditLayout.setVisibility(View.VISIBLE);
-        addNewAlertButton.setVisibility(View.VISIBLE);
-        alertsEditLayout.removeAllViews();
 
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -269,27 +300,74 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
 
             alertsEditLayout.addView(view);
         }
-
-        final ArrayList<String> answersArrayList = new ArrayList<String>(hashAnswerIndexString.size());
-        for (int i = 0; i < hashAnswerIndexString.size(); i++) {
-            answersArrayList.add(hashAnswerIndexString.valueAt(i));
-        }
-
-        addNewAlertButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showAnswerPicker(answersArrayList);
-            }
-        });
     }
 
     @OnClick(R.id.add_new_alert_button)
-    public void clickNewAlertButton() {
-
+    public void clickOnAddNewAnswer () {
+        showAnswerPicker();
     }
 
-    private void showAnswerPicker(ArrayList<String> answersArrayList) {
+    private void saveDetails() {
+        showLoadingBar();
+
+
+        String symptomName = symptomNameEdit.getText().toString();
+        String question = questionEdit.getText().toString();
+        String answer1 = answerEdit1.getText().toString();
+        String answer2 = answerEdit2.getText().toString();
+        String answer3 = answerEdit3.getText().toString();
+
+        if ( "".equals(symptomName) || "".equals(question) || "".equals(answer1)  || "".equals(answer2)) {
+            Toast.makeText(this, R.string.toast_save_details_fields_missing, Toast.LENGTH_SHORT).show();
+            hideLoadingBar();
+            return;
+        }
+
+        ArrayList<Symptom.EmbeddedAlert> embeddedAlerts = new ArrayList<Symptom.EmbeddedAlert>();
+
+        for (int i = 0; i < alertsEditLayout.getChildCount(); i++) {
+            View view = alertsEditLayout.getChildAt(i);
+
+            int hours = (Integer) view.getTag(R.string.tag_alert_hours);
+            int ansIndex = (Integer) view.getTag(R.string.tag_alert_ansindex);
+
+            Symptom.EmbeddedAlert ea = new Symptom.EmbeddedAlert(hours, ansIndex);
+
+            embeddedAlerts.add(ea);
+        }
+
+        ArrayList<Answer> answers = new ArrayList<Answer>();
+
+        if (answer1 != null) {
+            answers.add(new Answer(answer1, 1));
+        }
+        if (answer2 != null) {
+            answers.add(new Answer(answer2, 2));
+        }
+        if (answer3 != null) {
+            answers.add(new Answer(answer3, 3));
+        }
+
+        symptom.setName(symptomName);
+        symptom.setQuestion(question);
+        symptom.setAlerts(embeddedAlerts);
+        symptom.setAnswers(answers);
+
+        presenter.postDetails(symptom);
+    }
+
+    private void showAnswerPicker() {
         AnswerPickerFragment apf = new AnswerPickerFragment();
+
+        ArrayList<String> answersArrayList = new ArrayList<String>();
+
+        String answer1 = answerEdit1.getText().toString();
+        String answer2 = answerEdit2.getText().toString();
+        String answer3 = answerEdit3.getText().toString();
+
+        answersArrayList.add(answer1);
+        answersArrayList.add(answer2);
+        answersArrayList.add(answer3);
 
         Bundle args = new Bundle();
         args.putStringArrayList("answersArrayList", answersArrayList);
@@ -338,13 +416,13 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
 
     public static class AnswerPickerFragment extends DialogFragment {
         ArrayList<String> answersArrayList;
-        SymptomDetailsActivity view;
+        WeakReference<SymptomDetailsActivity> view;
 
         public AnswerPickerFragment() {
         }
 
         public void setCallBack(SymptomDetailsActivity view) {
-            this.view = view;
+            this.view = new WeakReference<SymptomDetailsActivity>(view);
         }
 
         @Override
@@ -356,11 +434,11 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final CharSequence[] answers = answersArrayList.toArray(new CharSequence[answersArrayList.size()]);
-            AlertDialog.Builder builder = new AlertDialog.Builder(view);
+            AlertDialog.Builder builder = new AlertDialog.Builder(view.get());
             builder.setTitle(R.string.choose_answer)
                     .setItems(answers, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            view.showHoursPicker(which, (String) answers[which]);
+                            view.get().showHoursPicker(which + 1, (String) answers[which]);
                         }
                     });
             return builder.create();
@@ -368,7 +446,7 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
     }
 
     public static class HoursPickerFragment extends DialogFragment {
-        SymptomDetailsActivity view;
+        WeakReference<SymptomDetailsActivity> view;
 
         private int ansIndex;
         private String ansString;
@@ -377,7 +455,7 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         }
 
         public void setCallBack(SymptomDetailsActivity view) {
-            this.view = view;
+            this.view =  new WeakReference<SymptomDetailsActivity>(view);
         }
 
         @Override
@@ -407,7 +485,7 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
                     .setPositiveButton(R.string.select, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
-                            view.finishAddAlert(ansIndex, ansString, np.getValue());
+                            view.get().finishAddAlert(ansIndex, ansString, np.getValue());
                         }
                     })
                     .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

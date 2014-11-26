@@ -1,7 +1,6 @@
 package net.jmreyes.tutela.ui.doctor.symptomdetails;
 
 import net.jmreyes.tutela.model.Symptom;
-import net.jmreyes.tutela.model.extra.MyMedication;
 
 import javax.inject.Inject;
 
@@ -23,6 +22,11 @@ public class SymptomDetailsPresenterImpl implements SymptomDetailsPresenter, Sym
         symptomDetailsInteractor.makeRequest(symptomId, this);
     }
 
+    @Override
+    public void postDetails(Symptom symptom) {
+        symptomDetailsInteractor.postDetails(symptom, this);
+    }
+
     /**
      * OnFinishedListener methods, callbacks from the interactor.
      *
@@ -35,6 +39,16 @@ public class SymptomDetailsPresenterImpl implements SymptomDetailsPresenter, Sym
 
     @Override
     public void onError() {
-        view.displayError();
+        view.displayResultsError();
+    }
+
+    @Override
+    public void onPostDetailsSuccess() {
+        view.saveDetailsSuccess();
+    }
+
+    @Override
+    public void onPostDetailsError() {
+        view.saveDetailsError();
     }
 }

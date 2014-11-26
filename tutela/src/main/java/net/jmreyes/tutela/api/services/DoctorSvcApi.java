@@ -40,7 +40,7 @@ public interface DoctorSvcApi {
     public void  getPatients(Callback<Collection<PatientDetails>> callback);
 
     @GET(DOCTOR_PATIENTS + "/{id}")
-    public void getPatient(@Path("id") String id, Callback<Collection<Patient>> callback);
+    public void getPatient(@Path("id") String id, Callback<PatientDetails> callback);
 
     @PUT(DOCTOR_PATIENTS + "/{id}")
     public void updatePatient(@Path("id") String id, @Body PatientDetails patientDetails, Callback<Void> callback);

@@ -1,22 +1,39 @@
 package net.jmreyes.tutela.ui.doctor.main.mypatients;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
+import android.view.*;
+import android.widget.ListView;
 import butterknife.ButterKnife;
+import butterknife.InjectView;
+import butterknife.OnItemClick;
 import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.model.PatientDetails;
+import net.jmreyes.tutela.model.Symptom;
 import net.jmreyes.tutela.ui.common.BaseFragment;
+import net.jmreyes.tutela.ui.doctor.main.OnFragmentInteractionListener;
+import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by juanma on 8/11/14.
  */
-public class MyPatientsFragment extends BaseFragment implements MyPatientsView {
+public class MyPatientsFragment extends BaseFragment implements MyPatientsView, SearchView.OnQueryTextListener {
 
     @Inject
     MyPatientsPresenter presenter;
+
+    @InjectView(R.id.listView) ListView listView;
+
+    private OnFragmentInteractionListener mListener;
+
+    MyPatientsAdapter myPatientsAdapter;
 
     public MyPatientsFragment() {
         // Required empty public constructor
@@ -28,6 +45,8 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView {
         presenter.init(this);
 
         showLoadingBar();
+
+        presenter.makeRequest();
     }
 
     @Override
@@ -40,10 +59,96 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_patients, container, false);
+        setHasOptionsMenu(true);
 
         ButterKnife.inject(this, view);
 
         return view;
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            mListener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void displayResults(List<PatientDetails> results) {
+        hideLoadingBar();
+        myPatientsAdapter = new MyPatientsAdapter(listView.getContext(), results, this);
+        listView.setAdapter(myPatientsAdapter);
+        listView.setTextFilterEnabled(true);
+    }
+
+    @Override
+    public void displayError() {
+        showErrorInLoadingBar(null);
+    }
+
+    @OnItemClick(R.id.listView)
+    void onItemSelected(int position, View v) {
+        String id = myPatientsAdapter.getId(position);
+        Bundle bundle = new Bundle();
+        bundle.putString(PatientDetailsActivity.ARG_PATIENTDETAILS_ID, id);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsections.PATIENT_DETAILS, bundle, v);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.my_patients, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        setupSearchView(searchView);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void setupSearchView(SearchView searchView) {
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Search here");
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        if (TextUtils.isEmpty(s)) {
+            listView.clearTextFilter();
+        } else {
+            myPatientsAdapter.getFilter().filter(s);
+            //following line was causing the ugly popup window.
+            //m_listView.setFilterText(newText);
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        if (TextUtils.isEmpty(s)) {
+            listView.clearTextFilter();
+        }
+        return false;
+    }
 }

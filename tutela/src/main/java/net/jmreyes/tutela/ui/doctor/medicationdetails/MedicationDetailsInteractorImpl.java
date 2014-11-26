@@ -1,8 +1,7 @@
-package net.jmreyes.tutela.ui.doctor.symptomdetails;
+package net.jmreyes.tutela.ui.doctor.medicationdetails;
 
 import net.jmreyes.tutela.api.ApiManager;
-import net.jmreyes.tutela.model.Symptom;
-import net.jmreyes.tutela.model.extra.MyMedication;
+import net.jmreyes.tutela.model.Medication;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -10,13 +9,13 @@ import retrofit.client.Response;
 /**
  * Created by juanma on 4/11/14.
  */
-public class SymptomDetailsInteractorImpl implements SymptomDetailsInteractor {
+public class MedicationDetailsInteractorImpl implements MedicationDetailsInteractor {
 
     @Override
-    public void makeRequest(String symptomId, final SymptomDetailsPresenter.OnFinishedListener listener) {
-        ApiManager.getDocService().getSymptom(symptomId, new Callback<Symptom>() {
+    public void makeRequest(String medicationId, final MedicationDetailsPresenter.OnFinishedListener listener) {
+        ApiManager.getDocService().getOneMedication(medicationId, new Callback<Medication>() {
             @Override
-            public void success(Symptom result, Response response) {
+            public void success(Medication result, Response response) {
                 listener.onSuccess(result);
             }
 
@@ -28,8 +27,8 @@ public class SymptomDetailsInteractorImpl implements SymptomDetailsInteractor {
     }
 
     @Override
-    public void postDetails(Symptom symptom, final SymptomDetailsPresenter.OnFinishedListener listener) {
-        ApiManager.getDocService().postSymptom(symptom, new Callback<Void>() {
+    public void postDetails(Medication medication, final MedicationDetailsPresenter.OnFinishedListener listener) {
+        ApiManager.getDocService().postMedication(medication, new Callback<Void>() {
             @Override
             public void success(Void aVoid, Response response) {
                 listener.onPostDetailsSuccess();

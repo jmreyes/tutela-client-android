@@ -9,16 +9,16 @@
         tools:ignore="MergeRootFrame">
 
 
+    <include
+            layout="@layout/loading_layout"
+            android:visibility="gone"/>
 
-            <include layout="@layout/loading_layout"
-                     android:visibility="gone" />
-
-            <ListView
-                    android:id="@+id/listView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    style="@style/list"/>
+    <ListView
+            android:id="@+id/listView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            style="@style/list"/>
 
 
 </LinearLayout>

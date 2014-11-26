@@ -13,6 +13,8 @@ import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.doctor.AbstractDrawerActivity;
 import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
+import net.jmreyes.tutela.ui.doctor.medicationdetails.MedicationDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
 import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
 
 import javax.inject.Inject;
@@ -61,6 +63,14 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
                 intent = new Intent(this, SymptomDetailsActivity.class);
                 animationEndViewString = getString(R.string.transition_action_bar);
                 break;
+            case MEDICATION_DETAILS:
+                intent = new Intent(this, MedicationDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            case PATIENT_DETAILS:
+                intent = new Intent(this, PatientDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
             default:
                 return;
         }
@@ -68,11 +78,17 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
         if (args != null)
             intent.putExtras(args);
 
-        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                this, transitionView, animationEndViewString);
+        if (transitionView != null) {
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this, transitionView, animationEndViewString);
 
-        ActivityCompat.startActivity(this, intent,
-                options.toBundle());
+            ActivityCompat.startActivity(this, intent,
+                    options.toBundle());
+        } else {
+            ActivityCompat.startActivity(this, intent,
+                    null);
+        }
+
     }
 
     @Override
