@@ -94,6 +94,12 @@
     <string name="patientdetails_email">E-mail</string>
     <string name="patientdetails_phone">Phone Number</string>
 
+    <!-- Treatment Details -->
+    <string name="treatment_details">Treatment Details</string>
+    <string name="treatment_details_medication_title">Medication</string>
+    <string name="treatment_details_symptoms_title">Symptoms</string>
+    <string name="toast_new_treatment_success">New treatment added!</string>
+
 
     <string name="toast_save_details_failed">There was an error, please try again</string>
     <string name="toast_save_details_fields_missing">There are fields missing</string>
@@ -116,5 +122,9 @@
     <!-- View tags -->
     <string name="tag_alert_hours">hours</string>
     <string name="tag_alert_ansindex">ansindex</string>
+    <string name="tag_medication_id">medicationId</string>
+    <string name="tag_medication_name">medicationName</string>
+    <string name="tag_symptom_id">symptomId</string>
+    <string name="tag_symptom_name">symptomName</string>
 
 </resources>

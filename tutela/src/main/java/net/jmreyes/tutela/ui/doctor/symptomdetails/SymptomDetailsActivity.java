@@ -279,8 +279,8 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         for (int i = 0; i < embeddedAlerts.size(); i++) {
             final View view = inflater.inflate(R.layout.tile_simple_list_textview_with_delete, alertsLayout, false);
 
-            TextView alertEditText = (TextView) view.findViewById(R.id.alerts_content_edit);
-            final ImageButton alertDelete = (ImageButton) view.findViewById(R.id.alerts_delete);
+            TextView alertEditText = (TextView) view.findViewById(R.id.content);
+            final ImageButton alertDelete = (ImageButton) view.findViewById(R.id.delete);
 
             Symptom.EmbeddedAlert ea = embeddedAlerts.get(i);
             String alertText = hashAnswerIndexString.get(ea.getAnsIndex());
@@ -394,8 +394,8 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
 
         final View view = inflater.inflate(R.layout.tile_simple_list_textview_with_delete, alertsLayout, false);
 
-        TextView alertEditText = (TextView) view.findViewById(R.id.alerts_content_edit);
-        final ImageButton alertDelete = (ImageButton) view.findViewById(R.id.alerts_delete);
+        TextView alertEditText = (TextView) view.findViewById(R.id.content);
+        final ImageButton alertDelete = (ImageButton) view.findViewById(R.id.delete);
 
         String formattedAlert = getString(R.string.more_than) + " " + hours
                 + " " + getString(R.string.hours_of) + " " + ansString;
