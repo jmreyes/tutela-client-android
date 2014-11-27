@@ -12,6 +12,7 @@ import java.util.List;
 public interface MyPatientsPresenter extends BaseFragmentPresenter<MyPatientsView> {
 
     public void makeRequest();
+    public void makeSearchRequest(String query);
 
     public static interface OnFinishedListener {
         public void onSuccess(List<PatientDetails> results);

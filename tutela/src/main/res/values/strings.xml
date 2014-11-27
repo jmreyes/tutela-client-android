@@ -15,7 +15,7 @@
 
 
     <!-- CheckInFragment -->
-    <string name="no_checkins_needed">No check-ins needed yet!</string>
+    <string name="no_checkins_needed">No check-ins needed!</string>
     <string name="did_you_take_1">Did you take your</string>
     <string name="did_you_take_2">%1$s?</string>
     <string name="yes">Yes</string>

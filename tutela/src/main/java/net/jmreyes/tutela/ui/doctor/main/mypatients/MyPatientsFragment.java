@@ -89,7 +89,7 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView, 
         hideLoadingBar();
         myPatientsAdapter = new MyPatientsAdapter(listView.getContext(), results, this);
         listView.setAdapter(myPatientsAdapter);
-        listView.setTextFilterEnabled(true);
+        //listView.setTextFilterEnabled(true);
     }
 
     @Override
@@ -142,21 +142,27 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView, 
 
     @Override
     public boolean onQueryTextSubmit(String s) {
-        if (TextUtils.isEmpty(s)) {
-            listView.clearTextFilter();
-        } else {
-            myPatientsAdapter.getFilter().filter(s);
-            //following line was causing the ugly popup window.
-            //m_listView.setFilterText(newText);
-        }
+        showLoadingBar();
+        presenter.makeSearchRequest(s);
+//        Before: filter listView
+//        if (TextUtils.isEmpty(s)) {
+//            listView.clearTextFilter();
+//        } else {
+//            myPatientsAdapter.getFilter().filter(s);
+//            //following line was causing the ugly popup window.
+//            //m_listView.setFilterText(newText);
+//        }
+//        return true;
+
         return true;
     }
 
     @Override
     public boolean onQueryTextChange(String s) {
-        if (TextUtils.isEmpty(s)) {
-            listView.clearTextFilter();
-        }
+//        Before: filter listView
+//        if (TextUtils.isEmpty(s)) {
+//            listView.clearTextFilter();
+//        }
         return false;
     }
 }

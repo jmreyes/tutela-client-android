@@ -5,4 +5,5 @@ package net.jmreyes.tutela.ui.doctor.main.mypatients;
  */
 public interface MyPatientsInteractor {
     public void makeRequest(final MyPatientsPresenter.OnFinishedListener listener);
+    public void makeSearchRequest(String query, final MyPatientsPresenter.OnFinishedListener listener);
 }

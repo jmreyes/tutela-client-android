@@ -39,6 +39,9 @@ public interface DoctorSvcApi {
     @GET(DOCTOR_PATIENTS)
     public void  getPatients(Callback<Collection<PatientDetails>> callback);
 
+    @GET(DOCTOR_PATIENTS + "/search/{query}")
+    public void searchPatients(@Path("query") String query, Callback<Collection<PatientDetails>> callback);
+
     @GET(DOCTOR_PATIENTS + "/{id}")
     public void getPatient(@Path("id") String id, Callback<PatientDetails> callback);
 

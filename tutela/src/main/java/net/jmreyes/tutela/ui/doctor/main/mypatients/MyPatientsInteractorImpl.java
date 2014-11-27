@@ -29,4 +29,19 @@ public class MyPatientsInteractorImpl implements MyPatientsInteractor {
             }
         });
     }
+
+    @Override
+    public void makeSearchRequest(String query, final MyPatientsPresenter.OnFinishedListener listener) {
+        ApiManager.getDocService().searchPatients(query, new Callback<Collection<PatientDetails>>() {
+            @Override
+            public void success(Collection<PatientDetails> patientDetails, Response response) {
+                listener.onSuccess(new ArrayList<PatientDetails>(patientDetails));
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                listener.onError();
+            }
+        });
+    }
 }

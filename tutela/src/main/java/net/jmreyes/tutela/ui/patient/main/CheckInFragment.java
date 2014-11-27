@@ -1,6 +1,7 @@
 package net.jmreyes.tutela.ui.patient.main;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -17,6 +18,7 @@ import net.jmreyes.tutela.aux.SharedPreferencesHelper;
 import net.jmreyes.tutela.model.extra.Answer;
 import net.jmreyes.tutela.model.extra.Reminder;
 import net.jmreyes.tutela.ui.common.BaseFragment;
+import net.jmreyes.tutela.ui.patient.main.aux.DatePickerFragment;
 import net.jmreyes.tutela.ui.patient.main.aux.TimePickerFragment;
 import net.jmreyes.tutela.ui.patient.main.presenter.CheckInPresenter;
 import net.jmreyes.tutela.ui.patient.main.view.CheckInView;
@@ -215,27 +217,47 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
     }
 
     private void showDatePicker() {
-        TimePickerFragment date = new TimePickerFragment();
+        DatePickerFragment date = new DatePickerFragment();
 
         Calendar calendar =  Calendar.getInstance();
+        Bundle args = new Bundle();
+        args.putInt("year", calendar.get(Calendar.YEAR));
+        args.putInt("monthOfYear", calendar.get(Calendar.MONTH) + 1);
+        args.putInt("dayOfMonth", calendar.get(Calendar.DAY_OF_MONTH));
+        date.setArguments(args);
+
+        date.setCallBack(new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar calendar = Calendar.getInstance();
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, monthOfYear - 1);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                showTimePicker(calendar);
+            }
+        });
+        date.show(getFragmentManager(), "DatePicker");
+    }
+
+    private void showTimePicker(final Calendar calendar) {
+        TimePickerFragment date = new TimePickerFragment();
+
         Bundle args = new Bundle();
         args.putInt("hourOfDay", calendar.get(Calendar.HOUR_OF_DAY));
         args.putInt("minute", calendar.get(Calendar.MINUTE));
         date.setArguments(args);
 
-        date.setCallBack(onTimeSetListener);
-        date.show(getFragmentManager(), "DatePicker");
+        date.setCallBack(new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                calendar.set(Calendar.MINUTE, minute);
+
+                presenter.registerMedication(true, calendar.getTime());
+            }
+        });
+        date.show(getFragmentManager(), "TimePicker");
     }
-
-    TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            calendar.set(Calendar.MINUTE, minute);
-
-            presenter.registerMedication(true, calendar.getTime());
-        }
-    };
 
 }

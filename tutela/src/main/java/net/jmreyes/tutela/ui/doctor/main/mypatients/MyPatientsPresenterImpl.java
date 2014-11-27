@@ -29,6 +29,11 @@ public class MyPatientsPresenterImpl implements MyPatientsPresenter, MyPatientsP
     }
 
     @Override
+    public void makeSearchRequest(String query) {
+        myPatientsInteractor.makeSearchRequest(query, this);
+    }
+
+    @Override
     public void onSuccess(List<PatientDetails> results) {
         view.displayResults(results);
     }

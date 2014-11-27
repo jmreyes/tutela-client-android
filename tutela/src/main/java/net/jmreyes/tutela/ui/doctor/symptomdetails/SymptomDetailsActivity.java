@@ -344,7 +344,7 @@ public class SymptomDetailsActivity extends BaseActivity implements SymptomDetai
         if (answer2 != null) {
             answers.add(new Answer(answer2, 2));
         }
-        if (answer3 != null) {
+        if (answer3 != null && !"".equals(answer3)) {
             answers.add(new Answer(answer3, 3));
         }
 

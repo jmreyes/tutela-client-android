@@ -81,6 +81,7 @@ public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements F
         }
     }
 
+    // http://stackoverflow.com/questions/19122848/custom-getfilter-in-custom-arrayadapter-in-android
     Filter myFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -124,7 +125,6 @@ public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements F
     public Filter getFilter() {
         return myFilter;
     }
-
 
     @Override
     public int getCount() {
