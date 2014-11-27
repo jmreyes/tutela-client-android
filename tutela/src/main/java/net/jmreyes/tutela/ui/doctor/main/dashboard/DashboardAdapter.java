@@ -50,8 +50,16 @@ public class DashboardAdapter extends ArrayAdapter<Alert> {
                 values.get(position).getSymptomName(),
                 values.get(position).getAnsText()));
 
-        holder.button.setText(context.getString(R.string.dashboard_alert_button));
-        holder.button.setOnClickListener(new View.OnClickListener() {
+        holder.button1.setText(context.getString(R.string.dashboard_patient_button));
+        holder.button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dashboardView.loadPatientDetails(values.get(position).getPatientId());
+            }
+        });
+
+        holder.button2.setText(context.getString(R.string.dashboard_alert_button));
+        holder.button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dashboardView.loadTreatmentDetails(values.get(position).getTreatmentId());
@@ -67,7 +75,8 @@ public class DashboardAdapter extends ArrayAdapter<Alert> {
 
     static class ViewHolder {
         @InjectView(R.id.title) TextView title;
-        @InjectView(R.id.button) Button button;
+        @InjectView(R.id.button1) Button button1;
+        @InjectView(R.id.button2) Button button2;
 
         public ViewHolder(View view) {
             ButterKnife.inject(this, view);
