@@ -16,6 +16,7 @@ import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
 import net.jmreyes.tutela.ui.doctor.medicationdetails.MedicationDetailsActivity;
 import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
 import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.treatmentdetails.TreatmentDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.Arrays;
@@ -69,6 +70,10 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
                 break;
             case PATIENT_DETAILS:
                 intent = new Intent(this, PatientDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            case TREATMENT_DETAILS:
+                intent = new Intent(this, TreatmentDetailsActivity.class);
                 animationEndViewString = getString(R.string.transition_action_bar);
                 break;
             default:

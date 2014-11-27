@@ -3,28 +3,30 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:paddingLeft="@dimen/activity_vertical_margin"
+        android:paddingRight="@dimen/activity_vertical_margin"
         android:orientation="horizontal">
 
     <TextView
               android:orientation="vertical"
               android:id="@+id/date"
-              android:layout_width="0dp"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_weight="1"
-              android:layout_marginLeft="32dp"
-              android:layout_marginStart="32dp"
               style="@style/text_body_list"
+              android:layout_marginLeft="0dp"
+              android:layout_marginStart="0dp"
               android:text=""/>
 
     <TextView
               android:orientation="vertical"
               android:id="@+id/answer"
-              android:layout_width="0dp"
+              android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_weight="1"
-              android:layout_marginLeft="32dp"
-              android:layout_marginStart="32dp"
               style="@style/text_body_list"
+              android:layout_marginLeft="0dp"
+              android:layout_marginStart="0dp"
               android:text=""/>
 
 </LinearLayout>

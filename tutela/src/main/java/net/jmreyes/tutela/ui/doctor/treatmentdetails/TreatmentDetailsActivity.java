@@ -51,8 +51,8 @@ public class TreatmentDetailsActivity extends BaseActivity implements TreatmentD
     private HashMap<String, ArrayList<String[]>> medicationHistory;
     private HashMap<String, ArrayList<String[]>> symptomsHistory;
 
-    private ArrayList<String>[] medicationFromDoctor;
-    private ArrayList<String>[] symptomsFromDoctor;
+    private ArrayList<ArrayList<String>> medicationFromDoctor;
+    private ArrayList<ArrayList<String>> symptomsFromDoctor;
 
     private boolean isNewTreatment;
 
@@ -137,11 +137,15 @@ public class TreatmentDetailsActivity extends BaseActivity implements TreatmentD
     @Override
     public void displayResults(Treatment treatment,
                                HashMap<String, ArrayList<String[]>> medicationHistory,
-                               HashMap<String, ArrayList<String[]>> symptomsHistory) {
+                               HashMap<String, ArrayList<String[]>> symptomsHistory,
+                               ArrayList<ArrayList<String>> medicationFromDoctor,
+                               ArrayList<ArrayList<String>> symptomsFromDoctor) {
         hideLoadingBar();
         this.treatment = treatment;
         this.medicationHistory = medicationHistory;
         this.symptomsHistory = symptomsHistory;
+        this.medicationFromDoctor = medicationFromDoctor;
+        this.symptomsFromDoctor = symptomsFromDoctor;
         populateViewDetails();
         showingEditDetails = false;
         invalidateOptionsMenu();
@@ -224,7 +228,7 @@ public class TreatmentDetailsActivity extends BaseActivity implements TreatmentD
                 view.addView(row);
             }
 
-            medicationHolder.addView(view);
+            symptomsHolder.addView(view);
         }
     }
 
@@ -346,12 +350,12 @@ public class TreatmentDetailsActivity extends BaseActivity implements TreatmentD
         args.putInt("type", type);
         switch (type) {
             case AnswerPickerFragment.TYPE_MEDICATION_PICKER:
-                args.putStringArrayList("ids", medicationFromDoctor[0]);
-                args.putStringArrayList("values", medicationFromDoctor[1]);
+                args.putStringArrayList("ids", medicationFromDoctor.get(0));
+                args.putStringArrayList("values", medicationFromDoctor.get(1));
                 break;
             case AnswerPickerFragment.TYPE_SYMPTOM_PICKER:
-                args.putStringArrayList("ids", symptomsFromDoctor[0]);
-                args.putStringArrayList("values", symptomsFromDoctor[1]);
+                args.putStringArrayList("ids", symptomsFromDoctor.get(0));
+                args.putStringArrayList("values", symptomsFromDoctor.get(1));
                 break;
             default:
                 return;
@@ -437,7 +441,10 @@ public class TreatmentDetailsActivity extends BaseActivity implements TreatmentD
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             final CharSequence[] answers = values.toArray(new CharSequence[values.size()]);
             AlertDialog.Builder builder = new AlertDialog.Builder(view.get());
-            builder.setTitle(R.string.choose_answer)
+
+
+
+            builder.setTitle((type == TYPE_MEDICATION_PICKER) ? R.string.choose_medication : R.string.choose_symptom)
                     .setItems(answers, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             if (type == TYPE_MEDICATION_PICKER) {

@@ -46,7 +46,7 @@ public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements F
             convertView.setTag(holder);
         }
 
-        PatientDetails current = getItem(position);
+        final PatientDetails current = getItem(position);
 
         holder.title.setText(current.getFullName());
 
@@ -61,7 +61,7 @@ public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements F
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                myPatientsView.loadTreatmentDetails(current.getTreatmentId());
             }
         });
 

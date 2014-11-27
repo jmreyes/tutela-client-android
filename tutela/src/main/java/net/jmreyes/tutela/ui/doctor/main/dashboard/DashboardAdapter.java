@@ -31,7 +31,7 @@ public class DashboardAdapter extends ArrayAdapter<Alert> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
@@ -54,7 +54,7 @@ public class DashboardAdapter extends ArrayAdapter<Alert> {
         holder.button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //dashboardView.openTraetmentDetails();
+                dashboardView.loadTreatmentDetails(values.get(position).getTreatmentId());
             }
         });
 

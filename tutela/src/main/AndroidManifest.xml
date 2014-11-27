@@ -60,6 +60,10 @@
                 android:name=".ui.doctor.patientdetails.PatientDetailsActivity"
                 android:parentActivityName=".ui.doctor.main.DoctorMainActivity" >
         </activity>
+        <activity
+                android:name=".ui.doctor.treatmentdetails.TreatmentDetailsActivity"
+                android:parentActivityName=".ui.doctor.main.DoctorMainActivity" >
+        </activity>
 
         <service
             android:name=".auth.AccountAuthenticatorService"

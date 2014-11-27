@@ -18,7 +18,8 @@ public interface OnFragmentInteractionListener {
     public enum Subsections {
         SYMPTOM_DETAILS,
         MEDICATION_DETAILS,
-        PATIENT_DETAILS
+        PATIENT_DETAILS,
+        TREATMENT_DETAILS
     }
 
     public enum Sections {

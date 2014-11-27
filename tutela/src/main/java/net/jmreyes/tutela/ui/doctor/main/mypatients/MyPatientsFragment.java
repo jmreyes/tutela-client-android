@@ -17,6 +17,7 @@ import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.doctor.main.OnFragmentInteractionListener;
 import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
 import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.treatmentdetails.TreatmentDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -94,6 +95,13 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView, 
     @Override
     public void displayError() {
         showErrorInLoadingBar(null);
+    }
+
+    @Override
+    public void loadTreatmentDetails(String treatmentId) {
+        Bundle bundle = new Bundle();
+        bundle.putString(TreatmentDetailsActivity.ARG_TREATMENT_ID, treatmentId);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsections.TREATMENT_DETAILS, bundle, null);
     }
 
     @OnItemClick(R.id.listView)

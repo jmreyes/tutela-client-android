@@ -11,4 +11,5 @@ import java.util.List;
 public interface MyPatientsView {
     public void displayResults(List<PatientDetails> results);
     public void displayError();
+    public void loadTreatmentDetails(String treatmentId);
 }

@@ -68,4 +68,7 @@ public interface DoctorSvcApi {
 
     @POST(DOCTOR_TREATMENT)
     public void postTreatment(@Body Treatment medication, Callback<Void> callback);
+
+    @GET(DOCTOR_TREATMENT + "/{id}" + "/checkins")
+    public void getCheckIns(@Path("id") String id, Callback<Collection<CheckIn>> callback);
 }

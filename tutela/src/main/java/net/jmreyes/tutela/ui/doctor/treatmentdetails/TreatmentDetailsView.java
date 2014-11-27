@@ -11,8 +11,13 @@ import java.util.HashMap;
 public interface TreatmentDetailsView {
     public void displayResults(Treatment treatment,
                                HashMap<String, ArrayList<String[]>> medicationHistory,
-                               HashMap<String, ArrayList<String[]>> symptomsHistory);
+                               HashMap<String, ArrayList<String[]>> symptomsHistory,
+                               ArrayList<ArrayList<String>> medicationFromDoctor,
+                               ArrayList<ArrayList<String>> symptomsFromDoctor);
+
     public void displayResultsError();
+
     public void saveDetailsSuccess();
+
     public void saveDetailsError();
 }

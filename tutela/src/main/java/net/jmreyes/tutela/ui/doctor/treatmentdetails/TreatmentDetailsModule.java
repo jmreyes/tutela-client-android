@@ -25,7 +25,7 @@ public class TreatmentDetailsModule {
     }
 
     /**
-     * Provide SymptomDetailsView
+     * Provide TreatmentDetailsView
      */
     @Provides
     @Singleton
@@ -34,7 +34,7 @@ public class TreatmentDetailsModule {
     }
 
     /**
-     * Provide SymptomDetailsPresenter
+     * Provide TreatmentDetailsPresenter
      */
     @Provides
     @Singleton

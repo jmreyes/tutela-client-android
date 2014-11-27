@@ -1,30 +1,36 @@
 package net.jmreyes.tutela.ui.doctor.treatmentdetails;
 
+import net.jmreyes.tutela.R;
+import net.jmreyes.tutela.model.CheckIn;
+import net.jmreyes.tutela.model.Medication;
 import net.jmreyes.tutela.model.Symptom;
+import net.jmreyes.tutela.model.Treatment;
 
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by juanma on 4/11/14.
  */
 public class TreatmentDetailsPresenterImpl implements TreatmentDetailsPresenter, TreatmentDetailsPresenter.OnFinishedListener {
     private TreatmentDetailsView view;
-    private SymptomDetailsInteractor symptomDetailsInteractor;
+    private TreatmentDetailsInteractor treatmentDetailsInteractor;
 
     @Inject
     public TreatmentDetailsPresenterImpl(TreatmentDetailsView view) {
         this.view = view;
-        symptomDetailsInteractor = new SymptomDetailsInteractorImpl();
+        treatmentDetailsInteractor = new TreatmentDetailsInteractorImpl();
     }
 
     @Override
-    public void makeRequest(String symptomId) {
-        symptomDetailsInteractor.makeRequest(symptomId, this);
+    public void makeRequest(String treatmentId) {
+        treatmentDetailsInteractor.makeRequest(treatmentId, this);
     }
 
     @Override
-    public void postDetails(Symptom symptom) {
-        symptomDetailsInteractor.postDetails(symptom, this);
+    public void postDetails(Treatment treatment) {
+        treatmentDetailsInteractor.postDetails(treatment, this);
     }
 
     /**
@@ -33,8 +39,67 @@ public class TreatmentDetailsPresenterImpl implements TreatmentDetailsPresenter,
      **/
 
     @Override
-    public void onSuccess(Symptom symptom) {
-        view.displayResults(symptom);
+    public void onSuccess(Treatment treatment, ArrayList<CheckIn> checkIns, ArrayList<Medication> medication, ArrayList<Symptom> symptoms) {
+        HashMap<String, ArrayList<String[]>> medicationHistory = new HashMap<String, ArrayList<String[]>>();
+        HashMap<String, ArrayList<String[]>> symptomsHistory = new HashMap<String, ArrayList<String[]>>();
+
+        ArrayList<ArrayList<String>> medicationFromDoctor = new ArrayList<ArrayList<String>>(2);
+        ArrayList<ArrayList<String>> symptomsFromDoctor = new ArrayList<ArrayList<String>>(2);
+
+        for (int i = checkIns.size() - 1; i >= 0; i--) {
+            CheckIn ci = checkIns.get(i);
+            Collection<CheckIn.EmbeddedMedication> ems = ci.getMedication();
+
+            for (CheckIn.EmbeddedMedication em : ems) {
+                String medicationName = em.getMedicationName();
+                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(em.getDate());
+                String answer = em.getTaken() ? "YES" : "NO";
+
+                ArrayList<String[]> dateAndAnswerArrayList = medicationHistory.get(medicationName);
+                if (dateAndAnswerArrayList == null) {
+                    dateAndAnswerArrayList = new ArrayList<String[]>();
+                }
+                dateAndAnswerArrayList.add(new String[]{date, answer});
+
+                medicationHistory.put(medicationName, dateAndAnswerArrayList);
+            }
+
+            Collection<CheckIn.EmbeddedSymptom> ess = ci.getSymptoms();
+
+            for (CheckIn.EmbeddedSymptom es : ess) {
+                String symptomName = es.getSymptomName();
+                String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(ci.getDate());
+                String answer = es.getAnsText();
+
+                ArrayList<String[]> dateAndAnswerArrayList = symptomsHistory.get(symptomName);
+                if (dateAndAnswerArrayList == null) {
+                    dateAndAnswerArrayList = new ArrayList<String[]>();
+                }
+                dateAndAnswerArrayList.add(new String[]{date, answer});
+
+                symptomsHistory.put(symptomName, dateAndAnswerArrayList);
+            }
+        }
+
+        ArrayList<String> medicationIds = new ArrayList<String>();
+        ArrayList<String> medicationNames = new ArrayList<String>();
+        for (Medication m : medication) {
+            medicationIds.add(m.getId());
+            medicationNames.add(m.getName());
+        }
+        medicationFromDoctor.add(0, medicationIds);
+        medicationFromDoctor.add(1, medicationNames);
+
+        ArrayList<String> symptomIds = new ArrayList<String>();
+        ArrayList<String> symptomNames = new ArrayList<String>();
+        for (Symptom s : symptoms) {
+            symptomIds.add(s.getId());
+            symptomNames.add(s.getName());
+        }
+        symptomsFromDoctor.add(0, symptomIds);
+        symptomsFromDoctor.add(1, symptomNames);
+
+        view.displayResults(treatment, medicationHistory, symptomsHistory, medicationFromDoctor, symptomsFromDoctor);
     }
 
     @Override

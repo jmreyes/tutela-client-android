@@ -99,6 +99,8 @@
     <string name="treatment_details_medication_title">Medication</string>
     <string name="treatment_details_symptoms_title">Symptoms</string>
     <string name="toast_new_treatment_success">New treatment added!</string>
+    <string name="choose_medication">Choose a new medication</string>
+    <string name="choose_symptom">Choose a new symptom to track</string>
 
 
     <string name="toast_save_details_failed">There was an error, please try again</string>

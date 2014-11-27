@@ -17,6 +17,7 @@ import net.jmreyes.tutela.model.Alert;
 import net.jmreyes.tutela.model.extra.DoctorStatus;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.doctor.main.OnFragmentInteractionListener;
+import net.jmreyes.tutela.ui.doctor.treatmentdetails.TreatmentDetailsActivity;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -115,6 +116,13 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
     @Override
     public void displayError() {
         showErrorInLoadingBar(null);
+    }
+
+    @Override
+    public void loadTreatmentDetails(String treatmentId) {
+        Bundle bundle = new Bundle();
+        bundle.putString(TreatmentDetailsActivity.ARG_TREATMENT_ID, treatmentId);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsections.TREATMENT_DETAILS, bundle, null);
     }
 
     @OnClick(R.id.top_bar)
