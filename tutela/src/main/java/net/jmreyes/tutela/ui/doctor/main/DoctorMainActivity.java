@@ -11,7 +11,7 @@ import android.view.View;
 import butterknife.ButterKnife;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.doctor.AbstractDrawerActivity;
-import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
+import net.jmreyes.tutela.ui.doctor.main.alerts.AlertFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
 import net.jmreyes.tutela.ui.doctor.medicationdetails.MedicationDetailsActivity;
 import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
@@ -107,7 +107,7 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
                 getSupportActionBar().setTitle(getString(R.string.doctor_dashboard));
                 break;
             case ALERTS:
-                ft.replace(R.id.content_frame, new AlertsFragment()).commit();
+                ft.replace(R.id.content_frame, new AlertFragment()).commit();
                 getSupportActionBar().setTitle(getString(R.string.alerts));
                 break;
         }

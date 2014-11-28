@@ -13,7 +13,7 @@ import butterknife.OnClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.extra.DoctorStatus;
 import net.jmreyes.tutela.ui.common.BaseActivity;
-import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
+import net.jmreyes.tutela.ui.doctor.main.alerts.AlertFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
 import net.jmreyes.tutela.ui.doctor.main.medication.MedicationFragment;
 import net.jmreyes.tutela.ui.doctor.main.mypatients.MyPatientsFragment;
@@ -68,6 +68,14 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
         doctorUsernameText.setText(doctorStatus.getUsername());
     }
 
+    public void updateNavigationDrawerUnseenAlerts(int unseenAlerts) {
+        if (unseenAlerts > 0) {
+            unseenAlertsText.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+        } else {
+            unseenAlertsText.setBackgroundColor(getResources().getColor(R.color.button_material_dark));
+        }
+    }
+
     @OnClick({R.id.navigation_drawer_section_doctor_dashboard,
             R.id.navigation_drawer_section_my_patients,
             R.id.navigation_drawer_section_symptoms,
@@ -99,7 +107,7 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
                 getSupportActionBar().setTitle(getString(R.string.medication));
                 break;
             case R.id.navigation_drawer_section_alerts:
-                ft.replace(R.id.content_frame, new AlertsFragment()).commit();
+                ft.replace(R.id.content_frame, new AlertFragment()).commit();
                 getSupportActionBar().setTitle(getString(R.string.alerts));
                 break;
             case R.id.navigation_drawer_section_settings:

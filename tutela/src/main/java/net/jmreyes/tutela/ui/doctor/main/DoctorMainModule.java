@@ -3,9 +3,9 @@ package net.jmreyes.tutela.ui.doctor.main;
 import dagger.Module;
 import dagger.Provides;
 import net.jmreyes.tutela.AppModule;
-import net.jmreyes.tutela.ui.doctor.alerts.AlertsFragment;
-import net.jmreyes.tutela.ui.doctor.alerts.AlertsPresenter;
-import net.jmreyes.tutela.ui.doctor.alerts.AlertsPresenterImpl;
+import net.jmreyes.tutela.ui.doctor.main.alerts.AlertFragment;
+import net.jmreyes.tutela.ui.doctor.main.alerts.AlertPresenter;
+import net.jmreyes.tutela.ui.doctor.main.alerts.AlertPresenterImpl;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardPresenter;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardPresenterImpl;
@@ -32,7 +32,7 @@ import javax.inject.Singleton;
                 MedicationFragment.class,
                 MyPatientsFragment.class,
                 SymptomsFragment.class,
-                AlertsFragment.class
+                AlertFragment.class
         },
         complete = false,
         library = true
@@ -100,11 +100,11 @@ public class DoctorMainModule {
     }
 
     /**
-     * Provide AlertsPresenter
+     * Provide AlertPresenter
      */
     @Provides
     @Singleton
-    public AlertsPresenter provideAlertsPresenter() {
-        return new AlertsPresenterImpl();
+    public AlertPresenter provideAlertsPresenter() {
+        return new AlertPresenterImpl();
     }
 }

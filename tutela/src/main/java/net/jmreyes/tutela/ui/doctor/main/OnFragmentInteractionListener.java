@@ -32,4 +32,5 @@ public interface OnFragmentInteractionListener {
     void loadFragment(Sections section);
 
     void updateNavigationDrawer(DoctorStatus doctorStatus);
+    void updateNavigationDrawerUnseenAlerts(int unseenAlerts);
 }
