@@ -95,7 +95,7 @@ public class MedicationFragment extends BaseFragment implements MedicationView {
         String id = medicationAdapter.getId(position);
         Bundle bundle = new Bundle();
         bundle.putString(MedicationDetailsActivity.ARG_MEDICATION_ID, id);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, bundle, v);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.MEDICATION_DETAILS, bundle, v);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class MedicationFragment extends BaseFragment implements MedicationView {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_add:
-                mListener.loadActivity(OnFragmentInteractionListener.Subsections.MEDICATION_DETAILS, null, item.getActionView());
+                mListener.loadActivity(OnFragmentInteractionListener.Subsection.MEDICATION_DETAILS, null, item.getActionView());
                 break;
         }
         return super.onOptionsItemSelected(item);

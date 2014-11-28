@@ -2,6 +2,10 @@ package net.jmreyes.tutela.ui.doctor;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
@@ -13,16 +17,21 @@ import butterknife.OnClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.extra.DoctorStatus;
 import net.jmreyes.tutela.ui.common.BaseActivity;
+import net.jmreyes.tutela.ui.doctor.main.OnFragmentInteractionListener;
 import net.jmreyes.tutela.ui.doctor.main.alerts.AlertFragment;
 import net.jmreyes.tutela.ui.doctor.main.dashboard.DashboardFragment;
 import net.jmreyes.tutela.ui.doctor.main.medication.MedicationFragment;
 import net.jmreyes.tutela.ui.doctor.main.mypatients.MyPatientsFragment;
 import net.jmreyes.tutela.ui.doctor.main.symptoms.SymptomsFragment;
+import net.jmreyes.tutela.ui.doctor.medicationdetails.MedicationDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
+import net.jmreyes.tutela.ui.doctor.treatmentdetails.TreatmentDetailsActivity;
 
 /**
  * Created by juanma on 9/11/14.
  */
-public abstract class AbstractDrawerActivity extends BaseActivity {
+public abstract class AbstractDrawerActivity extends BaseActivity implements OnFragmentInteractionListener {
     @InjectView(R.id.content_frame) FrameLayout contentFrame;
     @InjectView(R.id.my_drawer_layout) DrawerLayout drawerLayout;
     @InjectView(R.id.drawer_unseen_alerts_text) TextView unseenAlertsText;
@@ -55,6 +64,7 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
         drawerToggle.syncState();
     }
 
+    @Override
     public void updateNavigationDrawer(DoctorStatus doctorStatus) {
         int unseenAlerts = doctorStatus.getUnseenAlerts();
         unseenAlertsText.setText(Integer.toString(unseenAlerts));
@@ -68,6 +78,7 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
         doctorUsernameText.setText(doctorStatus.getUsername());
     }
 
+    @Override
     public void updateNavigationDrawerUnseenAlerts(int unseenAlerts) {
         if (unseenAlerts > 0) {
             unseenAlertsText.setBackgroundColor(getResources().getColor(R.color.colorAccent));
@@ -85,30 +96,22 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
             R.id.navigation_drawer_section_about,
             R.id.navigation_drawer_section_logout
     })
-    public void loadSubSection(View v) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-
+    public void loadSection(View v) {
         switch (v.getId()) {
             case R.id.navigation_drawer_section_doctor_dashboard:
-                ft.replace(R.id.content_frame, new DashboardFragment()).commit();
-                getSupportActionBar().setTitle(getString(R.string.doctor_dashboard));
+                loadFragment(Section.DASHBOARD);
                 break;
             case R.id.navigation_drawer_section_my_patients:
-                ft.replace(R.id.content_frame, new MyPatientsFragment()).commit();
-                getSupportActionBar().setTitle(getString(R.string.my_patients));
+                loadFragment(Section.MY_PATIENTS);
                 break;
             case R.id.navigation_drawer_section_symptoms:
-                ft.replace(R.id.content_frame, new SymptomsFragment()).commit();
-                getSupportActionBar().setTitle(getString(R.string.symptoms));
+                loadFragment(Section.SYMPTOMS);
                 break;
             case R.id.navigation_drawer_section_medication:
-                ft.replace(R.id.content_frame, new MedicationFragment()).commit();
-                getSupportActionBar().setTitle(getString(R.string.medication));
+                loadFragment(Section.MEDICATION);
                 break;
             case R.id.navigation_drawer_section_alerts:
-                ft.replace(R.id.content_frame, new AlertFragment()).commit();
-                getSupportActionBar().setTitle(getString(R.string.alerts));
+                loadFragment(Section.ALERTS);
                 break;
             case R.id.navigation_drawer_section_settings:
                 return;
@@ -121,4 +124,76 @@ public abstract class AbstractDrawerActivity extends BaseActivity {
 
         drawerLayout.closeDrawers();
     }
+
+    @Override
+    public void loadActivity(Subsection subsection, Bundle args, View transitionView) {
+        Intent intent;
+        String animationEndViewString = null;
+
+        switch (subsection) {
+            case SYMPTOM_DETAILS:
+                intent = new Intent(this, SymptomDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            case MEDICATION_DETAILS:
+                intent = new Intent(this, MedicationDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            case PATIENT_DETAILS:
+                intent = new Intent(this, PatientDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            case TREATMENT_DETAILS:
+                intent = new Intent(this, TreatmentDetailsActivity.class);
+                animationEndViewString = getString(R.string.transition_action_bar);
+                break;
+            default:
+                return;
+        }
+
+        if (args != null)
+            intent.putExtras(args);
+
+        if (transitionView != null) {
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this, transitionView, animationEndViewString);
+
+            ActivityCompat.startActivity(this, intent,
+                    options.toBundle());
+        } else {
+            ActivityCompat.startActivity(this, intent,
+                    null);
+        }
+
+    }
+
+    @Override
+    public void loadFragment(Section section) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        switch (section) {
+            case DASHBOARD:
+                ft.replace(R.id.content_frame, new DashboardFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.doctor_dashboard));
+                break;
+            case MY_PATIENTS:
+                ft.replace(R.id.content_frame, new MyPatientsFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.my_patients));
+                break;
+            case SYMPTOMS:
+                ft.replace(R.id.content_frame, new SymptomsFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.symptoms));
+                break;
+            case MEDICATION:
+                ft.replace(R.id.content_frame, new MedicationFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.medication));
+                break;
+            case ALERTS:
+                ft.replace(R.id.content_frame, new AlertFragment()).commit();
+                getSupportActionBar().setTitle(getString(R.string.alerts));
+                break;
+        }
+    }
+
 }

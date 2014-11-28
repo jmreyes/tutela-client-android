@@ -95,7 +95,7 @@ public class SymptomsFragment extends BaseFragment implements SymptomsView {
         String id = symptomsAdapter.getId(position);
         Bundle bundle = new Bundle();
         bundle.putString(SymptomDetailsActivity.ARG_SYMPTOM_ID, id);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.SYMPTOM_DETAILS, bundle, v);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.SYMPTOM_DETAILS, bundle, v);
     }
 
     @Override
@@ -112,7 +112,7 @@ public class SymptomsFragment extends BaseFragment implements SymptomsView {
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_add:
-                mListener.loadActivity(OnFragmentInteractionListener.Subsections.SYMPTOM_DETAILS, null, item.getActionView());
+                mListener.loadActivity(OnFragmentInteractionListener.Subsection.SYMPTOM_DETAILS, null, item.getActionView());
                 break;
         }
         return super.onOptionsItemSelected(item);

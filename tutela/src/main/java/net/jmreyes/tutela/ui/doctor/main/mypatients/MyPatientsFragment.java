@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
-import android.text.TextUtils;
 import android.view.*;
 import android.widget.ListView;
 import butterknife.ButterKnife;
@@ -12,11 +11,9 @@ import butterknife.InjectView;
 import butterknife.OnItemClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.PatientDetails;
-import net.jmreyes.tutela.model.Symptom;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.doctor.main.OnFragmentInteractionListener;
 import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
-import net.jmreyes.tutela.ui.doctor.symptomdetails.SymptomDetailsActivity;
 import net.jmreyes.tutela.ui.doctor.treatmentdetails.TreatmentDetailsActivity;
 
 import javax.inject.Inject;
@@ -101,7 +98,7 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView, 
     public void loadTreatmentDetails(String treatmentId) {
         Bundle bundle = new Bundle();
         bundle.putString(TreatmentDetailsActivity.ARG_TREATMENT_ID, treatmentId);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.TREATMENT_DETAILS, bundle, null);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.TREATMENT_DETAILS, bundle, null);
     }
 
     @OnItemClick(R.id.listView)
@@ -109,7 +106,7 @@ public class MyPatientsFragment extends BaseFragment implements MyPatientsView, 
         String id = myPatientsAdapter.getId(position);
         Bundle bundle = new Bundle();
         bundle.putString(PatientDetailsActivity.ARG_PATIENTDETAILS_ID, id);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.PATIENT_DETAILS, bundle, v);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.PATIENT_DETAILS, bundle, v);
     }
 
     @Override

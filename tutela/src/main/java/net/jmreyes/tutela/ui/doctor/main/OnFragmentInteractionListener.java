@@ -15,21 +15,24 @@ import net.jmreyes.tutela.model.extra.DoctorStatus;
  * >Communicating with Other Fragments</a> for more information.
  */
 public interface OnFragmentInteractionListener {
-    public enum Subsections {
+    public enum Subsection {
         SYMPTOM_DETAILS,
         MEDICATION_DETAILS,
         PATIENT_DETAILS,
         TREATMENT_DETAILS
     }
 
-    public enum Sections {
+    public enum Section {
         DASHBOARD,
+        MY_PATIENTS,
+        SYMPTOMS,
+        MEDICATION,
         ALERTS
     }
 
-    void loadActivity(Subsections subsection, Bundle args, View transitionView);
+    void loadActivity(Subsection subsection, Bundle args, View transitionView);
 
-    void loadFragment(Sections section);
+    void loadFragment(Section section);
 
     void updateNavigationDrawer(DoctorStatus doctorStatus);
     void updateNavigationDrawerUnseenAlerts(int unseenAlerts);

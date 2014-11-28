@@ -5,16 +5,13 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import butterknife.OnClick;
 import butterknife.OnItemClick;
 import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.model.Alert;
-import net.jmreyes.tutela.model.extra.DoctorStatus;
 import net.jmreyes.tutela.ui.common.BaseFragment;
 import net.jmreyes.tutela.ui.doctor.main.OnFragmentInteractionListener;
 import net.jmreyes.tutela.ui.doctor.patientdetails.PatientDetailsActivity;
@@ -111,14 +108,14 @@ public class AlertFragment extends BaseFragment implements AlertView {
     public void loadTreatmentDetails(String treatmentId) {
         Bundle bundle = new Bundle();
         bundle.putString(TreatmentDetailsActivity.ARG_TREATMENT_ID, treatmentId);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.TREATMENT_DETAILS, bundle, null);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.TREATMENT_DETAILS, bundle, null);
     }
 
     @Override
     public void loadPatientDetails(String patientId) {
         Bundle bundle = new Bundle();
         bundle.putString(PatientDetailsActivity.ARG_PATIENTDETAILS_ID, patientId);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.PATIENT_DETAILS, bundle, null);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.PATIENT_DETAILS, bundle, null);
     }
 
     @OnClick(R.id.loadingLayoutRetryButton)

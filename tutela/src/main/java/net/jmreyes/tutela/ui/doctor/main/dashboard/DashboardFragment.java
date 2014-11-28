@@ -123,19 +123,19 @@ public class DashboardFragment extends BaseFragment implements DashboardView {
     public void loadTreatmentDetails(String treatmentId) {
         Bundle bundle = new Bundle();
         bundle.putString(TreatmentDetailsActivity.ARG_TREATMENT_ID, treatmentId);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.TREATMENT_DETAILS, bundle, null);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.TREATMENT_DETAILS, bundle, null);
     }
 
     @Override
     public void loadPatientDetails(String patientId) {
         Bundle bundle = new Bundle();
         bundle.putString(PatientDetailsActivity.ARG_PATIENTDETAILS_ID, patientId);
-        mListener.loadActivity(OnFragmentInteractionListener.Subsections.PATIENT_DETAILS, bundle, null);
+        mListener.loadActivity(OnFragmentInteractionListener.Subsection.PATIENT_DETAILS, bundle, null);
     }
 
     @OnClick(R.id.top_bar)
     public void onTopBarClick() {
-        mListener.loadFragment(OnFragmentInteractionListener.Sections.ALERTS);
+        mListener.loadFragment(OnFragmentInteractionListener.Section.ALERTS);
     }
 
     @OnClick(R.id.loadingLayoutRetryButton)
