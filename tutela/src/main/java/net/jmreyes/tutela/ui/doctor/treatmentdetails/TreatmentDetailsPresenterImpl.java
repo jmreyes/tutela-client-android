@@ -40,8 +40,8 @@ public class TreatmentDetailsPresenterImpl implements TreatmentDetailsPresenter,
 
     @Override
     public void onSuccess(Treatment treatment, ArrayList<CheckIn> checkIns, ArrayList<Medication> medication, ArrayList<Symptom> symptoms) {
-        HashMap<String, ArrayList<String[]>> medicationHistory = new HashMap<String, ArrayList<String[]>>();
-        HashMap<String, ArrayList<String[]>> symptomsHistory = new HashMap<String, ArrayList<String[]>>();
+        HashMap<String, ArrayList<TreatmentDetailsView.HistoryItem>> medicationHistory = new HashMap<String, ArrayList<TreatmentDetailsView.HistoryItem>>();
+        HashMap<String, ArrayList<TreatmentDetailsView.HistoryItem>> symptomsHistory = new HashMap<String, ArrayList<TreatmentDetailsView.HistoryItem>>();
 
         ArrayList<ArrayList<String>> medicationFromDoctor = new ArrayList<ArrayList<String>>(2);
         ArrayList<ArrayList<String>> symptomsFromDoctor = new ArrayList<ArrayList<String>>(2);
@@ -54,12 +54,13 @@ public class TreatmentDetailsPresenterImpl implements TreatmentDetailsPresenter,
                 String medicationName = em.getMedicationName();
                 String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(em.getDate());
                 String answer = em.getTaken() ? "YES" : "NO";
+                int ansIndex = em.getTaken() ? 1 : 0;
 
-                ArrayList<String[]> dateAndAnswerArrayList = medicationHistory.get(medicationName);
+                ArrayList<TreatmentDetailsView.HistoryItem> dateAndAnswerArrayList = medicationHistory.get(medicationName);
                 if (dateAndAnswerArrayList == null) {
-                    dateAndAnswerArrayList = new ArrayList<String[]>();
+                    dateAndAnswerArrayList = new ArrayList<TreatmentDetailsView.HistoryItem>();
                 }
-                dateAndAnswerArrayList.add(new String[]{date, answer});
+                dateAndAnswerArrayList.add(new TreatmentDetailsView.HistoryItem(date, answer, em.getDate().getTime(), ansIndex));
 
                 medicationHistory.put(medicationName, dateAndAnswerArrayList);
             }
@@ -70,12 +71,13 @@ public class TreatmentDetailsPresenterImpl implements TreatmentDetailsPresenter,
                 String symptomName = es.getSymptomName();
                 String date = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(ci.getDate());
                 String answer = es.getAnsText();
+                int ansIndex = es.getAnsIndex();
 
-                ArrayList<String[]> dateAndAnswerArrayList = symptomsHistory.get(symptomName);
+                ArrayList<TreatmentDetailsView.HistoryItem> dateAndAnswerArrayList = symptomsHistory.get(symptomName);
                 if (dateAndAnswerArrayList == null) {
-                    dateAndAnswerArrayList = new ArrayList<String[]>();
+                    dateAndAnswerArrayList = new ArrayList<TreatmentDetailsView.HistoryItem>();
                 }
-                dateAndAnswerArrayList.add(new String[]{date, answer});
+                dateAndAnswerArrayList.add(new TreatmentDetailsView.HistoryItem(date, answer, ci.getDate().getTime(), ansIndex));
 
                 symptomsHistory.put(symptomName, dateAndAnswerArrayList);
             }

@@ -10,8 +10,8 @@ import java.util.HashMap;
  */
 public interface TreatmentDetailsView {
     public void displayResults(Treatment treatment,
-                               HashMap<String, ArrayList<String[]>> medicationHistory,
-                               HashMap<String, ArrayList<String[]>> symptomsHistory,
+                               HashMap<String, ArrayList<HistoryItem>> medicationHistory,
+                               HashMap<String, ArrayList<HistoryItem>> symptomsHistory,
                                ArrayList<ArrayList<String>> medicationFromDoctor,
                                ArrayList<ArrayList<String>> symptomsFromDoctor);
 
@@ -20,4 +20,34 @@ public interface TreatmentDetailsView {
     public void saveDetailsSuccess();
 
     public void saveDetailsError();
+
+    public static class HistoryItem {
+        private String date;
+        private String answer;
+        private long dateLong;
+        private int index;
+
+        public HistoryItem(String date, String answer, long dateLong, int index) {
+            this.date = date;
+            this.answer = answer;
+            this.dateLong = dateLong;
+            this.index = index;
+        }
+
+        public String getDate() {
+            return date;
+        }
+
+        public String getAnswer() {
+            return answer;
+        }
+
+        public int getIndex() {
+            return index;
+        }
+
+        public long getDateLong() {
+            return dateLong;
+        }
+    }
 }
