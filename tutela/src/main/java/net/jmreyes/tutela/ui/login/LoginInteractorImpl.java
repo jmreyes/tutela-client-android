@@ -41,7 +41,7 @@ public class LoginInteractorImpl implements LoginInteractor {
 
     @Override
     public void getRole(final LoginPresenter.OnFinishedListener listener) {
-        ApiManager.getUserService().getRole(
+        ApiManager.getAuthService().getRole(
                 new Callback<String>() {
                     @Override
                     public void success(String role, Response response) {

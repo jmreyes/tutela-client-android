@@ -29,8 +29,6 @@ public class ApiManager {
     public static final String ROLE_DOCTOR = "ROLE_DOCTOR";
 
     private static AuthService authService;
-    private static MedicationService medicationService;
-    private static UserService userService;
     private static PatientSvcApi patientService;
     private static DoctorSvcApi doctorService;
 
@@ -51,8 +49,6 @@ public class ApiManager {
                 .build();
 
         authService = restAdapter.create(AuthService.class);
-        medicationService = restAdapter.create(MedicationService.class);
-        userService = restAdapter.create(UserService.class);
         patientService = restAdapter.create(PatientSvcApi.class);
         doctorService = restAdapter.create(DoctorSvcApi.class);
     }
@@ -60,12 +56,6 @@ public class ApiManager {
 
     public static AuthService getAuthService() {
         return authService;
-    }
-    public static MedicationService getMedicationService() {
-        return medicationService;
-    }
-    public static UserService getUserService() {
-        return userService;
     }
     public static PatientSvcApi getPatientService() {
         return patientService;

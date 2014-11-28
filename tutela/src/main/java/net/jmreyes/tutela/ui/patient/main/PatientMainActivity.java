@@ -28,9 +28,6 @@ import java.util.List;
 
 public class PatientMainActivity extends BaseActivity implements PatientMainView, OnFragmentInteractionListener {
 
-    @Inject
-    PatientMainPresenter presenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

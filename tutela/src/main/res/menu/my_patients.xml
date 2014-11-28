@@ -2,15 +2,16 @@
       xmlns:app="http://schemas.android.com/apk/res-auto"
       xmlns:tools="http://schemas.android.com/tools"
       tools:context="net.jmreyes.tutela.ui.patient.main.PatientMainActivity">
-    <!--<item android:id="@+id/action_search"-->
-    <!--android:title="@string/action_search"-->
-    <!--android:orderInCategory="100"-->
-    <!--android:icon="@drawable/ic_search_white_24dp"-->
-    <!--app:showAsAction="ifRoom" />-->
     <item
             android:id="@+id/action_search"
             android:icon="@drawable/ic_search_white_24dp"
             app:showAsAction="ifRoom"
-            android:title="Cerca"
+            android:title="@string/action_search"
             app:actionViewClass="android.support.v7.widget.SearchView"/>
+
+    <item android:id="@+id/action_add"
+          android:title="@string/action_add"
+          android:orderInCategory="100"
+          android:icon="@drawable/ic_add_white_24dp"
+          app:showAsAction="ifRoom" />
 </menu>

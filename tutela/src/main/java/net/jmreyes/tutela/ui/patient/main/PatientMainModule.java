@@ -48,15 +48,6 @@ public class PatientMainModule {
     }
 
     /**
-     * Provide PatientMainPresenter
-     */
-    @Provides
-    @Singleton
-    public PatientMainPresenter providePatientMainPresenter(PatientMainView view) {
-        return new PatientMainPresenterImpl(view);
-    }
-
-    /**
      * Provide CheckInPresenter
      */
     @Provides

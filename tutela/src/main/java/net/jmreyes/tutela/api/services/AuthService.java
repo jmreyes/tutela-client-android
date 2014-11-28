@@ -14,4 +14,7 @@ public interface AuthService {
             @Field("username") String email,
             @Field("password") String password,
             Callback<LoginResponse> loginResponseCallback);
+
+    @GET("/user/me/role")
+    void getRole(Callback<String> callback);
 }
