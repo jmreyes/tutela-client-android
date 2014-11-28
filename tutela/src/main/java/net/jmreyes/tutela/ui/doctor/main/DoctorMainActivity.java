@@ -15,9 +15,6 @@ import java.util.List;
  */
 public class DoctorMainActivity extends AbstractDrawerActivity implements DoctorMainView {
 
-    @Inject
-    DoctorMainPresenter presenter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

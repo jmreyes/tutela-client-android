@@ -3,8 +3,16 @@ package net.jmreyes.tutela.ui.patient.main;
 import dagger.Module;
 import dagger.Provides;
 import net.jmreyes.tutela.AppModule;
-import net.jmreyes.tutela.ui.patient.main.presenter.*;
-import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
+import net.jmreyes.tutela.ui.patient.main.checkin.CheckInFragment;
+import net.jmreyes.tutela.ui.patient.main.checkin.CheckInPresenter;
+import net.jmreyes.tutela.ui.patient.main.checkin.CheckInPresenterImpl;
+import net.jmreyes.tutela.ui.patient.main.mydoctors.MyDoctorsFragment;
+import net.jmreyes.tutela.ui.patient.main.mydoctors.MyDoctorsPresenter;
+import net.jmreyes.tutela.ui.patient.main.mydoctors.MyDoctorsPresenterImpl;
+import net.jmreyes.tutela.ui.patient.main.mymedication.MyMedicationFragment;
+import net.jmreyes.tutela.ui.patient.main.mymedication.MyMedicationPresenter;
+import net.jmreyes.tutela.ui.patient.main.mymedication.MyMedicationPresenterImpl;
+import net.jmreyes.tutela.ui.patient.main.myreminders.MyRemindersFragment;
 
 import javax.inject.Singleton;
 

@@ -15,8 +15,10 @@ import net.jmreyes.tutela.R;
 import net.jmreyes.tutela.ui.common.BaseActivity;
 import net.jmreyes.tutela.ui.patient.doctordetails.DoctorDetailsActivity;
 import net.jmreyes.tutela.ui.patient.main.aux.PagerSlidingTabStrip;
-import net.jmreyes.tutela.ui.patient.main.presenter.PatientMainPresenter;
-import net.jmreyes.tutela.ui.patient.main.view.PatientMainView;
+import net.jmreyes.tutela.ui.patient.main.checkin.CheckInFragment;
+import net.jmreyes.tutela.ui.patient.main.mydoctors.MyDoctorsFragment;
+import net.jmreyes.tutela.ui.patient.main.mymedication.MyMedicationFragment;
+import net.jmreyes.tutela.ui.patient.main.myreminders.MyRemindersFragment;
 import net.jmreyes.tutela.ui.patient.medicationdetails.MyMedicationDetailsActivity;
 
 import javax.inject.Inject;

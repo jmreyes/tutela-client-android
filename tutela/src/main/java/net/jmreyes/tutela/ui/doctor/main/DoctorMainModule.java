@@ -55,15 +55,6 @@ public class DoctorMainModule {
     }
 
     /**
-     * Provide DoctorMainPresenter
-     */
-    @Provides
-    @Singleton
-    public DoctorMainPresenter provideDoctorMainPresenter(DoctorMainView view) {
-        return new DoctorMainPresenterImpl(view);
-    }
-
-    /**
      * Provide DashboardPresenter
      */
     @Provides
