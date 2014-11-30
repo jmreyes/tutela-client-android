@@ -13,6 +13,8 @@ import javax.inject.Inject;
 
 /**
  * Created by juanma on 2/11/14.
+ *
+ * From https://gist.github.com/burgalon
  */
 public class AccountAuthenticator extends AbstractAccountAuthenticator {
     private final Context context;
@@ -21,7 +23,6 @@ public class AccountAuthenticator extends AbstractAccountAuthenticator {
         super(context);
 
         this.context = context;
-        //((App) context.getApplicationContext()).getMainGraph().inject(this);
     }
 
     /*

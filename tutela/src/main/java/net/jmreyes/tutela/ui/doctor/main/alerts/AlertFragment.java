@@ -82,15 +82,6 @@ public class AlertFragment extends BaseFragment implements AlertView {
         mListener = null;
     }
 
-    @OnItemClick(R.id.listView)
-    void onItemSelected(int position, View v) {
-//        String id = alertAdapter.getId(position);
-//        Bundle bundle = new Bundle();
-//        //bundle.putString(DoctorDetailsActivity.ARG_DOCTOR_ID, id);
-//        mListener.loadActivity(OnFragmentInteractionListener.Subsections.DOCTOR_DETAILS, bundle, v);
-    }
-
-
     @Override
     public void displayResults(List<Alert> results) {
         hideLoadingBar();

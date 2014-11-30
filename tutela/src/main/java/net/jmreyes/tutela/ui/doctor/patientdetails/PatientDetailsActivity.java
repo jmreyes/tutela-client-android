@@ -151,7 +151,6 @@ public class PatientDetailsActivity extends BaseActivity implements PatientDetai
             showingEditDetails = false;
             invalidateOptionsMenu();
         } else {
-            //Toast.makeText(this, R.string.toast_new_symptom_success, Toast.LENGTH_SHORT).show();
             onBackPressed();
         }
     }

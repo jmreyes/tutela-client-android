@@ -19,7 +19,6 @@ public interface PatientSvcApi {
     public static final String PATIENT_SVC_PATH = "/patient";
 
     public static final String PATIENT_MEDICATION = PATIENT_SVC_PATH + "/me/medication";
-    public static final String PATIENT_PATIENTDETAILS = PATIENT_SVC_PATH + "/me/details";
     public static final String PATIENT_DOCTORS = PATIENT_SVC_PATH + "/me/doctors";
     public static final String PATIENT_CHECKIN = PATIENT_SVC_PATH + "/me/checkin";
 

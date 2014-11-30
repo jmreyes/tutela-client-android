@@ -144,24 +144,31 @@ public class CheckIn {
         public String getSymptomId() {
             return symptomId;
         }
+
         public void setSymptomId(String symptomId) {
             this.symptomId = symptomId;
         }
+
         public String getSymptomName() {
             return symptomName;
         }
+
         public void setSymptomName(String symptomName) {
             this.symptomName = symptomName;
         }
+
         public String getAnsText() {
             return ansText;
         }
+
         public void setAnsText(String ansText) {
             this.ansText = ansText;
         }
+
         public int getAnsIndex() {
             return ansIndex;
         }
+
         public void setAnsIndex(int ansIndex) {
             this.ansIndex = ansIndex;
         }

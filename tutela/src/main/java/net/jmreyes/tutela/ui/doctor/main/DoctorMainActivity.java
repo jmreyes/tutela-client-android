@@ -36,5 +36,4 @@ public class DoctorMainActivity extends AbstractDrawerActivity implements Doctor
     protected List<Object> getModules() {
         return Arrays.<Object>asList(new DoctorMainModule(this));
     }
-
 }

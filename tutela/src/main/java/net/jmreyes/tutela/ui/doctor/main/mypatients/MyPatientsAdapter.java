@@ -17,10 +17,9 @@ import java.util.List;
 /**
  * Created by juanma on 23/11/14.
  */
-public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements Filterable {
+public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> {
     private final Context context;
     private List<PatientDetails> values;
-    private List<PatientDetails> originalValues;
 
     private MyPatientsView myPatientsView;
 
@@ -28,7 +27,6 @@ public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements F
         super(context, R.layout.tile_list_one_item, values);
         this.context = context;
         this.values = values;
-        this.originalValues = values;
         this.myPatientsView = myPatientsView;
     }
 
@@ -79,51 +77,6 @@ public class MyPatientsAdapter extends ArrayAdapter<PatientDetails> implements F
         public ViewHolder(View view) {
             ButterKnife.inject(this, view);
         }
-    }
-
-    // http://stackoverflow.com/questions/19122848/custom-getfilter-in-custom-arrayadapter-in-android
-    Filter myFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
-            FilterResults filterResults = new FilterResults();
-            ArrayList<PatientDetails> tempList = new ArrayList<PatientDetails>();
-            //constraint is the result from text you want to filter against.
-            //originalValues is your data set you will filter from
-            if (constraint != null && originalValues != null) {
-                int length = originalValues.size();
-                int i = 0;
-                constraint = constraint.toString().toLowerCase();
-                while (i < length) {
-                    PatientDetails item = originalValues.get(i);
-                    //do whatever you wanna do here
-                    //adding result set output array
-
-                    if (item.getFirstName().toLowerCase().startsWith(constraint.toString())
-                            || item.getLastName().toLowerCase().startsWith(constraint.toString())) {
-                        tempList.add(item);
-                    }
-
-                    i++;
-                }
-                //following two lines is very important
-                //as publish result can only take FilterResults objects
-                filterResults.values = tempList;
-                filterResults.count = tempList.size();
-            }
-            return filterResults;
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected void publishResults(CharSequence contraint, FilterResults results) {
-            values = (ArrayList<PatientDetails>) results.values;
-            notifyDataSetChanged();
-        }
-    };
-
-    @Override
-    public Filter getFilter() {
-        return myFilter;
     }
 
     @Override

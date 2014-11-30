@@ -20,13 +20,10 @@ public class MedicationAdapter extends ArrayAdapter<Medication> {
     private final Context context;
     private final List<Medication> values;
 
-    private MedicationView medicationView;
-
-    public MedicationAdapter(Context context, List<Medication> values, MedicationView medicationView) {
+    public MedicationAdapter(Context context, List<Medication> values) {
         super(context, R.layout.tile_list_one_item, values);
         this.context = context;
         this.values = values;
-        this.medicationView = medicationView;
     }
 
     @Override

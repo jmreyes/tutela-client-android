@@ -67,15 +67,6 @@ public class LoginActivity extends BaseActivity implements LoginView {
         return Arrays.<Object>asList(new LoginModule(this));
     }
 
-//    @OnEditorAction(R.id.password)
-//    public boolean OnEditorAction(int id, KeyEvent keyEvent) {
-//        if (id == R.id.login || id == EditorInfo.IME_NULL) {
-//            attemptLogin();
-//            return true;
-//        }
-//        return false;
-//    }
-
     /**
      * Attempts to sign in or register the account specified by the login form.
      * If there are form errors (invalid email, missing fields, etc.), the

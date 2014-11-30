@@ -9,5 +9,4 @@ public class LoginResponse {
     public String getAccessToken() {
         return this.access_token;
     }
-
 }

@@ -65,9 +65,6 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_settings:
                 return true;
@@ -95,13 +92,13 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
+                case 0:
                     return new CheckInFragment();
-                case 1: // Fragment # 0 - This will show FirstFragment different title
+                case 1:
                     return new MyMedicationFragment();
-                case 2: // Fragment # 1 - This will show SecondFragment
+                case 2:
                     return new MyDoctorsFragment();
-                case 3: // Fragment # 1 - This will show SecondFragment
+                case 3:
                     return new MyRemindersFragment();
                 default:
                     return null;
@@ -117,13 +114,13 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
         @Override
         public int getPageIconResId(int position) {
             switch (position) {
-                case 0: // Fragment # 0 - This will show FirstFragment
+                case 0:
                     return R.drawable.ic_home_black_36dp;
-                case 1: // Fragment # 0 - This will show FirstFragment different title
+                case 1:
                     return R.drawable.ic_local_pharmacy_black_36dp;
-                case 2: // Fragment # 1 - This will show SecondFragment
+                case 2:
                     return R.drawable.ic_healthcare_stethoscope;
-                case 3: // Fragment # 1 - This will show SecondFragment
+                case 3:
                     return R.drawable.ic_alarm_add_black_36dp;
                 default:
                     return 0;

@@ -27,6 +27,7 @@ public class CheckInProposal {
         public String getMedicationId() {
             return medicationId;
         }
+
         public String getMedicationName() {
             return medicationName;
         }
@@ -41,12 +42,15 @@ public class CheckInProposal {
         public String getSymptomId() {
             return symptomId;
         }
+
         public String getSymptomName() {
             return symptomName;
         }
+
         public String getQuestion() {
             return question;
         }
+
         public Collection<Answer> getAnswers() {
             return answers;
         }

@@ -19,12 +19,15 @@ public class Doctor {
     public String getFirstName() {
         return firstName;
     }
+
     public String getLastName() {
         return lastName;
     }
+
     public String getEmail() {
         return this.email;
     }
+
     public String getPhoneNumber() {
         return this.phoneNumber;
     }

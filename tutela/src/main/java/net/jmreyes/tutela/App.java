@@ -37,7 +37,4 @@ public class App extends Application {
         return objectGraph.plus(modules);
     }
 
-    public ObjectGraph getMainGraph() {
-        return objectGraph;
-    }
 }

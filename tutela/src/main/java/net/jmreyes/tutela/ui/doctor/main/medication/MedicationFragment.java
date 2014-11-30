@@ -81,7 +81,7 @@ public class MedicationFragment extends BaseFragment implements MedicationView {
     @Override
     public void displayResults(List<Medication> results) {
         hideLoadingBar();
-        medicationAdapter = new MedicationAdapter(listView.getContext(), results, this);
+        medicationAdapter = new MedicationAdapter(listView.getContext(), results);
         listView.setAdapter(medicationAdapter);
     }
 
@@ -107,12 +107,10 @@ public class MedicationFragment extends BaseFragment implements MedicationView {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
             case R.id.action_add:
-                mListener.loadActivity(OnFragmentInteractionListener.Subsection.MEDICATION_DETAILS, null, item.getActionView());
+                mListener.loadActivity(OnFragmentInteractionListener.Subsection.MEDICATION_DETAILS,
+                        null, item.getActionView());
                 break;
         }
         return super.onOptionsItemSelected(item);

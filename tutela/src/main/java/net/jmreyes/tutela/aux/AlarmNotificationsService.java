@@ -28,7 +28,6 @@ public class AlarmNotificationsService extends IntentService {
         builder.setContentIntent(pIntent)
                 .setAutoCancel(true)
                 .setSmallIcon(R.drawable.ic_healthcare_stethoscope)
-                //.setTicker(getString(R.string.notifmsg))
                 .setContentTitle(getString(R.string.checkin_notification_title))
                 .setContentText(getString(R.string.checkin_notification_text));
 

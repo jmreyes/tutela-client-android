@@ -42,8 +42,7 @@ public abstract class AbstractDrawerActivity extends BaseActivity implements OnF
 
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(
                 this,  drawerLayout, toolbar,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close
-        ){
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close){
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
                 invalidateOptionsMenu();
@@ -196,5 +195,4 @@ public abstract class AbstractDrawerActivity extends BaseActivity implements OnF
                 break;
         }
     }
-
 }

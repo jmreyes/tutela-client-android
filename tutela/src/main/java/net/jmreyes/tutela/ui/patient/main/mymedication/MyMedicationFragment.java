@@ -53,14 +53,6 @@ public class MyMedicationFragment extends BaseFragment implements MyMedicationVi
 
         ButterKnife.inject(this, view);
 
-        // Inflate the layout for this fragment
-//        List<Medication> medList = new ArrayList<Medication>(12);
-//        for (int i = 0; i < 12.; i++) {
-//            medList.add(new Medication());
-//        }
-//        MyMedicationListAdapter myMedicationListAdapter = new MyMedicationListAdapter(view.getContext(), medList);
-//        listView.setAdapter(myMedicationListAdapter);
-
         return view;
     }
 
