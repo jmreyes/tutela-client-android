@@ -198,7 +198,7 @@ public class PatientDetailsActivity extends BaseActivity implements PatientDetai
 
         phone.setVisibility(View.VISIBLE);
         phoneEdit.setVisibility(View.GONE);
-        phone.setText(patientDetails.getPhone());
+        phone.setText(patientDetails.getPhoneNumber());
     }
 
     private void populateEditDetails() {
@@ -228,7 +228,7 @@ public class PatientDetailsActivity extends BaseActivity implements PatientDetai
         dateOfBirthEdit.setText(patientDetails.getDateOfBirth());
         mrnEdit.setText(patientDetails.getMrn());
         emailEdit.setText(patientDetails.getEmail());
-        phoneEdit.setText(patientDetails.getPhone());
+        phoneEdit.setText(patientDetails.getPhoneNumber());
     }
 
     private void saveDetails() {
@@ -252,7 +252,7 @@ public class PatientDetailsActivity extends BaseActivity implements PatientDetai
         patientDetails.setDateOfBirth(dateOfBirth);
         patientDetails.setMrn(mrn);
         patientDetails.setEmail(email);
-        patientDetails.setPhone(phone);
+        patientDetails.setPhoneNumber(phone);
 
         presenter.postDetails(patientDetailsId, patientDetails);
     }

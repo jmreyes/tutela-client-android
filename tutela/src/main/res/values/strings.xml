@@ -22,6 +22,7 @@
     <string name="no">No</string>
     <string name="previous_question">&lt; Previous question</string>
     <string name="questions_left">%1$s questions left</string>
+    <string name="pain_medication">pain medication</string>
 
     <string name="checkin_notification_title">Time for scheduled check-in!</string>
     <string name="checkin_notification_text">Please answer some questions.</string>

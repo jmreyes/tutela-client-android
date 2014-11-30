@@ -120,7 +120,12 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
 
         footerLayout.setVisibility(View.VISIBLE);
 
-        medicationNameText.setText(getString(R.string.did_you_take_2, medicationName));
+        if (medicationName != null) {
+            medicationNameText.setText(getString(R.string.did_you_take_2, medicationName));
+        } else {
+            medicationNameText.setText(getString(R.string.did_you_take_2,
+                    getString(R.string.pain_medication)));
+        }
     }
 
     @Override
@@ -223,7 +228,7 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
         Calendar calendar =  Calendar.getInstance();
         Bundle args = new Bundle();
         args.putInt("year", calendar.get(Calendar.YEAR));
-        args.putInt("monthOfYear", calendar.get(Calendar.MONTH) + 1);
+        args.putInt("monthOfYear", calendar.get(Calendar.MONTH));
         args.putInt("dayOfMonth", calendar.get(Calendar.DAY_OF_MONTH));
         date.setArguments(args);
 
@@ -232,7 +237,7 @@ public class CheckInFragment extends BaseFragment implements CheckInView {
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(Calendar.YEAR, year);
-                calendar.set(Calendar.MONTH, monthOfYear - 1);
+                calendar.set(Calendar.MONTH, monthOfYear);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
                 showTimePicker(calendar);

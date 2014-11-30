@@ -35,7 +35,7 @@
                 android:gravity="center"
                 android:textColor="@color/text_main"
                 android:textSize="20sp"
-                android:text="bla bla"/>
+                android:text=""/>
 
         <LinearLayout
                 android:id="@+id/buttons_placeholder"
@@ -47,20 +47,20 @@
             <Button
                     android:id="@+id/symptom_button3"
                     style="@style/button_flat"
-                    android:maxWidth="90dp"
-                    android:text="A"/>
+                    android:maxWidth="95dp"
+                    android:text=""/>
 
             <Button
                     android:id="@+id/symptom_button2"
                     style="@style/button_flat"
-                    android:maxWidth="90dp"
-                    android:text="A"/>
+                    android:maxWidth="95dp"
+                    android:text=""/>
 
             <Button
                     android:id="@+id/symptom_button1"
                     style="@style/button_solid"
-                    android:maxWidth="90dp"
-                    android:text="A"/>
+                    android:maxWidth="95dp"
+                    android:text=""/>
 
         </LinearLayout>
 

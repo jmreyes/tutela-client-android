@@ -80,6 +80,7 @@ public abstract class AbstractDrawerActivity extends BaseActivity implements OnF
 
     @Override
     public void updateNavigationDrawerUnseenAlerts(int unseenAlerts) {
+        unseenAlertsText.setText(Integer.toString(unseenAlerts));
         if (unseenAlerts > 0) {
             unseenAlertsText.setBackgroundColor(getResources().getColor(R.color.colorAccent));
         } else {

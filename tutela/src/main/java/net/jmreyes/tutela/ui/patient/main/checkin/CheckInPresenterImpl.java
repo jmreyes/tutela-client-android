@@ -68,8 +68,10 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
 
         // Check if already there, in case the user went back with "Previous question"
         Collection<CheckIn.EmbeddedSymptom> ess = mapTreatmentCheckIn.get(symptoms.get(total-count-1).getTreatmentId()).getSymptoms();
-        for (CheckIn.EmbeddedSymptom es : ess ) {
-            if (es.getSymptomId().equals(newEs.getSymptomId())) ess.remove(es);
+        Iterator<CheckIn.EmbeddedSymptom> i = ess.iterator();
+        while (i.hasNext()) {
+            CheckIn.EmbeddedSymptom es = i.next();
+            if (es.getSymptomId().equals(newEs.getSymptomId())) i.remove();
         }
 
         ess.add(newEs);
@@ -119,7 +121,11 @@ public class CheckInPresenterImpl implements CheckInPresenter, CheckInPresenter.
         view.updateFooter(total - count - 1, count > 0);
 
         if (count < medications.size()) {
-            view.displayMedication(medications.get(count).getMedication().getMedicationName());
+            String medicationName = null;
+            if (medications.size() > 1) {
+                medicationName = medications.get(count).getMedication().getMedicationName();
+            }
+            view.displayMedication(medicationName);
         } else if (count < total) {
             CheckInProposal.EmbeddedSymptomProposal esp = symptoms.get(total-count-1).getSymptom();
             view.displaySymptom(esp.getQuestion(), esp.getAnswers());

@@ -28,6 +28,8 @@ public class AlarmHelper {
             c.setTimeInMillis(c.getTimeInMillis() + 24*60*60*1000);
         }
 
+        c.set(Calendar.MILLISECOND, 0);
+
         AlarmManager am = (AlarmManager) context.getSystemService(Activity.ALARM_SERVICE);
         am.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(),  AlarmManager.INTERVAL_DAY, pIntent);
 

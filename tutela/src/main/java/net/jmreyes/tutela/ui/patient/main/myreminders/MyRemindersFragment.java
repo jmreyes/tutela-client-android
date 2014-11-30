@@ -132,6 +132,12 @@ public class MyRemindersFragment extends BaseFragment implements MyRemindersView
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             Calendar calendar = Calendar.getInstance();
+
+            if (hourOfDay < calendar.get(Calendar.HOUR_OF_DAY) ||
+                    (hourOfDay == calendar.get(Calendar.HOUR_OF_DAY) && minute < calendar.get(Calendar.MINUTE))) {
+                calendar.setTimeInMillis(calendar.getTimeInMillis() + 24*60*60*1000);
+            }
+
             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
             calendar.set(Calendar.MINUTE, minute);
 
