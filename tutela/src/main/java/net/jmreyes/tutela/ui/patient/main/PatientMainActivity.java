@@ -47,7 +47,6 @@ public class PatientMainActivity extends BaseActivity implements PatientMainView
         PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         tabs.setViewPager(pager);
         tabs.setTextColor(Color.WHITE);
-
     }
 
     @Override

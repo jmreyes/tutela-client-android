@@ -17,7 +17,7 @@ import javax.inject.Inject;
  */
 public class ApiManager {
 
-    private static final String API_URL = "http://192.168.178.59:8443";
+    private static final String API_URL = "https://192.168.178.59:8443";
 
     public static final String CLIENT_ID = "mobile"; // Auth token type
 
